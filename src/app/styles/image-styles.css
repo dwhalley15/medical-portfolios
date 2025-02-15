@@ -1,0 +1,14 @@
+.home-page-logo {
+  width: 50vw;
+  max-width: 400px;
+  height: auto;
+  padding: 2rem;
+  margin: 2rem;
+}
+
+@media screen and (max-width: 990px) {
+  .home-page-logo {
+    width: 80vw;
+    margin: 1rem;
+  }
+}

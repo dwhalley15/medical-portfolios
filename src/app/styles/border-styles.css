@@ -1,0 +1,18 @@
+.shadow-border {
+  box-shadow: 0 0 2.5rem var(--blue);
+}
+
+.shadow-border:hover {
+  box-shadow: 0 0 5rem var(--blue);
+}
+
+.left-border {
+  border-right: 1rem solid var(--blue);
+}
+
+@media screen and (max-width: 990px) {
+  .left-border {
+    border-right: none;
+    border-bottom: 1rem solid var(--blue);
+  }
+}

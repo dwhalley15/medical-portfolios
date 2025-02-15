@@ -1,0 +1,23 @@
+.blue{
+    color: var(--blue);
+}
+
+.blue-background{
+    background-color: var(--blue);
+}
+
+.blue-border{
+    border: 1rem solid var(--blue);
+}
+
+.white{
+    color: var(--white);
+}
+
+.white-background{
+    background-color: var(--white);
+}
+
+.white-border{
+    border: 1rem solid var(--white);
+}
