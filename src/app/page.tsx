@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRightToBracket, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 
 export default async function Home() {
   return (
@@ -25,8 +27,8 @@ export default async function Home() {
             }
           </p>
           <div className="container">
-            <Link className="btn shadow-border blue-background btn-text white" href="/login">Login</Link>
-            <Link className="btn shadow-border blue-background btn-text white" href="/signup">Sign Up</Link>
+            <Link className="btn shadow-border blue-background btn-text white" href="/login">Login <FontAwesomeIcon icon={faRightToBracket}/></Link>
+            <Link className="btn shadow-border blue-background btn-text white" href="/signup">Sign Up <FontAwesomeIcon icon={faUserPlus}/></Link>
           </div>
         </div>
       </section>
