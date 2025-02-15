@@ -1,7 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRightToBracket, faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import {
+  faRightToBracket,
+  faUserPlus,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default async function Home() {
   return (
@@ -12,7 +15,7 @@ export default async function Home() {
             <Image
               className="home-page-logo"
               src="https://frw6rziicw61rtm1.public.blob.vercel-storage.com/medical-portfolios-high-resolution-logo-transparent-ubKJM3sDU8cuICdOw8O3I5u8xuCdx9.png"
-              alt="The medical portfolio's logo in high resolution and transparent background format"
+              alt="Medical portfolio logo in high resolution with a transparent background"
               width={400}
               height={400}
               priority
@@ -21,14 +24,33 @@ export default async function Home() {
           </Link>
         </div>
         <div className="container">
+          <h1 className="blue">
+            {
+              "Build Your Professional Medical Portfolio and Connect with Patients"
+            }
+          </h1>
           <p className="blue">
             {
-              "A platform for medical professionals to showcase their work and connect with others in the field."
+              "Create a personalized profile to showcase your medical expertise, experience, and services. Join a community of professionals dedicated to advancing healthcare and connecting with patients."
             }
           </p>
-          <div className="container">
-            <Link className="btn shadow-border blue-background btn-text white" href="/login">Login <FontAwesomeIcon icon={faRightToBracket}/></Link>
-            <Link className="btn shadow-border blue-background btn-text white" href="/signup">Sign Up <FontAwesomeIcon icon={faUserPlus}/></Link>
+          <div className="button-container">
+            <Link
+              className="btn shadow-border blue-background btn-text white"
+              href="/login"
+              aria-label="Go to Login page"
+              role="button"
+            >
+              {"Login"} <FontAwesomeIcon icon={faRightToBracket} />
+            </Link>
+            <Link
+              className="btn shadow-border blue-background btn-text white"
+              href="/signup"
+              aria-label="Go to Sign Up page"
+              role="button"
+            >
+              {"Sign Up"} <FontAwesomeIcon icon={faUserPlus} />
+            </Link>
           </div>
         </div>
       </section>
