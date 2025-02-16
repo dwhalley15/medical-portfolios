@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import { Funnel_Display } from "next/font/google";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
-import "./globals.css";
-import "./styles/container-styles.css";
-import "./styles/image-styles.css";
-import "./styles/border-styles.css";
-import "./styles/text-styles.css";
-import "./styles/button-styles.css";
-import "./styles/colour-styles.css";
-import "./styles/button-styles.css";
+import "../styles/global-styles.css";
+import "../styles/container-styles.css";
+import "../styles/image-styles.css";
+import "../styles/border-styles.css";
+import "../styles/text-styles.css";
+import "../styles/button-styles.css";
+import "../styles/colour-styles.css";
+import "../styles/button-styles.css";
 
 const funnel = Funnel_Display({
   weight: "400",
