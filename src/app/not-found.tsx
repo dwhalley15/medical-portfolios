@@ -1,7 +1,16 @@
+/**
+ * @file NotFound Page Component
+ * @description This component renders a 404 error page for when users try to access a non-existent route.
+ */
+
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 
+/**
+ * NotFound Page Component
+ * @returns {JSX.Element} A 404 error message with a button to navigate back to the home page.
+ */
 export default async function NotFound() {
   return (
     <main className="page-container">
@@ -15,7 +24,7 @@ export default async function NotFound() {
           role="button"
         >
           {"Back to Home Page"}
-          <FontAwesomeIcon icon={faHome} />
+          <FontAwesomeIcon icon={faHome} aria-hidden="true"/>
         </Link>
       </section>
     </main>
