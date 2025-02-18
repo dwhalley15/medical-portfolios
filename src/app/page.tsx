@@ -47,7 +47,7 @@ export default async function Home() {
           <div className="button-container">
             <Link
               className="btn shadow-border blue-background btn-text white"
-              href="/dashboard/login"
+              href="/login"
               aria-label="Go to Login page"
               role="button"
             >
@@ -55,7 +55,7 @@ export default async function Home() {
             </Link>
             <Link
               className="btn shadow-border blue-background btn-text white"
-              href="/dashboard/signup"
+              href="/signup"
               aria-label="Go to Sign Up page"
               role="button"
             >

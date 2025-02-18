@@ -20,11 +20,66 @@
   color: var(--blue);
 }
 
+.github-btn {
+  border: 1px solid #0d1117;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  border-radius: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  transition: all 0.3s ease;
+  background-color: #0d1117;
+  gap: 1rem;
+}
+
+.github-btn:hover {
+  background-color: transparent;
+  color: #0d1117;
+}
+
+.google-btn {
+  border: 1px solid #3C4043;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  border-radius: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  transition: all 0.3s ease;
+  background-color: transparent;
+  color: #3C4043;
+  gap: 1rem;
+}
+
+.google-btn:hover {
+  background-color: #3C4043;
+  color: var(--white);
+}
+
 @media screen and (max-width: 990px) {
   .btn {
     width: 100%;
   }
   .btn:active {
+    animation: clickFeedback 0.5s ease;
+  }
+  .github-btn:active {
+    animation: clickFeedback 0.5s ease;
+  }
+  .github-btn:active {
     animation: clickFeedback 0.5s ease;
   }
   .btn:hover {

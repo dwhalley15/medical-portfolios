@@ -1,7 +1,19 @@
+"use server";
+
+import { redirect } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { auth } from "@/services/auth/auth";
+import GithubSignInBtn from "@/components/dashboard/auth/githubSignInBtn";
+import GoogleSignInBtn from "@/components/dashboard/auth/googleSignInBtn";
 
 export default async function Login() {
+  const session = await auth();
+
+  if (session) {
+    redirect("/dashboard");
+  }
+
   return (
     <main className="page-container">
       <section className="home-page-container">
@@ -20,9 +32,7 @@ export default async function Login() {
         </div>
         <div className="container">
           <h1 className="blue">{`Login`}</h1>
-          <p className="blue">
-            {"This is a placeholder for the login page."}
-          </p>
+          <GoogleSignInBtn />
         </div>
       </section>
     </main>

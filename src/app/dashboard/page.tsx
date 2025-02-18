@@ -1,13 +1,22 @@
+import { auth } from "@/services/auth/auth";
+import LogoutBtn from "@/components/dashboard/auth/logoutBtn";
+
 export default async function Dashboard() {
-    return (
-      <main className="page-container">
-        <section className="container">
-          <h1 className="blue">{`Dashboard`}</h1>
-          <p className="blue">
-            {"This is a placeholder for the dashboard page."}
-          </p>
-        </section>
-      </main>
-    );
-  }
-  
+  const session = await auth();
+  return (
+    <main className="page-container">
+      <section className="container">
+        <h1 className="blue">{`Dashboard`}</h1>
+        {session?.user && (
+          <>
+            <p className="blue">
+              User signed in with name {session.user.name} and email{" "}
+              {session.user.email}.{" "}
+            </p>
+            <LogoutBtn />
+          </>
+        )}
+      </section>
+    </main>
+  );
+}
