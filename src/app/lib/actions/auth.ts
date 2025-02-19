@@ -10,6 +10,10 @@ export const googleLogin = async () => {
     await signIn("google", {redirectTo: "/dashboard"});
 }
 
+export const facebookLogin = async () => {
+    await signIn("facebook", {redirectTo: "/dashboard"});
+}
+
 export const logout = async () => {
     await signOut({redirectTo: "/"});
 };

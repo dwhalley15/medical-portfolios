@@ -1,23 +1,44 @@
-.blue{
-    color: var(--blue);
+.blue {
+  color: var(--blue);
 }
 
-.blue-background{
-    background-color: var(--blue);
+.blue-background {
+  background-color: var(--blue);
 }
 
-.blue-border{
-    border: 1rem solid var(--blue);
+.blue-border {
+  border: 1rem solid var(--blue);
 }
 
-.white{
-    color: var(--white);
+.white {
+  color: var(--white);
 }
 
-.white-background{
-    background-color: var(--white);
+.white-background {
+  background-color: var(--white);
 }
 
-.white-border{
-    border: 1rem solid var(--white);
+.white-border {
+  border: 1rem solid var(--white);
+}
+
+.google-color {
+  color: #3c4043;
+  border: 1px solid #3c4043;
+}
+
+.google-color:hover {
+  background-color: #3c4043;
+  color: var(--white);
+}
+
+.facebook-color {
+  background-color: #1877f2;
+  border: 1px solid #1877f2;
+  color: var(--white);
+}
+
+.facebook-color:hover {
+  background-color: transparent;
+  color: #1877f2;
 }

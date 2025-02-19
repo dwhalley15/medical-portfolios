@@ -5,13 +5,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 export default function GithubSignInBtn() {
-  const handleGithubLogin = async () => {
+  const handleLogin = async () => {
     await githubLogin();
   };
   return (
     <button
       className="github-btn white btn-text"
-      onClick={handleGithubLogin}
+      onClick={handleLogin}
       aria-label="Sign in with Github"
     >
       <FontAwesomeIcon icon={faGithub} aria-hidden="true" />
