@@ -1,13 +1,21 @@
+/**
+ * @file Sign In Page Component
+ * @description This page allows users to sign in to their Medical Portfolios account using OAuth providers.
+ *              If a user is already authenticated, they are redirected to the dashboard.
+ */
+
 "use server";
 
 import { redirect } from "next/navigation";
-import Link from "next/link";
-import Image from "next/image";
 import { auth } from "@/services/auth/auth";
-import GoogleSignInBtn from "@/components/dashboard/auth/googleSignInBtn";
-import FacebookSignInBtn from "@/components/dashboard/auth/facebookSignInBtn";
+import OAuthBtn from "@/components/dashboard/auth/oAuthBtn";
 import { Metadata } from "next";
+import LogoBtn from "@/components/dashboard/navigation/logoBtn";
 
+/**
+ * Generates metadata for the sign-in page.
+ * @returns {Promise<Metadata>} Metadata object containing title and description for SEO purposes.
+ */
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Sign in | Medical Portfolios",
@@ -16,6 +24,10 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+/**
+ * Sign In Page Component
+ * @returns {JSX.Element} A page containing sign-in options with OAuth authentication.
+ */
 export default async function SignIn() {
   const session = await auth();
 
@@ -27,23 +39,11 @@ export default async function SignIn() {
     <>
       <main className="page-container">
         <section className="home-page-container">
-          <div className="image-container left-border">
-            <Link href="/">
-              <Image
-                className="home-page-logo"
-                src="https://frw6rziicw61rtm1.public.blob.vercel-storage.com/medical-portfolios-high-resolution-logo-transparent-ubKJM3sDU8cuICdOw8O3I5u8xuCdx9.png"
-                alt="Medical portfolio logo in high resolution with a transparent background"
-                width={400}
-                height={400}
-                priority
-                quality={100}
-              />
-            </Link>
-          </div>
+          <LogoBtn />
           <div className="container">
             <h1 className="blue">{`Sign In`}</h1>
-            <GoogleSignInBtn />
-            <FacebookSignInBtn />
+            <OAuthBtn provider="google" text="Sign in with Google" />
+            <OAuthBtn provider="facebook" text="Sign in with Facebook" />
           </div>
         </section>
       </main>

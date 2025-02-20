@@ -1,13 +1,28 @@
+/**
+ * @file Terms of Use Page Component
+ * @description This page outlines the terms and conditions for using the Medical Portfolios platform.
+ *              It specifies user responsibilities, acceptable use, intellectual property rights, and other legal considerations.
+ */
+
 import { Metadata } from "next";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
+/**
+ * Metadata for the Terms of Use page.
+ * @constant {Metadata}
+ */
 export const metadata: Metadata = {
-  title: " | Medical Portfolios",
-  description: "",
+  title: "Terms of Use | Medical Portfolios",
+  description:
+    "Read the Terms of Use for Medical Portfolios. Understand user responsibilities, acceptable use policies, and platform limitations.",
 };
 
+/**
+ * Terms of Use Page Component
+ * @returns {JSX.Element} A page displaying the terms and conditions for using Medical Portfolios.
+ */
 export default async function TermsPage() {
   return (
     <main className="text-page-container">

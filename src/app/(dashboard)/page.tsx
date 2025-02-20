@@ -4,10 +4,10 @@
  *              of the platform's purpose and includes navigation links for user authentication.
  */
 
-import Image from "next/image";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus, faUser } from "@fortawesome/free-solid-svg-icons";
+import LogoBtn from "@/components/dashboard/navigation/logoBtn";
 
 /**
  * Home Page Component
@@ -18,19 +18,7 @@ export default async function Home() {
     <>
       <main className="page-container">
         <section className="home-page-container">
-          <div className="image-container left-border">
-            <Link href="/" aria-label="Go to Home page" role="button">
-              <Image
-                className="home-page-logo"
-                src="https://frw6rziicw61rtm1.public.blob.vercel-storage.com/medical-portfolios-high-resolution-logo-transparent-ubKJM3sDU8cuICdOw8O3I5u8xuCdx9.png"
-                alt="Medical portfolio logo"
-                width={400}
-                height={400}
-                priority
-                quality={100}
-              />
-            </Link>
-          </div>
+          <LogoBtn />
           <div className="container">
             <h1 className="blue">
               {

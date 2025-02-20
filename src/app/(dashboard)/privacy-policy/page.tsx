@@ -1,14 +1,28 @@
+/**
+ * @file Privacy Policy Page Component
+ * @description This page displays the privacy policy for Medical Portfolios.
+ *              It outlines how user data is collected, used, and protected.
+ */
+
 import { faCircle, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { Metadata } from "next";
 
+/**
+ * Metadata for the Privacy Policy page.
+ * @constant {Metadata}
+ */
 export const metadata: Metadata = {
   title: "Privacy Policy | Medical Portfolios",
   description:
     "Welcome to Medical Portfolios. This privacy policy explains how we collect, use, and protect your personal information when you use our website. By using our platform, you agree to the terms outlined in this policy.",
 };
 
+/**
+ * Privacy Policy Page Component
+ * @returns {JSX.Element} A page displaying the privacy policy for Medical Portfolios.
+ */
 export default async function PrivacyPage() {
   return (
     <main className="text-page-container">

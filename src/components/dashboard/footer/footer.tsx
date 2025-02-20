@@ -1,8 +1,20 @@
+/**
+ * @file Footer Component
+ * @description A client-side footer component that provides navigation links,
+ *              contact details, and branding for the Medical Portfolio platform.
+ */
+
 import Link from "next/link";
 import { faPhone, faEnvelope, faHome } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 
+/**
+ * Footer Component
+ * @description Renders the footer section of the Medical Portfolio website.
+ *              It includes a logo, description, useful links, and contact details.
+ * @returns {JSX.Element} A structured footer containing navigation links, branding, and contact information.
+ */
 export default function Footer() {
   return (
     <footer className="footer-container blue-background white">

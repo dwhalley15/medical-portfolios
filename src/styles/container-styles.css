@@ -118,6 +118,7 @@
   justify-content: center;
   align-items: center;
   width: 5vw;
+  height: 5vw;
   border-radius: 50%;
   margin-top: 2rem;
 }
@@ -125,6 +126,7 @@
 @media screen and (max-width: 990px) {
   .footer-image-container {
     width: 25vw;
+    height: 25vw;
     padding: 0.5rem;
   }
 }
