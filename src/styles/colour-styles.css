@@ -42,3 +42,14 @@
   background-color: transparent;
   color: #1877f2;
 }
+
+.twitter-color {
+  background-color: #000000;
+  border: 1px solid #000000;
+  color: var(--white);
+}
+
+.twitter-color:hover {
+  background-color: transparent;
+  color: #000000;
+}

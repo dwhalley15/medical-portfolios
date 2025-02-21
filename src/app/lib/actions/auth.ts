@@ -34,6 +34,14 @@ export const facebookLogin = async () => {
 };
 
 /**
+ * Signs in the user using Twitter authentication and redirects them to the dashboard.
+ * @returns {Promise<void>} A promise that resolves after authentication.
+ */
+export const twitterLogin = async () => {
+  await signIn("twitter", { redirectTo: "/dashboard" });
+};
+
+/**
  * Logs out the user and redirects them to the home page.
  * @returns {Promise<void>} A promise that resolves after the user is signed out.
  */

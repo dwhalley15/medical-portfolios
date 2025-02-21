@@ -1,14 +1,14 @@
 /**
  * @file OAuth Button Component
- * @description A client-side button component that allows users to log in via Google or Facebook.
+ * @description A client-side button component that allows users to log in via Google, Twitter or Facebook.
  *              It renders a styled button that triggers the respective login function for the selected provider.
  */
 
 "use client";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
-import { googleLogin, facebookLogin } from "@/app/lib/actions/auth";
+import { faFacebook, faGoogle, faXTwitter } from "@fortawesome/free-brands-svg-icons";
+import { googleLogin, facebookLogin, twitterLogin } from "@/app/lib/actions/auth";
 
 /**
  * @interface ProviderConfig
@@ -27,13 +27,13 @@ interface ProviderConfig {
  *              and optional custom text.
  */
 interface OAuthButtonProps {
-  provider: "google" | "facebook";
+  provider: "google" | "facebook" | "twitter";
   text?: string;
 }
 
 /**
  * @constant providerConfig
- * @description A configuration object that maps each OAuth provider (Google, Facebook) to its
+ * @description A configuration object that maps each OAuth provider (Google, Facebook, Twitter) to its
  *              respective icon, login action, styling, and label.
  */
 const providerConfig: Record<string, ProviderConfig> = {
@@ -49,15 +49,21 @@ const providerConfig: Record<string, ProviderConfig> = {
     className: "facebook-color",
     label: "Sign in with Facebook",
   },
+  twitter: {
+    icon: faXTwitter,
+    action: twitterLogin,
+    className: "twitter-color",
+    label: "Sign in with Twitter",
+  }
 };
 
 /**
  * OAuthBtn Component
- * @description A button that allows users to log in using Google or Facebook.
+ * @description A button that allows users to log in using Google, Twitter or Facebook.
  *              It triggers the respective login function based on the selected provider and displays
  *              a dynamic label and icon.
  * @param {OAuthButtonProps} props - The properties for the component.
- * @param {string} provider - The OAuth provider to use ('google' or 'facebook').
+ * @param {string} provider - The OAuth provider to use ('google', 'twitter' or 'facebook').
  * @param {string} [text] - Optional custom text to display on the button.
  * @returns {JSX.Element | null} A styled OAuth login button or null if an invalid provider is specified.
  */
@@ -71,7 +77,7 @@ export default function OAuthBtn({ provider, text }: OAuthButtonProps) {
 
   /**
    * Handles the login process by invoking the appropriate login function
-   * based on the selected provider (Google or Facebook).
+   * based on the selected provider (Google, Twitter or Facebook).
    */
   const handleLogin = async () => {
     await config.action();
