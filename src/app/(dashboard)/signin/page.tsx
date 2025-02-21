@@ -44,7 +44,6 @@ export default async function SignIn() {
             <h1 className="blue">{`Sign In`}</h1>
             <OAuthBtn provider="google" text="Sign in with Google" />
             <OAuthBtn provider="facebook" text="Sign in with Facebook" />
-            <OAuthBtn provider="twitter" text="Sign in with Twitter" />
           </div>
         </section>
       </main>

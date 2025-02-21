@@ -143,11 +143,11 @@ export default async function PrivacyPage() {
             className="in-text-link"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Send email to info@medicalportfolios.com"
-            href={"mailto:info@medicalportfolios.com"}
+            aria-label="Send email to medicalportfolios@proton.me"
+            href={"mailto:medicalportfolios@proton.me"}
           >
             <FontAwesomeIcon icon={faEnvelope} aria-hidden="true" size={"xs"} />
-            {" info@medicalportfolios.com"}
+            {" medicalportfolios@proton.me"}
           </Link>
         </p>
       </section>

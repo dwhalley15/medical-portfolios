@@ -99,25 +99,25 @@ export default function Footer() {
             <li>
               <Link
                 className="white link-text"
-                href={"mailto:info@medicalportfolios.com"}
+                href={"mailto:medicalportfolios@proton.me"}
                 target="_blank"
-                aria-label="Send email to info@medicalportfolios.com"
+                aria-label="Send email to medicalportfolios@proton.me"
                 rel="noopener noreferrer"
               >
                 <FontAwesomeIcon icon={faEnvelope} aria-hidden="true" />
-                {"info@medicalportfolios.com"}
+                {"medicalportfolios@proton.me"}
               </Link>
             </li>
             <li>
               <Link
                 className="white link-text"
-                href={"tel:01202524111"}
+                href={"tel:02000000007"}
                 target="_blank"
-                aria-label="Call 01202 524111"
+                aria-label="Call 02000 000 007"
                 rel="noopener noreferrer"
               >
                 <FontAwesomeIcon icon={faPhone} aria-hidden="true" />
-                {"01202 524111"}
+                {"02000 000 007"}
               </Link>
             </li>
           </ul>
