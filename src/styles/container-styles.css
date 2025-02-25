@@ -13,13 +13,11 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 5vh;
 }
 
 @media screen and (max-width: 990px) {
   .home-page-container {
     flex-direction: column;
-    margin-top: 5vh;
   }
 }
 
@@ -159,4 +157,60 @@
 .footer-bottom-container {
   text-align: center;
   padding: 1rem 0;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  gap: 2rem;
+}
+
+@media screen and (max-width: 990px) {
+  .form-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+}
+
+.divider-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.divider-line {
+  flex-grow: 1;
+  border: 1px solid;
+}
+
+.align-center {
+  align-self: center;
+}
+
+.input-icon-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input-icon {
+  position: absolute;
+  right: 10px;
+  pointer-events: none;
 }

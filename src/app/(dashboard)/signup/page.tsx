@@ -11,6 +11,9 @@ import { auth } from "@/services/auth/auth";
 import OAuthBtn from "@/components/dashboard/auth/oAuthBtn";
 import { Metadata } from "next";
 import LogoBtn from "@/components/dashboard/navigation/logoBtn";
+import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 
 /**
  * Generates metadata for the sign-up page.
@@ -41,9 +44,23 @@ export default async function Signup() {
         <section className="home-page-container">
           <LogoBtn />
           <div className="container">
-            <h1 className="blue">{`Sign Up`}</h1>
+            <h1 className="blue bottom-border">{`Sign Up`}</h1>
             <OAuthBtn provider="google" text="Sign up with Google" />
             <OAuthBtn provider="facebook" text="Sign up with Facebook" />
+            <div className="divider-container">
+              <hr className="divider-line grey" />
+              <span className="normal-text grey">{"Or sign up manually"}</span>
+              <hr className="divider-line grey" />
+            </div>
+            <Link
+              className="btn blue-background white btn-width shadow-border btn-text"
+              href="/signup/manually"
+              role="button"
+              aria-label="Sign up manually"
+            >
+              {"Sign Up Manually"}
+              <FontAwesomeIcon icon={faUserPlus} />
+            </Link>
           </div>
         </section>
       </main>

@@ -10,6 +10,12 @@
   border-right: 1rem solid var(--blue);
 }
 
+.bottom-border {
+  border-bottom: 1rem solid var(--blue);
+  padding-bottom: 0.5rem;
+  width: fit-content;
+}
+
 @media screen and (max-width: 990px) {
   .left-border {
     border-right: none;

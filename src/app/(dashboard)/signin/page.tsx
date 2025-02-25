@@ -11,6 +11,7 @@ import { auth } from "@/services/auth/auth";
 import OAuthBtn from "@/components/dashboard/auth/oAuthBtn";
 import { Metadata } from "next";
 import LogoBtn from "@/components/dashboard/navigation/logoBtn";
+import SignInForm from "@/components/dashboard/auth/signInForm";
 
 /**
  * Generates metadata for the sign-in page.
@@ -41,9 +42,15 @@ export default async function SignIn() {
         <section className="home-page-container">
           <LogoBtn />
           <div className="container">
-            <h1 className="blue">{`Sign In`}</h1>
+            <h1 className="blue bottom-border">{`Sign In`}</h1>
             <OAuthBtn provider="google" text="Sign in with Google" />
             <OAuthBtn provider="facebook" text="Sign in with Facebook" />
+            <div className="divider-container">
+              <hr className="divider-line grey" />
+              <span className="normal-text grey">{"Or continue with email"}</span>
+              <hr className="divider-line grey" />
+            </div>
+            <SignInForm />
           </div>
         </section>
       </main>

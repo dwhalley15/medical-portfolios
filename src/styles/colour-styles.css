@@ -18,6 +18,10 @@
   background-color: var(--white);
 }
 
+.grey {
+  color: var(--grey);
+}
+
 .white-border {
   border: 1rem solid var(--white);
 }

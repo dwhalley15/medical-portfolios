@@ -15,6 +15,10 @@
   transition: all 0.3s ease;
 }
 
+.btn-width {
+  width: 100%;
+}
+
 .btn:hover {
   background-color: var(--white);
   color: var(--blue);
@@ -64,4 +68,26 @@
   100% {
     opacity: 1;
   }
+}
+
+.text-input {
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  padding-left: 2rem;
+  padding-right: 3rem;
+  border-radius: 1.5rem;
+  border-width: 0.5rem !important;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.text-input:focus-visible {
+  box-shadow: 0 0 5rem var(--blue);
+  outline: none;
 }
