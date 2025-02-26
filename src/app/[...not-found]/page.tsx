@@ -16,7 +16,7 @@ export default async function NotFound() {
     <>
       <main className="page-container">
         <section className="container">
-          <h1 className="blue">{"404 - Page Not Found"}</h1>
+          <h1 className="blue bottom-border">{"404 - Page Not Found"}</h1>
           <p className="blue">
             {"The page you are looking for does not exist."}
           </p>

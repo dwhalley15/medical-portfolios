@@ -19,6 +19,16 @@
   width: 100%;
 }
 
+.btn-limit{
+  max-width: 30vw;
+}
+
+@media screen and (max-width: 990px) {
+  .btn-limit{
+    max-width: 80vw;
+  }
+}
+
 .btn:hover {
   background-color: var(--white);
   color: var(--blue);
@@ -85,6 +95,11 @@
   margin-bottom: 2rem;
   width: 100%;
   transition: all 0.3s ease;
+}
+
+.select-input{
+  padding-bottom: 1.25rem !important;
+  padding-top: 1.25rem !important;
 }
 
 .text-input:focus-visible {

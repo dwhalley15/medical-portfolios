@@ -26,6 +26,10 @@
   border: 1rem solid var(--white);
 }
 
+.error-text {
+  color: var(--red);
+}
+
 .google-color {
   color: #3c4043;
   border: 1px solid #3c4043;

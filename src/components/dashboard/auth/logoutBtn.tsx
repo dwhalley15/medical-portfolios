@@ -28,9 +28,10 @@ export default function LogoutBtn() {
     <button
       className="btn shadow-border blue-background btn-text white"
       onClick={handleLogout}
-      aria-label="Logout"
+      aria-label="Sign Out"
+      role="button"
     >
-      {"Logout"}
+      {"Sign Out"}
       <FontAwesomeIcon icon={faRightToBracket} aria-hidden="true" />
     </button>
   );

@@ -19,7 +19,7 @@ export default function Footer() {
   return (
     <footer className="footer-container blue-background white">
       <div className="footer-content-container">
-        <div className="footer-image-container white-background">
+        <nav className="footer-image-container white-background">
           <Link href="/" aria-label="Go to Home page" role="button">
             <Image
               className="footer-logo"
@@ -31,7 +31,7 @@ export default function Footer() {
               quality={100}
             />
           </Link>
-        </div>
+        </nav>
         <div className="text-container">
           <h2 className="footer-h2">{"Medical Portfolio's"}</h2>
           <p className="white">
@@ -40,7 +40,7 @@ export default function Footer() {
             }
           </p>
         </div>
-        <div className="text-container">
+        <nav className="text-container">
           <h2 className="footer-h2">{"Useful Links"}</h2>
           <ul>
             <li>
@@ -80,8 +80,8 @@ export default function Footer() {
               </Link>
             </li>
           </ul>
-        </div>
-        <div className="text-container">
+        </nav>
+        <nav className="text-container">
           <h2 className="footer-h2">{"Contact"}</h2>
           <ul>
             <li>
@@ -121,7 +121,7 @@ export default function Footer() {
               </Link>
             </li>
           </ul>
-        </div>
+        </nav>
       </div>
       <div className="footer-bottom-container">
         <hr className="footer-divider" />

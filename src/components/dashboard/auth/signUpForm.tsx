@@ -1,3 +1,5 @@
+"use client";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUserPlus,
@@ -5,16 +7,34 @@ import {
   faLock,
   faShieldAlt,
   faIdCard,
-  faUserTie
+  faUserTie,
 } from "@fortawesome/free-solid-svg-icons";
+import { signUp } from "../../../app/lib/actions/auth";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { credentialsLogin } from "../../../app/lib/actions/auth";
 
 export default function SignUpForm() {
+  const [errors, setErrors] = useState<string[]>([]);
+  const router = useRouter();
   return (
-    <form className="form-container" method="post" action="">
+    <form
+      className="form-container"
+      action={async (formData: FormData) => {
+        setErrors([]);
+        const results = await signUp(formData);
+        if (!results.success) {
+          setErrors(results.errors ?? []);
+        } else {
+          await credentialsLogin(formData);
+          router.push(results.redirectTo ?? "/dashboard");
+        }
+      }}
+    >
       <div className="form-content">
         <fieldset className="input-container">
           <select
-            className="text-input shadow-border blue btn-text white-background"
+            className="text-input select-input shadow-border blue btn-text white-background"
             name="title"
             aria-label="Title"
             defaultValue={"DEFAULT"}
@@ -113,8 +133,19 @@ export default function SignUpForm() {
           </div>
         </fieldset>
       </div>
+
+      {errors.length > 0 && (
+        <div>
+          {errors.map((error, index) => (
+            <p key={index} className="error-text">
+              {error}
+            </p>
+          ))}
+        </div>
+      )}
+
       <button
-        className="btn shadow-border blue-background btn-text white"
+        className="btn btn-limit shadow-border blue-background btn-text white"
         type="submit"
         aria-label="Sign Up"
         role="button"
