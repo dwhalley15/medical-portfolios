@@ -50,3 +50,52 @@ export async function createUser(
     return null;
   }
 }
+
+export async function createVerificationToken(
+  email: string,
+  expires: Date,
+  token: string
+) {
+  try {
+    const { rows } = await sql`
+      INSERT INTO "verification_token" (identifier, expires, token) 
+      VALUES (${email}, ${expires.toISOString()}, ${token}) 
+      RETURNING *;
+    `;
+    if (rows.length !== 0) {
+      return true;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    return false;
+  }
+}
+
+export async function emailVerifiedCheck(email: string) {
+  try {
+    const { rows } = await sql`
+      SELECT 
+        u."emailVerified",
+        EXISTS (
+          SELECT 1 FROM "accounts" a WHERE a."userId" = u."id"
+        ) AS "isOAuthUser"
+      FROM "users" u
+      WHERE u.email = ${email}
+      LIMIT 1;
+    `;
+
+    if (rows.length === 0) {
+      console.error("No user found with this email.");
+      return null;
+    }
+
+    return {
+      emailVerified: rows[0].emailVerified,
+      isOAuthUser: rows[0].isOAuthUser,
+    };
+  } catch (error) {
+    console.error("Error checking email verified:", error);
+    return null;
+  }
+}
