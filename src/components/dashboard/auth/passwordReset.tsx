@@ -44,7 +44,7 @@ export default function PasswordReset({ email }: { email: string }) {
     >
       <div className="input-icon-container blue btn-text">
         <input
-          className="text-input shadow-border blue btn-text btn-limit"
+          className="text-input shadow-border blue btn-text"
           name="password"
           type="password"
           placeholder="Password"
@@ -60,7 +60,7 @@ export default function PasswordReset({ email }: { email: string }) {
       </div>
       <div className="input-icon-container blue btn-text">
         <input
-          className="text-input shadow-border blue btn-text btn-limit"
+          className="text-input shadow-border blue btn-text"
           name="password-confirm"
           type="password"
           placeholder="Confirm Password"
