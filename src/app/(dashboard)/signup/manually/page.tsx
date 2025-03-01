@@ -1,3 +1,9 @@
+/**
+ * @file Sign-Up Page Component
+ * @description This page allows users to sign up for a Medical Portfolios account manually.
+ *              If the user is already authenticated, they are redirected to the dashboard.
+ */
+
 "use server";
 
 import { redirect } from "next/navigation";
@@ -17,6 +23,10 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+/**
+ * Sign-Up Page Component
+ * @returns {JSX.Element} A page for new users to manually sign up for Medical Portfolios.
+ */
 export default async function SignupManually() {
   const session = await auth();
 

@@ -1,7 +1,20 @@
+/**
+ * @file Email Verification API Route
+ * @description Handles email verification requests by generating a verification token
+ *              and sending a verification email to the user.
+ */
+
 import { NextResponse } from "next/server";
 import { sendEmail } from "../../../../services/email/email";
 import { createVerificationToken } from "../../../../services/db/db";
 
+/**
+ * Handles email verification requests.
+ * Generates a verification token and sends an email with a verification link.
+ *
+ * @param {Request} req - The incoming request object.
+ * @returns {Promise<NextResponse>} A JSON response indicating success or failure.
+ */
 export async function POST(req: Request) {
   try {
     const apiKey = req.headers.get("x-api-key");

@@ -1,12 +1,33 @@
+/**
+ * @file EmailVerification Component
+ * @description This component allows users to trigger the sending of a verification email, 
+ * displaying either a success message or an error message depending on the result of the operation.
+ */
+
 "use client";
 
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
+/**
+ * @typedef {Object} EmailVerificationProps
+ * @description Defines the props for the EmailVerification component.
+ * @property {string | null | undefined} email - The email address to send the verification email to.
+ * @property {string | null | undefined} name - The name of the user to personalize the verification email.
+ */
 type EmailVerificationProps = {
   email: string | null | undefined;
   name: string | null | undefined;
 };
 
+/**
+ * EmailVerification component that allows users to trigger the sending of a verification email.
+ * This component handles the email sending process and displays success or error messages.
+ *
+ * @param {EmailVerificationProps} props - The component's props containing user email and name.
+ * @returns {JSX.Element} The rendered JSX for the EmailVerification component.
+ */
 export default function EmailVerification({
   email,
   name,
@@ -15,6 +36,10 @@ export default function EmailVerification({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  /**
+   * Handles the email sending process by making a POST request to the backend API.
+   * Sends the email and updates the UI based on success or failure.
+   */
   const handleSendEmail = async () => {
     if (!email) return;
     setLoading(true);
@@ -53,6 +78,7 @@ export default function EmailVerification({
           aria-label="Send Verification Email"
         >
           {loading ? "Sending..." : "Send Verification Email"}
+          <FontAwesomeIcon icon={faPaperPlane} aria-hidden="true" />
         </button>
       ) : (
         <p className="blue">

@@ -1,23 +1,22 @@
 import { auth } from "@/services/auth/auth";
 import LogoutBtn from "@/components/dashboard/auth/logoutBtn";
-import { emailVerifiedCheck } from "../../../services/db/db";
+import { emailVerifiedCheck, isOAuthUser } from "../../../services/db/db";
 import EmailVerification from "@/components/dashboard/auth/emailVerification";
 
 export default async function Dashboard() {
   const session = await auth();
-  let emailVerified = null;
-  let isOAuthUser = false;
+  let emailVerified = false;
+  let isOAuthUserFlag = false;
 
   if (session?.user?.email) {
-    const verificationStatus = await emailVerifiedCheck(session.user.email);
-    emailVerified = !!verificationStatus?.emailVerified;
-    isOAuthUser = verificationStatus?.isOAuthUser;
+    emailVerified = await emailVerifiedCheck(session.user.email);
+    isOAuthUserFlag = await isOAuthUser(session.user.email);
   }
 
   return (
     <>
       <main className="page-container">
-        {!isOAuthUser && !emailVerified && (
+        {!isOAuthUserFlag && !emailVerified && (
           <section className="container">
             <h1 className="blue">{"Email Verification Required"}</h1>
             <EmailVerification
@@ -26,7 +25,7 @@ export default async function Dashboard() {
             />
           </section>
         )}
-        {(emailVerified || isOAuthUser) && (
+        {(emailVerified || isOAuthUserFlag) && (
           <section className="container">
             <h1 className="blue">{`Dashboard`}</h1>
             {session?.user && (

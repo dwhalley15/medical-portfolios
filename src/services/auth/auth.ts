@@ -1,3 +1,9 @@
+/**
+ * @file Authentication Configuration
+ * @description This file sets up authentication using NextAuth with multiple providers, including GitHub, Google, Facebook, Twitter, and email/password credentials.
+ *              It defines authentication handlers, JWT callbacks, session management, and integrates with a PostgreSQL database using an adapter.
+ */
+
 import NextAuth from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
@@ -10,12 +16,22 @@ import { Pool } from "@neondatabase/serverless";
 import { v4 as uuid } from "uuid";
 import { encode } from "next-auth/jwt";
 
+/**
+ * Initializes NextAuth authentication with various providers and database adapter.
+ *
+ * @returns {Object} NextAuth authentication configuration including providers, session management, and JWT handling.
+ */
 export const { auth, handlers, signIn, signOut } = NextAuth(() => {
   const pool = new Pool({ connectionString: process.env.POSTGRES_URL });
   const adapter = PostgresAdapter(pool);
   return {
     adapter,
     providers: [
+      /**
+       * Configures email/password authentication.
+       *
+       * @returns {Object|null} Returns authenticated user object if credentials are valid, otherwise null.
+       */
       Credentials({
         credentials: {
           email: { label: "Email", type: "text" },
@@ -57,6 +73,12 @@ export const { auth, handlers, signIn, signOut } = NextAuth(() => {
       }),
     ],
     callbacks: {
+      /**
+       * Customizes JWT handling for credential-based authentication.
+       *
+       * @param {Object} params - The JWT parameters including token and account information.
+       * @returns {Object} The updated token.
+       */
       async jwt({ token, account }) {
         if (account?.provider === "credentials") {
           token.credentials = true;
@@ -66,6 +88,12 @@ export const { auth, handlers, signIn, signOut } = NextAuth(() => {
     },
 
     jwt: {
+      /**
+       * Handles JWT encoding, creating custom session tokens for credential-based authentication.
+       *
+       * @param {Object} params - Parameters containing the JWT token and session details.
+       * @returns {Promise<string>} The encoded JWT token or custom session token.
+       */
       encode: async function (params) {
         if (params.token?.credentials) {
           const sessionToken = uuid();

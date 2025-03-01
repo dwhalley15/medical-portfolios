@@ -1,3 +1,9 @@
+/**
+ * @file SignUpForm Component
+ * @description This component provides the user interface for signing up a new user with their personal and login details.
+ * It handles form submission, user registration, error handling, and redirects to the dashboard after successful registration.
+ */
+
 "use client";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,19 +20,36 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { credentialsLogin } from "../../../app/lib/actions/auth";
 
+/**
+ * SignUpForm component that allows users to register for an account with personal details and login credentials.
+ * It handles form submission, user registration, error handling, and redirects users to the dashboard after successful registration.
+ *
+ * @returns {JSX.Element} The rendered JSX for the SignUpForm component.
+ */
 export default function SignUpForm() {
   const [errors, setErrors] = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
+
+  /**
+   * Handles the form submission by sending the user's details to the registration API.
+   * If registration is successful, it logs in the user and redirects to the dashboard.
+   * If there are any errors, it displays them.
+   *
+   * @param {FormData} formData - The form data containing the user's details and credentials.
+   */
   return (
     <form
       className="form-container"
       action={async (formData: FormData) => {
         setErrors([]);
+        setLoading(true);
         const results = await signUp(formData);
         if (!results.success) {
           setErrors(results.errors ?? []);
         } else {
           await credentialsLogin(formData);
+          setLoading(false);
           router.push(results.redirectTo ?? "/dashboard");
         }
       }}
@@ -149,8 +172,9 @@ export default function SignUpForm() {
         type="submit"
         aria-label="Sign Up"
         role="button"
+        disabled={loading}
       >
-        {"Sign Up"}
+        {loading ? "Working..." : "Sign Up"}
         <FontAwesomeIcon icon={faUserPlus} aria-hidden="true" />
       </button>
     </form>
