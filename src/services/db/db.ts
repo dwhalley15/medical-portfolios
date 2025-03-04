@@ -4,6 +4,8 @@
  *              password management, and email verification.
  */
 
+"use server";
+
 import { sql } from "@vercel/postgres";
 import bcrypt from "bcryptjs";
 
@@ -215,6 +217,138 @@ export async function changePassword(email: string, password: string) {
     return rows[0];
   } catch (error) {
     console.error("Error changing password:", error);
+    return null;
+  }
+}
+
+/**
+ * Creates a new portfolio for a user.
+ * @param {number} id - The user's ID.
+ * @param {string} name - The user's name.
+ * @returns {Promise<Object|null>} The newly created portfolio object, otherwise null.
+ */
+export async function createPortfolio(id: number, name: string) {
+  try {
+    const { rows } = await sql`
+    SELECT * FROM "portfolios" WHERE "userId" = ${id} LIMIT 1;
+    `;
+    if (rows.length === 0) {
+      const url = createUrl(name, id.toString());
+
+      const { rows } = await sql`
+      INSERT INTO "portfolios" ("userId", "url") VALUES (${id}, ${url}) ON CONFLICT ("userId") DO NOTHING RETURNING *;
+      `;
+      return rows[0];
+    }
+  } catch (error) {
+    console.error("Error creating portfolio:", error);
+    return null;
+  }
+}
+
+/**
+ * Gets the OAuth provider for a user.
+ * @param {number} id - The user's ID.
+ * @returns {Promise<string|null>} The OAuth provider, otherwise null.
+ */
+export async function getProvider(id: number) {
+  try {
+    const { rows } = await sql`
+      SELECT "provider" FROM "accounts" WHERE "userId" = ${id} LIMIT 1;
+    `;
+    if (rows.length === 0) {
+      return null;
+    }
+    return rows[0].provider;
+  } catch (error) {
+    console.error("Error getting provider:", error);
+    return null;
+  }
+}
+
+/**
+ * Creates a URL slug from a user's name.
+ * @param {string|null|undefined} name - The user's name.
+ * @param {string} id - The user's ID.
+ * @returns {string} The generated URL slug.
+ */
+const createUrl = (name: string | null | undefined, id: string): string => {
+  if (!name) return "";
+
+  return (
+    name
+      .toLowerCase()
+      .replace(/[^a-z\s-]/g, "")
+      .trim()
+      .replace(/\s+/g, "-") +
+    "-" +
+    id
+  );
+};
+
+/**
+ * Updates a user's personal details.
+ * @param {FormData} formData - The form data to be updated.
+ * @returns {Promise<string[]>} An array of errors, if any.
+ */
+export async function updatePersonalDetails(
+  formData: FormData
+): Promise<{ success: boolean; errors?: string[] }> {
+  try {
+    const title = formData.get("title") as string;
+    const firstName = formData.get("first-name") as string;
+    const lastName = formData.get("last-name") as string;
+    const email = formData.get("email") as string;
+
+    if (!firstName || !lastName || !email) {
+      return { success: false, errors: ["All fields are required."] };
+    }
+
+    const name = `${title} ${firstName} ${lastName}`.trim();
+
+    const { rows } = await sql`
+      UPDATE "users"
+      SET name = ${name}
+      WHERE email = ${email}
+      RETURNING id;
+    `;
+
+    if (rows.length === 0) {
+      return { success: false, errors: ["Error updating personal details."] };
+    }
+
+    const userId = rows[0].id;
+    const url = createUrl(name, userId.toString());
+
+    await sql`
+      UPDATE "portfolios"
+      SET url = ${url}
+      WHERE "userId" = ${userId};`;
+
+    return { success: true };
+  } catch (error) {
+    const err = error as any;
+    console.error("SQL Error:", err.message || err);
+    return { success: false, errors: [err.message || "Database error"] };
+  }
+}
+
+/**
+ * Gets the portfolio URL for a user.
+ * @param {number} id - The user's ID.
+ * @returns {Promise<string|null>} The portfolio URL, otherwise null.
+ */
+export async function getPortfolioUrl(id: number) {
+  try {
+    const { rows } = await sql`
+      SELECT "url" FROM "portfolios" WHERE "userId" = ${id} LIMIT 1;
+    `;
+    if (rows.length === 0) {
+      return null;
+    }
+    return rows[0].url;
+  } catch (error) {
+    console.error("Error getting portfolio URL:", error);
     return null;
   }
 }
