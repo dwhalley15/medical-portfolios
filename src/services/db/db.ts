@@ -234,9 +234,40 @@ export async function createPortfolio(id: number, name: string) {
     `;
     if (rows.length === 0) {
       const url = createUrl(name, id.toString());
+      const defaultNavigation = JSON.stringify({
+        theme: "default",
+        navItems: [
+          {
+            name: "Home",
+            link: "home",
+          },
+        ],
+      });
+
+      const defaultHeader = JSON.stringify({
+        theme: "default-inverted",
+        name: name,
+        image:
+          "https://frw6rziicw61rtm1.public.blob.vercel-storage.com/no-image-ySSvzAYRUnBr4NO4QjRzeR0mtOtQ1f.png",
+        description: "Welcome to my portfolio",
+      });
+
+      const defaultFooter = JSON.stringify({
+        theme: "default",
+        socials: [
+          {
+            name: "facebook",
+            link: "https://www.facebook.com/",
+          },
+          {
+            name: "twitter",
+            link: "https://www.twitter.com/",
+          },
+        ],
+      });
 
       const { rows } = await sql`
-      INSERT INTO "portfolios" ("userId", "url") VALUES (${id}, ${url}) ON CONFLICT ("userId") DO NOTHING RETURNING *;
+      INSERT INTO "portfolios" ("userId", "url", "navigation", "header", "footer") VALUES (${id}, ${url}, ${defaultNavigation}, ${defaultHeader}, ${defaultFooter}) ON CONFLICT ("userId") DO NOTHING RETURNING *;
       `;
       return rows[0];
     }
@@ -349,6 +380,26 @@ export async function getPortfolioUrl(id: number) {
     return rows[0].url;
   } catch (error) {
     console.error("Error getting portfolio URL:", error);
+    return null;
+  }
+}
+
+/**
+ * Gets the portfolio data for a user.
+ * @param {string} name - The user's name.
+ * @returns {Promise<Object|null>} The portfolio data, otherwise null.
+ */
+export async function getPortfolioData(name: string) {
+  try {
+    const { rows } = await sql`
+      SELECT * FROM "portfolios" WHERE "url" = ${name} LIMIT 1;
+    `;
+    if (rows.length === 0) {
+      return null;
+    }
+    return rows[0];
+  } catch (error) {
+    console.error("Error getting portfolio data:", error);
     return null;
   }
 }

@@ -36,6 +36,7 @@ export default function PortfolioBtn({ id }: PortfolioBtnProps) {
       <Image
         src="https://frw6rziicw61rtm1.public.blob.vercel-storage.com/stethascope-JosqpnjSpMuNJlFlsJFAocilefG2PQ.jpg"
         alt="An Image of a Stethascope"
+        className="shadow-border"
         width={400}
         height={400}
         priority

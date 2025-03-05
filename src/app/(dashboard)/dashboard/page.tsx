@@ -1,7 +1,7 @@
-/** 
+/**
  * @file Dashboard Page
  * @description This file defines the user dashboard page.
-*/
+ */
 
 import { auth } from "@/services/auth/auth";
 import LogoutBtn from "@/components/dashboard/auth/logoutBtn";
@@ -15,6 +15,9 @@ import {
 import EmailVerification from "@/components/dashboard/auth/emailVerification";
 import PDForm from "@/components/dashboard/settings/PDForm";
 import PortfolioBtn from "@/components/dashboard/navigation/portfolioBtn";
+import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLock } from "@fortawesome/free-solid-svg-icons";
 
 /**
  * @function Dashboard
@@ -69,6 +72,17 @@ export default async function Dashboard() {
                     emailVerifiedProp={userData?.emailVerified}
                     provider={provider}
                   />
+                  {!isOAuthUserFlag && (
+                    <Link
+                      className="btn shadow-border btn-limit blue-background btn-text white"
+                      aria-label="Send Password Recovery Email"
+                      role="button"
+                      href="/password-recovery"
+                    >
+                      {"Change Password"}
+                      <FontAwesomeIcon icon={faLock} aria-hidden="true" />
+                    </Link>
+                  )}
                 </div>
                 <div className="container">
                   {session?.user?.id && (

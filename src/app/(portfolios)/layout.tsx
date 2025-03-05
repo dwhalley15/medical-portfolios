@@ -8,6 +8,7 @@ import "../../styles/text-styles.css";
 import "../../styles/button-styles.css";
 import "../../styles/colour-styles.css";
 import "../../styles/button-styles.css";
+import "../../styles/theme-styles.css";
 
 config.autoAddCss = false;
 

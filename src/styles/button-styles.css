@@ -20,12 +20,12 @@
   width: 100%;
 }
 
-.btn-limit{
+.btn-limit {
   max-width: 30vw;
 }
 
 @media screen and (max-width: 990px) {
-  .btn-limit{
+  .btn-limit {
     max-width: 80vw;
   }
 }
@@ -98,7 +98,7 @@
   transition: all 0.3s ease;
 }
 
-.select-input{
+.select-input {
   padding-bottom: 1.25rem !important;
   padding-top: 1.25rem !important;
 }
@@ -106,4 +106,32 @@
 .text-input:focus-visible {
   box-shadow: 0 0 5rem var(--blue);
   outline: none;
+}
+
+.navigation-icon {
+  transition: 0.5s ease;
+  padding: 0 3rem;
+}
+
+.navigation-icon:hover {
+  transform: scale(1.1);
+}
+
+.menu-icon {
+  cursor: pointer !important;
+  display: none !important;
+  padding: 0 3rem !important;
+}
+
+.menu-icon:hover,
+.menu-icon:active {
+  transform: scale(1.1);
+}
+
+@media screen and (max-width: 990px) {
+  .menu-icon {
+    display: block !important;
+  }
+
+
 }
