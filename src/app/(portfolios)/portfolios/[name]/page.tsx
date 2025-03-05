@@ -18,7 +18,7 @@ import Footer from "../../../../components/portfolios/footer/footer";
 export default async function PortfolioPage({
   params,
 }: {
-  params: { name: string };
+  params: Promise<{ name: string }>;
 }) {
   const resolvedParams = await params;
   let signedIn = false;
