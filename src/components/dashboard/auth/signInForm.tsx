@@ -39,7 +39,14 @@ export default function SignInForm() {
   };
 
   return (
-    <form className="form-container" action={handleSubmit}>
+    <form
+      className="form-container"
+      onSubmit={(e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target as HTMLFormElement);
+        handleSubmit(formData);
+      }}
+    >
       <div className="input-icon-container blue btn-text">
         <input
           className="text-input shadow-border blue btn-text"

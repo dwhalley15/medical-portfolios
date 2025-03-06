@@ -26,7 +26,8 @@ export default function PasswordRecovery() {
    * Handles the process of sending the password recovery email by making a POST request to the backend API.
    * Sends the email and updates the UI based on success or failure.
    */
-  const handleSendEmail = async () => {
+  const handleSendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     setLoading(true);
     setErrors([]);
     try {
@@ -55,7 +56,7 @@ export default function PasswordRecovery() {
   };
 
   return (
-    <form className="form-container" action={handleSendEmail}>
+    <form className="form-container" onSubmit={handleSendEmail}>
       <div className="input-icon-container blue btn-text btn-limit">
         <input
           className="text-input shadow-border blue btn-text"

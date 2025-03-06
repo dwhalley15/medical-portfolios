@@ -67,7 +67,11 @@ export default function HeaderEditor({
         onClose={() => setIsOpen(false)}
         title="Edit Header"
       >
-        <form className="form-container" action={handleSubmit}>
+        <form className="form-container" onSubmit={async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target as HTMLFormElement);
+            await handleSubmit(formData);
+        }}>
           <select
             className="text-input select-input shadow-border btn-text"
             id="theme"

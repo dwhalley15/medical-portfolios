@@ -66,9 +66,11 @@ export default function PDForm({
   return (
     <form
       className="form-container"
-      action={async (formData: FormData) => {
+      onSubmit={async (e) => {
+        e.preventDefault();
         setErrors([]);
         setLoading(true);
+        const formData = new FormData(e.target as HTMLFormElement);
         const results = await updatePersonalDetails(formData);
         if (!results.success) {
           setErrors(results.errors ?? []);

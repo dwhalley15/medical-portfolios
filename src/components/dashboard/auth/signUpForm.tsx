@@ -41,7 +41,9 @@ export default function SignUpForm() {
   return (
     <form
       className="form-container"
-      action={async (formData: FormData) => {
+      onSubmit={async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target as HTMLFormElement);
         setErrors([]);
         setLoading(true);
         const results = await signUp(formData);

@@ -30,7 +30,9 @@ export default function PasswordReset({ email }: { email: string }) {
   return (
     <form
       className="form-container"
-      action={async (formData: FormData) => {
+      onSubmit={async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target as HTMLFormElement);
         setErrors([]);
         setSuccess(false);
         setLoading(true);
