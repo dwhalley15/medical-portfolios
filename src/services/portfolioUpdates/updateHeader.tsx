@@ -17,7 +17,7 @@ export async function UpdateHeader(
 
   let imageUrl = data.originalImage;
 
-  if (data.file !== null) {
+  if (data.file.name !== "undefined") {
     const uniqueFileName = data.file.name + Date.now();
     try {
       const { url } = await put(uniqueFileName, data.file, {
