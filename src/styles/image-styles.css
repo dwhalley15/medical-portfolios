@@ -23,6 +23,13 @@
 .portfolio-image {
   width: 100%;
   height: auto;
+  aspect-ratio: 1/1;
   border-radius: 50%;
   cursor: pointer;
+  object-fit: cover;
+}
+
+.preview-image{
+  object-fit: cover;
+  aspect-ratio: 1/1;
 }

@@ -87,6 +87,7 @@ export default function HeaderEditor({
             height={100}
             priority
             quality={100}
+            className="preview-image"
           />
           <input
             type="file"
