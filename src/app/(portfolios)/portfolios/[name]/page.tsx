@@ -1,7 +1,7 @@
-/** 
+/**
  * @file This is the portfolio page.
  * @description This page displays the portfolio page.
-*/
+ */
 
 import { getPortfolioData } from "../../../../services/db/db";
 import NotFound from "../not-found/page";
@@ -39,7 +39,11 @@ export default async function PortfolioPage({
     <body>
       <Navigation data={portfolioData.navigation} editable={signedIn} />
       <main className="portfolio-page-container">
-        <Header data={portfolioData.header} editable={signedIn} />
+        <Header
+          data={portfolioData.header}
+          editable={signedIn}
+          userId={Number(session?.user?.id)}
+        />
       </main>
       <Footer data={portfolioData.footer} editable={signedIn} />
     </body>

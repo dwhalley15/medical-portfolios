@@ -13,7 +13,7 @@ import {
   getProvider,
 } from "../../../services/db/db";
 import EmailVerification from "@/components/dashboard/auth/emailVerification";
-import PDForm from "@/components/dashboard/settings/PDForm";
+import PDForm from "@/components/dashboard/editors/PDForm";
 import PortfolioBtn from "@/components/dashboard/navigation/portfolioBtn";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

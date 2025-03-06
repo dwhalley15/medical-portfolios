@@ -403,3 +403,23 @@ export async function getPortfolioData(name: string) {
     return null;
   }
 }
+
+export async function updateHeader(userId: number, data: string) {
+  try {
+    const { rows } = await sql`
+      UPDATE "portfolios"
+      SET header = ${data}
+      WHERE "userId" = ${userId}
+      RETURNING *;
+    `;
+
+    if (rows.length === 0) {
+      return null;
+    }
+
+    return rows[0];
+  } catch (error) {
+    console.error("Error updating header:", error);
+    return null;
+  }
+}
