@@ -9,8 +9,10 @@ import { useState } from "react";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faX, faStethoscope } from "@fortawesome/free-solid-svg-icons";
+import NavigationEditor from "@/components/dashboard/editors/navEditor";
 
 type NavigationProps = {
+  userId: number;
   data: NavigationData;
   editable: boolean;
 };
@@ -30,7 +32,11 @@ type NavItem = {
  * @param {NavigationProps} data - The data for the navigation component.
  * @returns {JSX.Element} The navigation component.
  */
-export default function Navigation({ data, editable }: NavigationProps) {
+export default function Navigation({
+  userId,
+  data,
+  editable,
+}: NavigationProps) {
   const [menuActive, setMenuActive] = useState(false);
 
   const toggleMenu = () => {
@@ -44,7 +50,11 @@ export default function Navigation({ data, editable }: NavigationProps) {
   return (
     <nav className={`navbar-container theme-${data.theme}`}>
       <Link href={`#${data.navItems[0].link}`}>
-        <FontAwesomeIcon icon={faStethoscope} className="navigation-icon" size="4x"/>
+        <FontAwesomeIcon
+          icon={faStethoscope}
+          className="navigation-icon"
+          size="4x"
+        />
       </Link>
       <FontAwesomeIcon
         icon={menuActive ? faX : faBars}
@@ -61,6 +71,9 @@ export default function Navigation({ data, editable }: NavigationProps) {
           </li>
         ))}
       </ul>
+      {editable && (
+        <NavigationEditor userIdProp={userId} themeProp={data.theme} />
+      )}
     </nav>
   );
 }

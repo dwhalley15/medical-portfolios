@@ -34,6 +34,13 @@ export default function PDForm({
   emailVerifiedProp,
   provider,
 }: PDFormProps) {
+
+  /**
+    * @function splitName
+    * @description Splits a full name into title, first names, and last name.
+    * @param {string} fullName - The full name to split.
+    * @returns {Object} An object containing the title, first names, and last name.
+   */
   const splitName = (fullName: string) => {
     const titles = ["Dr", "Prof", "Mr", "Ms", "Mrs"];
     const parts = fullName.trim().split(/\s+/);

@@ -1,3 +1,8 @@
+/** 
+ * @file Header editor component.
+ * @description This component allows users to edit the header of their portfolio.
+*/
+
 "use client";
 
 import { useState } from "react";
@@ -6,7 +11,6 @@ import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFloppyDisk } from "@fortawesome/free-solid-svg-icons";
 import { UpdateHeader } from "@/services/portfolioUpdates/updateHeader";
-import { revalidatePath } from "next/cache";
 import { usePathname } from "next/navigation";
 import RevalidatePage from "@/services/portfolioUpdates/revalidatePage";
 
@@ -18,6 +22,11 @@ type HeaderEditorProps = {
   descriptionProp: string;
 };
 
+/**
+ * This function returns the header editor component.
+ * @param {HeaderEditorProps} data - The data for the header editor component.
+ * @returns {JSX.Element} The header editor component.
+ */
 export default function HeaderEditor({
   userIdProp,
   themeProp,
@@ -35,6 +44,11 @@ export default function HeaderEditor({
 
   const pathname = usePathname();
 
+  /**
+   * This function handles the file change event.
+   * @param {React.ChangeEvent<HTMLInputElement>} e - The event object.
+   * @returns {void} Nothing.
+   */
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
@@ -43,6 +57,12 @@ export default function HeaderEditor({
     }
   };
 
+  /**
+   * This function handles the form submission.
+   * @param {FormData}
+   * @returns {void} Nothing.
+   * @async
+   */
   const handleSubmit = async (formData: FormData) => {
     setErrors([]);
     setLoading(true);

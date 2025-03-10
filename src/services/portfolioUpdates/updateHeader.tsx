@@ -1,8 +1,19 @@
+/** 
+ * @file Header update service.
+ * @description This file defines the service for updating the header.
+*/
+
 "use server";
 
 import { put } from "@vercel/blob";
 import { updateHeader } from "../db/db";
 
+/**
+ * This function updates the header.
+ * @param {FormData} formData - The form data to update the header.
+ * @param {number} userID - The user ID to update the header for.
+ * @returns {Promise<{ success: boolean; errors?: string[] }>} The success status of the update.
+ */
 export async function UpdateHeader(
   formData: FormData,
   userID: number

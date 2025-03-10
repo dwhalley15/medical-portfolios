@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import IconSelector from "@/services/iconSelector/iconSelector";
 
 type FooterProps = {
+  userId: number;
   data: FooterData;
   editable: boolean;
 };
@@ -28,7 +29,7 @@ type Social = {
  * @param {FooterProps} data - The data for the footer component.
  * @returns {JSX.Element} The footer component.
  */
-export default function Footer({ data, editable }: FooterProps) {
+export default function Footer({ userId, data, editable }: FooterProps) {
   return (
     <footer className={`footer-container theme-${data.theme}`}>
       {data.socials.length > 0 && (

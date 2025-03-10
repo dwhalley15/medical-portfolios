@@ -22,6 +22,7 @@ export default async function PortfolioPage({
 }) {
   const resolvedParams = await params;
   let signedIn = false;
+  let userId = null;
 
   const portfolioData = await getPortfolioData(resolvedParams.name);
 
@@ -29,6 +30,7 @@ export default async function PortfolioPage({
 
   if (session && portfolioData) {
     signedIn = session.user?.id == portfolioData.userId;
+    userId = Number(session.user?.id);
   }
 
   if (!portfolioData) {
@@ -37,15 +39,19 @@ export default async function PortfolioPage({
 
   return (
     <body>
-      <Navigation data={portfolioData.navigation} editable={signedIn} />
+      <Navigation
+        userId={userId!}
+        data={portfolioData.navigation}
+        editable={signedIn}
+      />
       <main className="portfolio-page-container">
         <Header
           data={portfolioData.header}
           editable={signedIn}
-          userId={Number(session?.user?.id)}
+          userId={userId!}
         />
       </main>
-      <Footer data={portfolioData.footer} editable={signedIn} />
+      <Footer userId={userId!} data={portfolioData.footer} editable={signedIn} />
     </body>
   );
 }

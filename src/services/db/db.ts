@@ -404,6 +404,12 @@ export async function getPortfolioData(name: string) {
   }
 }
 
+/**
+ * Updates the header data for a user.
+ * @param {number} userId - The user's ID.
+ * @param {string} data - The header data.
+ * @returns {Promise<Object|null>} The updated header data, otherwise null.
+ */
 export async function updateHeader(userId: number, data: string) {
   try {
     const { rows } = await sql`
@@ -420,6 +426,54 @@ export async function updateHeader(userId: number, data: string) {
     return rows[0];
   } catch (error) {
     console.error("Error updating header:", error);
+    return null;
+  }
+}
+
+/**
+ * Gets the navigation data for a user.
+ * @param {number} userId - The user's ID.
+ * @returns {Promise<string|null>} The navigation data, otherwise null.
+ */
+export async function getNavigationData(userId: number) {
+  try {
+    const { rows } = await sql`
+      SELECT navigation FROM "portfolios" WHERE "userId" = ${userId} LIMIT 1;
+    `;
+
+    if (rows.length === 0) {
+      return null;
+    }
+
+    return rows[0].navigation;
+  } catch (error) {
+    console.error("Error getting navigation data:", error);
+    return null;
+  }
+}
+
+/**
+ * Updates the navigation theme for a user.
+ * @param {number} userId - The user's ID.
+ * @param {string} data - The navigation data.
+ * @returns {Promise<Object|null>} The updated navigation data, otherwise null.
+ */
+export async function updateNavigationTheme(userId: number, data: string) {
+  try {
+    const { rows } = await sql`
+      UPDATE "portfolios"
+      SET navigation = ${data}
+      WHERE "userId" = ${userId}
+      RETURNING *;
+    `;
+
+    if (rows.length === 0) {
+      return null;
+    }
+
+    return rows[0];
+  } catch (error) {
+    console.error("Error updating navigation theme:", error);
     return null;
   }
 }
