@@ -22,6 +22,14 @@
   color: var(--grey);
 }
 
+.grey-background {
+  background-color: var(--grey);
+}
+
+.grey-border {
+  border: 1rem solid var(--grey);
+}
+
 .white-border {
   border: 1rem solid var(--white);
 }

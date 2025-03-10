@@ -9,7 +9,7 @@ import { useState } from "react";
 import EditModal from "../modal/EditModal";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFloppyDisk } from "@fortawesome/free-solid-svg-icons";
+import { faFloppyDisk, faPen } from "@fortawesome/free-solid-svg-icons";
 import { UpdateHeader } from "@/services/portfolioUpdates/updateHeader";
 import { usePathname } from "next/navigation";
 import RevalidatePage from "@/services/portfolioUpdates/revalidatePage";
@@ -80,7 +80,8 @@ export default function HeaderEditor({
   return (
     <>
       <button className="edit-button" onClick={() => setIsOpen(true)}>
-        {"Edit Header"}
+      <span className="edit-button-text">{"Edit Header"}</span>
+        <FontAwesomeIcon icon={faPen} aria-hidden="true" size="1x" />
       </button>
       <EditModal
         isOpen={isOpen}
@@ -93,7 +94,7 @@ export default function HeaderEditor({
             await handleSubmit(formData);
         }}>
           <select
-            className="text-input select-input shadow-border btn-text"
+            className="text-input select-input edit-shadow-border btn-text white-background"
             id="theme"
             name="theme"
             aria-label="Theme"
@@ -125,7 +126,7 @@ export default function HeaderEditor({
           <input type="hidden" name="original-image" value={imageProp} />
 
           <input
-            className="text-input btn-text shadow-border"
+            className="text-input btn-text edit-shadow-border"
             type="text"
             id="name"
             name="name"
@@ -138,7 +139,7 @@ export default function HeaderEditor({
           <textarea
             id="description"
             name="description"
-            className="text-input btn-text shadow-border"
+            className="text-input btn-text edit-shadow-border"
             placeholder="Description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
@@ -152,7 +153,7 @@ export default function HeaderEditor({
           ))}
 
           <button
-            className="btn btn-text shadow-border"
+            className="btn btn-text edit-shadow-border white-background"
             disabled={loading}
             type="submit"
             aria-label="Update"

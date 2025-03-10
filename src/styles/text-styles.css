@@ -49,7 +49,7 @@ p {
   text-decoration: underline;
 }
 
-.in-text-link{
+.in-text-link {
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 1.6;
@@ -58,4 +58,10 @@ p {
 
 .in-text-link:hover {
   text-decoration: underline;
+}
+
+@media screen and (max-width: 990px) {
+  .edit-button-text {
+    display: none;
+  }
 }

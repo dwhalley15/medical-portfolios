@@ -1,14 +1,14 @@
-/** 
+/**
  * @file Navigation editor component.
  * @description This component displays the navigation editor for the dashboard.
-*/
+ */
 
 "use client";
 
 import { useState } from "react";
 import EditModal from "../modal/EditModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFloppyDisk } from "@fortawesome/free-solid-svg-icons";
+import { faFloppyDisk, faPen } from "@fortawesome/free-solid-svg-icons";
 import { usePathname } from "next/navigation";
 import RevalidatePage from "@/services/portfolioUpdates/revalidatePage";
 import { UpdateNavigationTheme } from "@/services/portfolioUpdates/updateNavigationTheme";
@@ -51,7 +51,8 @@ export default function NavigationEditor({
   return (
     <>
       <button className="edit-button" onClick={() => setIsOpen(true)}>
-        {"Edit Navbar"}
+        <span className="edit-button-text">{"Edit Navbar"}</span>
+        <FontAwesomeIcon icon={faPen} aria-hidden="true" size="1x" />
       </button>
       <EditModal
         isOpen={isOpen}
@@ -67,7 +68,7 @@ export default function NavigationEditor({
           }}
         >
           <select
-            className="text-input select-input shadow-border btn-text"
+            className="text-input select-input edit-shadow-border btn-text white-background"
             id="theme"
             name="theme"
             aria-label="Theme"
@@ -85,7 +86,7 @@ export default function NavigationEditor({
           ))}
 
           <button
-            className="btn btn-text shadow-border"
+            className="btn btn-text edit-shadow-border white-background"
             disabled={loading}
             type="submit"
             aria-label="Update"
