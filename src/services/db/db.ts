@@ -236,6 +236,7 @@ export async function createPortfolio(id: number, name: string) {
       const url = createUrl(name, id.toString());
       const defaultNavigation = JSON.stringify({
         theme: "default",
+        icon: "stethoscope",
         navItems: [
           {
             name: "Home",

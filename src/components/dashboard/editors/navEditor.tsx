@@ -7,15 +7,18 @@
 
 import { useState } from "react";
 import EditModal from "../modal/EditModal";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFloppyDisk, faPen } from "@fortawesome/free-solid-svg-icons";
 import { usePathname } from "next/navigation";
 import RevalidatePage from "@/services/portfolioUpdates/revalidatePage";
 import { UpdateNavigationTheme } from "@/services/portfolioUpdates/updateNavigationTheme";
+import ModalBtn from "../modal/components/modalBtn";
+import ThemeSelector from "../modal/components/themeSelector";
+import SubmitBtn from "../modal/components/submitBtn";
+import IconSelector from "../modal/components/iconSelector";
 
 type NavigationEditorProps = {
   userIdProp: number;
   themeProp: string;
+  iconProp: string;
 };
 
 /**
@@ -26,9 +29,11 @@ type NavigationEditorProps = {
 export default function NavigationEditor({
   userIdProp,
   themeProp,
+  iconProp,
 }: NavigationEditorProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [theme, setTheme] = useState(themeProp);
+  const [icon, setIcon] = useState(iconProp);
   const [errors, setErrors] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -50,10 +55,7 @@ export default function NavigationEditor({
 
   return (
     <>
-      <button className="edit-button" onClick={() => setIsOpen(true)}>
-        <span className="edit-button-text">{"Edit Navbar"}</span>
-        <FontAwesomeIcon icon={faPen} aria-hidden="true" size="1x" />
-      </button>
+      <ModalBtn setIsOpen={setIsOpen} btnText="Edit Navbar" />
       <EditModal
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
@@ -67,17 +69,9 @@ export default function NavigationEditor({
             await handleSubmit(formData);
           }}
         >
-          <select
-            className="text-input select-input edit-shadow-border btn-text white-background"
-            id="theme"
-            name="theme"
-            aria-label="Theme"
-            value={theme}
-            onChange={(e) => setTheme(e.target.value)}
-          >
-            <option value="default">{"Blue Theme"}</option>
-            <option value="default-inverted">{"Blue Theme Inverted"}</option>
-          </select>
+          <ThemeSelector theme={theme} setTheme={setTheme} />
+
+          <IconSelector icon={icon} setIcon={setIcon} />
 
           {errors.map((error) => (
             <p key={error} className="error-text">
@@ -85,16 +79,7 @@ export default function NavigationEditor({
             </p>
           ))}
 
-          <button
-            className="btn btn-text edit-shadow-border white-background"
-            disabled={loading}
-            type="submit"
-            aria-label="Update"
-            role="button"
-          >
-            {loading ? "Working..." : "Update"}
-            <FontAwesomeIcon icon={faFloppyDisk} aria-hidden="true" size="2x" />
-          </button>
+          <SubmitBtn loading={loading} />
         </form>
       </EditModal>
     </>

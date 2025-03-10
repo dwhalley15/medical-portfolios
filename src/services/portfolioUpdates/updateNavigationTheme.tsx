@@ -19,12 +19,14 @@ export async function UpdateNavigationTheme(
 ): Promise<{ success: boolean; errors?: string[] }> {
   const data = {
     theme: formData.get("theme") as string,
+    icon: formData.get("icon") as string,
   };
 
   const currentData = await getNavigationData(userID);
 
   const navigationData = {
     theme: data.theme,
+    icon: data.icon,
     navItems: currentData.navItems,
   };
 

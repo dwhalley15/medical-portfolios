@@ -35,6 +35,11 @@
   color: var(--blue);
 }
 
+.edit-button-hover:hover{
+  background-color: var(--grey);
+  color: var(--white);
+}
+
 .oauth-btn {
   text-align: center;
   text-decoration: none;

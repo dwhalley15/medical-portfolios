@@ -8,8 +8,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faX, faStethoscope } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
 import NavigationEditor from "@/components/dashboard/editors/navEditor";
+import IconSelector from "@/services/iconSelector/iconSelector";
 
 type NavigationProps = {
   userId: number;
@@ -19,6 +20,7 @@ type NavigationProps = {
 
 type NavigationData = {
   theme: string;
+  icon: string;
   navItems: NavItem[];
 };
 
@@ -51,7 +53,7 @@ export default function Navigation({
     <nav className={`navbar-container theme-${data.theme}`}>
       <Link href={`#${data.navItems[0].link}`}>
         <FontAwesomeIcon
-          icon={faStethoscope}
+          icon={IconSelector(data.icon)}
           className="navigation-icon"
           size="4x"
         />
@@ -72,7 +74,7 @@ export default function Navigation({
         ))}
       </ul>
       {editable && (
-        <NavigationEditor userIdProp={userId} themeProp={data.theme} />
+        <NavigationEditor userIdProp={userId} themeProp={data.theme} iconProp={data.icon}/>
       )}
     </nav>
   );

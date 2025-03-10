@@ -1,18 +1,19 @@
-/** 
+/**
  * @file Header editor component.
  * @description This component allows users to edit the header of their portfolio.
-*/
+ */
 
 "use client";
 
 import { useState } from "react";
 import EditModal from "../modal/EditModal";
 import Image from "next/image";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFloppyDisk, faPen } from "@fortawesome/free-solid-svg-icons";
 import { UpdateHeader } from "@/services/portfolioUpdates/updateHeader";
 import { usePathname } from "next/navigation";
 import RevalidatePage from "@/services/portfolioUpdates/revalidatePage";
+import ModalBtn from "../modal/components/modalBtn";
+import ThemeSelector from "../modal/components/themeSelector";
+import SubmitBtn from "../modal/components/submitBtn";
 
 type HeaderEditorProps = {
   userIdProp: number;
@@ -79,31 +80,21 @@ export default function HeaderEditor({
 
   return (
     <>
-      <button className="edit-button" onClick={() => setIsOpen(true)}>
-      <span className="edit-button-text">{"Edit Header"}</span>
-        <FontAwesomeIcon icon={faPen} aria-hidden="true" size="1x" />
-      </button>
+      <ModalBtn setIsOpen={setIsOpen} btnText="Edit Header" />
       <EditModal
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         title="Edit Header"
       >
-        <form className="form-container" onSubmit={async (e) => {
+        <form
+          className="form-container"
+          onSubmit={async (e) => {
             e.preventDefault();
             const formData = new FormData(e.target as HTMLFormElement);
             await handleSubmit(formData);
-        }}>
-          <select
-            className="text-input select-input edit-shadow-border btn-text white-background"
-            id="theme"
-            name="theme"
-            aria-label="Theme"
-            value={theme}
-            onChange={(e) => setTheme(e.target.value)}
-          >
-            <option value="default">{"Blue Theme"}</option>
-            <option value="default-inverted">{"Blue Theme Inverted"}</option>
-          </select>
+          }}
+        >
+          <ThemeSelector theme={theme} setTheme={setTheme} />
 
           <Image
             src={imagePreview}
@@ -152,16 +143,7 @@ export default function HeaderEditor({
             </p>
           ))}
 
-          <button
-            className="btn btn-text edit-shadow-border white-background"
-            disabled={loading}
-            type="submit"
-            aria-label="Update"
-            role="button"
-          >
-            {loading ? "Working..." : "Update"}
-            <FontAwesomeIcon icon={faFloppyDisk} aria-hidden="true" size="2x" />
-          </button>
+          <SubmitBtn loading={loading} />
         </form>
       </EditModal>
     </>

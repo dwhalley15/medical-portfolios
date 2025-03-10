@@ -12,6 +12,34 @@
     --font-family: 'Poppins', sans-serif;
 }
 
+.theme-green{
+    --text-color: #fff;
+    --background-color: #14967f;
+    --hover-color: #0b5340;
+    --font-family: Arial, sans-serif;
+}
+
+.theme-green-inverted{
+    --text-color: #14967f;
+    --background-color: #fff;
+    --hover-color: #14967f;
+    --font-family: Arial, sans-serif;
+}
+
+.theme-purple{
+    --text-color: #fff;
+    --background-color: #8458B3;
+    --hover-color: #342347;
+    --font-family: 'Roboto', sans-serif;
+}
+
+.theme-purple-inverted{
+    --text-color: #8458B3;
+    --background-color: #fff;
+    --hover-color: #8458B3;
+    --font-family: 'Roboto', sans-serif;
+}
+
 .navbar-container{
     background-color: var(--background-color);
     color: var(--text-color);
