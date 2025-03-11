@@ -6,6 +6,7 @@
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import IconSelector from "@/services/iconSelector/iconSelector";
+import FooterEditor from "@/components/dashboard/editors/footerEditor";
 
 type FooterProps = {
   userId: number;
@@ -15,7 +16,6 @@ type FooterProps = {
 
 type FooterData = {
   theme: string;
-  name: string;
   socials: Social[];
 };
 
@@ -44,6 +44,7 @@ export default function Footer({ userId, data, editable }: FooterProps) {
                 <FontAwesomeIcon
                   icon={IconSelector(social.name.toLowerCase())}
                   size="lg"
+                  aria-hidden="true"
                 />
               </Link>
             </li>
@@ -53,6 +54,13 @@ export default function Footer({ userId, data, editable }: FooterProps) {
       <p>
         {`© ${new Date().getFullYear()} | Powered by Medical Portfolio's | All rights reserved.`}
       </p>
+      {editable && (
+        <FooterEditor
+          userIdProp={userId}
+          themeProp={data.theme}
+          socialsProp={data.socials}
+        />
+      )}
     </footer>
   );
 }

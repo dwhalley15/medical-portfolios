@@ -14,6 +14,10 @@
   box-shadow: 0 0 5rem var(--grey);
 }
 
+.edit-shadow-border:focus-visible {
+  box-shadow: 0 0 5rem var(--grey) !important;
+}
+
 .left-border {
   border-right: 1rem solid var(--blue);
 }

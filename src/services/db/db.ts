@@ -478,3 +478,29 @@ export async function updateNavigationTheme(userId: number, data: string) {
     return null;
   }
 }
+
+/**
+ * Updates the footer data for a user.
+ * @param {number} userId - The user's ID.
+ * @param {string} data - The footer data.
+ * @returns {Promise<Object|null>} The updated footer data, otherwise null.
+ */
+export async function updateFooter(userId: number, data: string) {
+  try {
+    const { rows } = await sql`
+      UPDATE "portfolios"
+      SET footer = ${data}
+      WHERE "userId" = ${userId}
+      RETURNING *;
+    `;
+
+    if (rows.length === 0) {
+      return null;
+    }
+
+    return rows[0];
+  } catch (error) {
+    console.error("Error updating footer:", error);
+    return null;
+  }
+}

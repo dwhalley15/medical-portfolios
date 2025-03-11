@@ -19,6 +19,8 @@ export default function ThemeSelector({ theme, setTheme }: ThemeSelectorProps) {
       <option className="green" value="green-inverted">{"Green Theme Inverted"}</option>
       <option className="purple" value="purple">{"Purple Theme"}</option>
       <option className="purple" value="purple-inverted">{"Purple Theme Inverted"}</option>
+      <option className="peach" value="peach">{"Peach Theme"}</option>
+      <option className="peach" value="peach-inverted">{"Peach Theme Inverted"}</option>
     </select>
   );
 }

@@ -1,66 +1,80 @@
-.theme-default{
-    --text-color: #fff;
-    --background-color: #0074d9;
-    --hover-color: #00172b;
-    --font-family: 'Poppins', sans-serif;
+.theme-default {
+  --text-color: #fff;
+  --background-color: #0074d9;
+  --hover-color: #00172b;
+  --font-family: "Poppins", sans-serif;
 }
 
-.theme-default-inverted{
-    --text-color: #0074d9;
-    --background-color: #fff;
-    --hover-color: #0074d9;
-    --font-family: 'Poppins', sans-serif;
+.theme-default-inverted {
+  --text-color: #0074d9;
+  --background-color: #fff;
+  --hover-color: #0074d9;
+  --font-family: "Poppins", sans-serif;
 }
 
-.theme-green{
-    --text-color: #fff;
-    --background-color: #14967f;
-    --hover-color: #0b5340;
-    --font-family: Arial, sans-serif;
+.theme-green {
+  --text-color: #fff;
+  --background-color: #14967f;
+  --hover-color: #0b5340;
+  --font-family: Arial, sans-serif;
 }
 
-.theme-green-inverted{
-    --text-color: #14967f;
-    --background-color: #fff;
-    --hover-color: #14967f;
-    --font-family: Arial, sans-serif;
+.theme-green-inverted {
+  --text-color: #14967f;
+  --background-color: #fff;
+  --hover-color: #14967f;
+  --font-family: Arial, sans-serif;
 }
 
-.theme-purple{
-    --text-color: #fff;
-    --background-color: #8458B3;
-    --hover-color: #342347;
-    --font-family: 'Roboto', sans-serif;
+.theme-purple {
+  --text-color: #fff;
+  --background-color: #8458b3;
+  --hover-color: #342347;
+  --font-family: "Roboto", sans-serif;
 }
 
-.theme-purple-inverted{
-    --text-color: #8458B3;
-    --background-color: #fff;
-    --hover-color: #8458B3;
-    --font-family: 'Roboto', sans-serif;
+.theme-purple-inverted {
+  --text-color: #8458b3;
+  --background-color: #fff;
+  --hover-color: #8458b3;
+  --font-family: "Roboto", sans-serif;
 }
 
-.navbar-container{
-    background-color: var(--background-color);
-    color: var(--text-color);
-    font-family: var(--font-family);
+.theme-peach {
+  --text-color: #fff;
+  --background-color: #ff9966;
+  --hover-color: #ff661a;
+  --font-family: "Open Sans", sans-serif;
 }
 
-.navbar-items-container{
-    background-color: var(--background-color);
-    color: var(--text-color);
+.theme-peach-inverted {
+  --text-color: #ff9966;
+  --background-color: #fff;
+  --hover-color: #ff9966;
+  --font-family: "Open Sans", sans-serif;
 }
 
-.navigation-icon{
-    color: var(--text-color);
+.navbar-container {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
 }
 
-.navigation-icon:hover{
-    color: var(--hover-color);
+.navbar-items-container {
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
-.navbar-item-container a{
-    color: var(--text-color);
+.navigation-icon {
+  color: var(--text-color);
+}
+
+.navigation-icon:hover {
+  color: var(--hover-color);
+}
+
+.navbar-item-container a {
+  color: var(--text-color);
 }
 
 .navbar-item-container a:hover,
@@ -69,33 +83,33 @@
   color: var(--hover-color);
 }
 
-.header-container{
-    background-color: var(--background-color);
-    color: var(--text-color);
-    font-family: var(--font-family);
+.header-container {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
 }
 
-.portfolio-image{
-    box-shadow: 0 0 2.5rem var(--hover-color);
+.portfolio-image {
+  box-shadow: 0 0 2.5rem var(--hover-color);
 }
 
-.portfolio-image:hover{
-    box-shadow: 0 0 5rem var(--hover-color);
+.portfolio-image:hover {
+  box-shadow: 0 0 5rem var(--hover-color);
 }
 
-.footer-container{
-    background-color: var(--background-color);
-    color: var(--text-color);
-    font-family: var(--font-family);
+.footer-container {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
 }
 
-.social-item-container a{
-    color: var(--text-color);
-    border: 0.2rem solid var(--text-color);
+.social-item-container a {
+  color: var(--text-color);
+  border: 0.2rem solid var(--text-color);
 }
 
-.social-item-container a:hover{
-    color: var(--hover-color);
-    border-color: var(--hover-color);
-    box-shadow: 0 0 25px var(--hover-color);
+.social-item-container a:hover {
+  color: var(--hover-color);
+  border-color: var(--hover-color);
+  box-shadow: 0 0 25px var(--hover-color);
 }

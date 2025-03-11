@@ -331,6 +331,7 @@
   align-items: center;
   padding-top: 2rem;
   padding-bottom: 2rem;
+  position: relative;
 }
 
 .socials-container {
@@ -367,6 +368,7 @@
   align-items: center;
   justify-content: center;
   z-index: 3000;
+  overflow-y: auto;
 }
 
 .modal-content-container {
@@ -375,6 +377,8 @@
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   width: 50vw;
+  max-height: 80vh;
+  overflow-y: auto;
   text-align: center;
   position: relative;
   color: black;
@@ -394,4 +398,15 @@
   .portfolio-text-container {
     max-width: 80vw;
   }
+}
+
+.socials-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  border-radius: 1rem;
 }
