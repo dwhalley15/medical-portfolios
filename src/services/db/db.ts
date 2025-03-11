@@ -504,3 +504,87 @@ export async function updateFooter(userId: number, data: string) {
     return null;
   }
 }
+
+/**
+ * Gets the section data for a user.
+ * @param {number} userId - The user's ID.
+ * @returns {Promise<string|null>} The section data, otherwise null.
+ */
+export async function getSections(userId: number) {
+  try {
+    const { rows } = await sql`
+      SELECT "specialities", "education" FROM "portfolios" WHERE "userId" = ${userId};
+    `;
+
+    if (rows.length === 0) {
+      return [];
+    }
+
+    return rows.map((row) => ({
+      specialities: row.specialities !== null,
+      education: row.education !== null,
+    }));
+  } catch (error) {
+    console.error("Error getting sections:", error);
+    return [];
+  }
+}
+
+/**
+ * Inserts a section for a user.
+ * @param {number} userId - The user's ID.
+ * @param {string} section - The section name.
+ * @param {string} data - The section data.
+ * @returns {Promise<Object|null>} The updated portfolio data, otherwise null.
+ */
+export async function insertSection(
+  userId: number,
+  section: string,
+  data: string
+) {
+  try {
+    const query = `
+      UPDATE "portfolios"
+      SET "${section}" = $1
+      WHERE "userId" = $2
+      RETURNING *;
+    `;
+
+    const { rows } = await sql.query(query, [data, userId]);
+
+    if (rows.length === 0) {
+      return null;
+    }
+
+    return rows[0];
+  } catch (error) {
+    console.error("Error inserting section:", error);
+    return null;
+  }
+}
+
+/**
+ * Updates a navigation for a user.
+ * @param {number} userId - The user's ID.
+ * @param {string} data - The section data.
+ * @returns {Promise<Object|null>} The updated navigation data, otherwise null.
+ */
+export async function updateNavigationData(userId: number, data: string) {
+  try {
+    const { rows } = await sql`
+        UPDATE "portfolios"
+        SET "navigation" = ${data}
+        WHERE "userId" = ${userId}
+        RETURNING *;
+      `;
+
+    if (rows.length === 0) {
+      return null;
+    }
+
+    return rows[0];
+  } catch (error) {
+    console.error("Error updating navigation", error);
+    return null;
+  }
+}

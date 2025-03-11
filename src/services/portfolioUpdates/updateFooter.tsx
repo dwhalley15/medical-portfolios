@@ -1,7 +1,18 @@
+/**
+ * @file Update footer service.
+ * @description This file defines the service for updating the footer.
+ */
+
 "use server";
 
 import { updateFooter } from "../db/db";
 
+/**
+ * This function updates the footer.
+ * @param {FormData} formData - The form data to update the footer.
+ * @param {number} userID - The user ID to update the footer for.
+ * @returns {Promise<{ success: boolean; errors?: string[] }>} The success status of the update.
+ */
 export async function UpdateFooter(
   formData: FormData,
   userID: number

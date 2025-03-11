@@ -1,3 +1,8 @@
+/**
+ * @file This file defines the footer editor component.
+ * @description This component displays the footer editor for the dashboard.
+ */
+
 "use client";
 
 import { useState } from "react";
@@ -31,6 +36,11 @@ const SOCIAL_OPTIONS = [
   "TikTok",
 ];
 
+/**
+ * This function returns the footer editor component.
+ * @param {FooterEditorProps} data - The data for the footer editor component.
+ * @returns {JSX.Element} The footer editor component.
+ */
 export default function FooterEditor({
   userIdProp,
   themeProp,
@@ -44,6 +54,11 @@ export default function FooterEditor({
 
   const pathname = usePathname();
 
+  /**
+   * This function handles the form submission.
+   * @param {FormData} formData - The form data to update the footer.
+   * @returns {Promise<void>} The success status of the update.
+   */
   const handleSubmit = async (formData: FormData) => {
     setErrors([]);
     setLoading(true);
@@ -58,6 +73,13 @@ export default function FooterEditor({
     }
   };
 
+  /**
+   * This function handles the social change.
+   * @param {number} index - The index of the social.
+   * @param {"name" | "link"} field - The field to update.
+   * @param {string} value - The value to update.
+   * @returns {void} Nothing.
+   */
   const handleSocialChange = (
     index: number,
     field: "name" | "link",
@@ -68,17 +90,26 @@ export default function FooterEditor({
     setSocials(updatedSocials);
   };
 
+  /**
+   * This function adds a social.
+   * @returns {void} Nothing.
+   */
   const addSocial = () => {
     setSocials([...socials, { name: "", link: "" }]);
   };
 
+  /**
+   * This function removes a social.
+   * @param {number}
+   * @returns {void} Nothing.
+   */
   const removeSocial = (index: number) => {
     setSocials(socials.filter((_, i) => i !== index));
   };
 
   return (
     <>
-      <ModalBtn setIsOpen={setIsOpen} btnText="Edit Footer" />
+      <ModalBtn setIsOpen={setIsOpen} btnText="Edit Footer" iconProp="pen" />
       <EditModal
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
@@ -157,7 +188,11 @@ export default function FooterEditor({
                   className="btn btn-text edit-shadow-border white-background edit-button-hover"
                 >
                   {"Remove Social "}
-                  <FontAwesomeIcon icon={faTrash} aria-hidden="true" size="1x" />
+                  <FontAwesomeIcon
+                    icon={faTrash}
+                    aria-hidden="true"
+                    size="1x"
+                  />
                 </button>
               </div>
             ))}

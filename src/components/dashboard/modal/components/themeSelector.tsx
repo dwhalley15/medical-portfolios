@@ -1,8 +1,18 @@
+/**
+ * @file Theme selector component.
+ * @description This file defines the theme selector component for the dashboard. 
+ */
+
 type ThemeSelectorProps = {
   theme: string;
   setTheme: (theme: string) => void;
 };
 
+/**
+ * This function returns the theme selector component.
+ * @param {ThemeSelectorProps} data - The data for the theme selector component.
+ * @returns {JSX.Element} The theme selector component.
+ */
 export default function ThemeSelector({ theme, setTheme }: ThemeSelectorProps) {
   return (
     <select

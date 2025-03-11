@@ -55,7 +55,7 @@ export default function NavigationEditor({
 
   return (
     <>
-      <ModalBtn setIsOpen={setIsOpen} btnText="Edit Navbar" />
+      <ModalBtn setIsOpen={setIsOpen} btnText="Edit Navbar" iconProp="pen" />
       <EditModal
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}

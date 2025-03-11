@@ -1,3 +1,8 @@
+/**
+ * @file Edit modal component.
+ * @description This file defines the component for editing a modal.
+ */
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useRef } from "react";
@@ -9,6 +14,11 @@ type EditModalProps = {
   children: React.ReactNode;
 };
 
+/**
+ * This function returns the edit modal component.
+ * @param {EditModalProps} data - The data for the edit modal component.
+ * @returns {JSX.Element} The edit modal component.
+ */
 export default function EditModal({
   isOpen,
   onClose,
@@ -17,6 +27,11 @@ export default function EditModal({
 }: EditModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
 
+  /**
+   * This function handles the escape key and click outside events.
+   * @param {KeyboardEvent} e - The event object.
+   * @returns {void} Nothing.
+   */
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -24,6 +39,11 @@ export default function EditModal({
       }
     };
 
+    /**
+     * This function handles the click outside event.
+     * @param {MouseEvent} e - The event object.
+     * @returns {void} Nothing.
+     */
     const handleClickOutside = (e: MouseEvent) => {
       if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
         onClose();

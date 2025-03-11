@@ -9,6 +9,7 @@ import { auth } from "@/services/auth/auth";
 import Navigation from "../../../../components/portfolios/navigation/navigation";
 import Header from "../../../../components/portfolios/header/header";
 import Footer from "../../../../components/portfolios/footer/footer";
+import SectionAppender from "@/components/dashboard/editors/sectionAppender";
 
 /**
  * This function returns the portfolio page.
@@ -51,7 +52,16 @@ export default async function PortfolioPage({
           userId={userId!}
         />
       </main>
-      <Footer userId={userId!} data={portfolioData.footer} editable={signedIn} />
+      {signedIn ? (
+        <div className="section-appender-container">
+          <SectionAppender userIdProp={userId!} />
+        </div>
+      ) : null}
+      <Footer
+        userId={userId!}
+        data={portfolioData.footer}
+        editable={signedIn}
+      />
     </body>
   );
 }

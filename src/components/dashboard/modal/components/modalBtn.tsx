@@ -1,16 +1,33 @@
+/**
+ * @file This file defines the component for a modal button.
+ * @description This component defines a button that opens a modal.
+ */
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen } from "@fortawesome/free-solid-svg-icons";
+import { faPen, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 type ModalBtnProps = {
   setIsOpen: (isOpen: boolean) => void;
   btnText: string;
+  iconProp: string;
 };
 
-export default function ModalBtn({ setIsOpen, btnText }: ModalBtnProps) {
+/**
+ * This function returns the modal button component.
+ * @param {ModalBtnProps} data - The data for the modal button component.
+ * @returns {JSX.Element} The modal button component.
+ */
+export default function ModalBtn({
+  setIsOpen,
+  btnText,
+  iconProp,
+}: ModalBtnProps) {
+  const icon = iconProp === "pen" ? faPen : faPlus;
+
   return (
     <button className="edit-button" onClick={() => setIsOpen(true)}>
       <span className="edit-button-text">{btnText}</span>
-      <FontAwesomeIcon icon={faPen} aria-hidden="true" size="1x" />
+      <FontAwesomeIcon icon={icon} aria-hidden="true" size="1x" />
     </button>
   );
 }

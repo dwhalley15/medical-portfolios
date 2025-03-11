@@ -1,3 +1,8 @@
+/**
+ * @file This file defines the component for selecting an icon.
+ * @description This component displays the icon selector for the dashboard.
+ */
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import IconSelectorService from "@/services/iconSelector/iconSelector";
 
@@ -6,6 +11,12 @@ type IconProp = {
   setIcon: (theme: string) => void;
 };
 
+/**
+ * This function returns the icon selector component.
+ * @param {IconProp} icon - The icon to select.
+ * @param {IconProp} setIcon - The function to set the icon.
+ * @returns {JSX.Element} The icon selector component.
+ */
 export default function IconSelector({ icon, setIcon }: IconProp) {
   return (
     <div className="btn-width">
@@ -22,6 +33,9 @@ export default function IconSelector({ icon, setIcon }: IconProp) {
         value={icon}
         onChange={(e) => setIcon(e.target.value)}
       >
+        <option value="" disabled>
+          {"Select an Icon"}
+        </option>
         <option value="syringe">{"Syringe"}</option>
         <option value="heart">{"Heart"}</option>
         <option value="brain">{"Brain"}</option>
