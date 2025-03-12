@@ -44,20 +44,20 @@ export default function EditModal({
      * @param {MouseEvent} e - The event object.
      * @returns {void} Nothing.
      */
-    const handleClickOutside = (e: MouseEvent) => {
+    /*const handleClickOutside = (e: MouseEvent) => {
       if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
         onClose();
       }
-    };
+    };*/
 
     if (isOpen) {
       document.addEventListener("keydown", handleEsc);
-      document.addEventListener("click", handleClickOutside);
+      /*document.addEventListener("click", handleClickOutside);*/
     }
 
     return () => {
       document.removeEventListener("keydown", handleEsc);
-      document.removeEventListener("click", handleClickOutside);
+      /*document.removeEventListener("click", handleClickOutside);*/
     };
   }, [isOpen]);
 

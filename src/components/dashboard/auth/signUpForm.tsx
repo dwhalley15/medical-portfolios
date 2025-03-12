@@ -58,103 +58,133 @@ export default function SignUpForm() {
     >
       <div className="form-content">
         <fieldset className="input-container">
-          <select
-            className="text-input select-input shadow-border blue btn-text white-background"
-            name="title"
-            aria-label="Title"
-            defaultValue={"DEFAULT"}
-            required
-          >
-            <option value="DEFAULT" disabled>
-              Select Title
-            </option>
-            <option value="Dr">Dr</option>
-            <option value="Prof">Prof</option>
-            <option value="Mr">Mr</option>
-            <option value="Ms">Ms</option>
-            <option value="Mrs">Mrs</option>
-          </select>
-          <div className="input-icon-container blue btn-text">
-            <input
-              className="text-input shadow-border blue btn-text"
-              name="last-name"
-              type="text"
-              placeholder="Surname"
-              aria-label="Surname"
-              autoComplete="family-name"
+          <div className="input-wrapper">
+            <label className="blue" htmlFor="title">
+              {"Select a Title"}
+            </label>
+            <select
+              className="text-input select-input shadow-border blue btn-text white-background"
+              name="title"
+              aria-label="Title"
+              defaultValue={"DEFAULT"}
               required
-            />
-            <FontAwesomeIcon
-              icon={faUserTie}
-              className="input-icon"
-              aria-hidden="true"
-            />
+            >
+              <option value="DEFAULT" disabled>
+                Select Title
+              </option>
+              <option value="Dr">Dr</option>
+              <option value="Prof">Prof</option>
+              <option value="Mr">Mr</option>
+              <option value="Ms">Ms</option>
+              <option value="Mrs">Mrs</option>
+            </select>
           </div>
-          <div className="input-icon-container blue btn-text">
-            <input
-              className="text-input shadow-border blue btn-text"
-              name="first-name"
-              type="text"
-              placeholder="Forename(s)"
-              aria-label="Forename"
-              autoComplete="given-name"
-              required
-            />
-            <FontAwesomeIcon
-              icon={faIdCard}
-              className="input-icon"
-              aria-hidden="true"
-            />
+          <div className="input-wrapper">
+            <label className="blue" htmlFor="last-name">
+              {"Enter Your Last Name"}
+            </label>
+            <div className="input-icon-container blue btn-text">
+              <input
+                className="text-input shadow-border blue btn-text"
+                name="last-name"
+                type="text"
+                placeholder="Surname"
+                aria-label="Surname"
+                autoComplete="family-name"
+                required
+              />
+              <FontAwesomeIcon
+                icon={faUserTie}
+                className="input-icon"
+                aria-hidden="true"
+              />
+            </div>
+          </div>
+          <div className="input-wrapper">
+            <label className="blue" htmlFor="first-name">
+              {"Enter Your Forename(s)"}
+            </label>
+            <div className="input-icon-container blue btn-text">
+              <input
+                className="text-input shadow-border blue btn-text"
+                name="first-name"
+                type="text"
+                placeholder="Forename(s)"
+                aria-label="Forename"
+                autoComplete="given-name"
+                required
+              />
+              <FontAwesomeIcon
+                icon={faIdCard}
+                className="input-icon"
+                aria-hidden="true"
+              />
+            </div>
           </div>
         </fieldset>
         <fieldset className="input-container">
-          <div className="input-icon-container blue btn-text">
-            <input
-              className="text-input shadow-border blue btn-text"
-              name="email"
-              type="email"
-              placeholder="Email"
-              aria-label="Email"
-              autoComplete="email"
-              required
-            />
-            <FontAwesomeIcon
-              icon={faEnvelope}
-              className="input-icon"
-              aria-hidden="true"
-            />
+          <div className="input-wrapper">
+            <label className="blue" htmlFor="email">
+              {"Enter Your Email Address"}
+            </label>
+            <div className="input-icon-container blue btn-text">
+              <input
+                className="text-input shadow-border blue btn-text"
+                name="email"
+                type="email"
+                placeholder="Email"
+                aria-label="Email"
+                autoComplete="email"
+                required
+              />
+              <FontAwesomeIcon
+                icon={faEnvelope}
+                className="input-icon"
+                aria-hidden="true"
+              />
+            </div>
           </div>
-          <div className="input-icon-container blue btn-text">
-            <input
-              className="text-input shadow-border blue btn-text"
-              name="password"
-              type="password"
-              placeholder="Password"
-              aria-label="Password"
-              autoComplete="current-password"
-              required
-            />
-            <FontAwesomeIcon
-              icon={faLock}
-              className="input-icon"
-              aria-hidden="true"
-            />
+          <div className="input-wrapper">
+            <label className="blue" htmlFor="password">
+              {"Enter Your Password"}
+            </label>
+            <div className="input-icon-container blue btn-text">
+              <input
+                className="text-input shadow-border blue btn-text"
+                name="password"
+                type="password"
+                placeholder="Password"
+                aria-label="Password"
+                autoComplete="current-password"
+                required
+              />
+              <FontAwesomeIcon
+                icon={faLock}
+                className="input-icon"
+                aria-hidden="true"
+              />
+            </div>
           </div>
-          <div className="input-icon-container blue btn-text">
-            <input
-              className="text-input shadow-border blue btn-text"
-              name="password-confirm"
-              type="password"
-              placeholder="Confirm Password"
-              aria-label="Confirm Password"
-              autoComplete="current-password"
-              required
-            />
-            <FontAwesomeIcon
-              icon={faShieldAlt}
-              className="input-icon"
-              aria-hidden="true"
-            />
+          <div className="input-wrapper">
+            <label className="blue" htmlFor="password-confirm">
+              {"Confirm Your Password"}
+            </label>
+            <div className="input-icon-container blue btn-text">
+              <input
+                className="text-input shadow-border blue btn-text"
+                name="password-confirm"
+                type="password"
+                placeholder="Confirm Password"
+                aria-label="Confirm Password"
+                autoComplete="current-password"
+                required
+              />
+              <FontAwesomeIcon
+                icon={faShieldAlt}
+                className="input-icon"
+                aria-hidden="true"
+              />
+            </div>
           </div>
         </fieldset>
       </div>

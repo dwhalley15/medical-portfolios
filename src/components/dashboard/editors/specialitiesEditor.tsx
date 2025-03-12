@@ -1,3 +1,8 @@
+/**
+ * @file Specialities Editor Component
+ * @description This file defines the SpecialitiesEditor component that allows users to edit their specialities section.
+ */
+
 "use client";
 
 import { useState } from "react";
@@ -10,7 +15,7 @@ import EditModal from "../modal/EditModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import IconSelector from "../modal/components/iconSelector";
-import { UpdateSpecialities } from "@/services/portfolioUpdates/updateSpecialities";    
+import { UpdateSpecialities } from "@/services/portfolioUpdates/updateSpecialities";
 
 type SpecialitiesEditorProps = {
   userIdProp: number;
@@ -27,6 +32,13 @@ type Speciality = {
   icon: string;
 };
 
+/**
+ * SpecialitiesEditor component that allows users to edit their specialities section.
+ * This component handles the specialities editing process and displays success or error messages.
+ *
+ * @param {SpecialitiesEditorProps} props - The component's props containing specialities data.
+ * @returns {JSX.Element} The rendered JSX for the SpecialitiesEditor component.
+ */
 export default function SpecialitiesEditor({
   userIdProp,
   orderProp,
@@ -46,6 +58,13 @@ export default function SpecialitiesEditor({
 
   const pathname = usePathname();
 
+  /**
+   * Handles the form submission to update the specialities section.
+   * Makes a POST request to the backend API to update the specialities section.
+   * Updates the UI based on success or failure.
+   * @param {FormData} formData - The form data to update the specialities section.
+   * @returns {Promise<void>} The success status of the update.
+   */
   const handleSubmit = async (formData: FormData) => {
     setErrors([]);
     setLoading(true);
@@ -60,6 +79,13 @@ export default function SpecialitiesEditor({
     }
   };
 
+  /**
+   * Handles the change in speciality data.
+   * Updates the speciality data based on the field and value.
+   * @param {number}
+   * @param {"title" | "description" | "icon"} field - The field to update.
+   * @param {string} value - The value to update.
+   */
   const handleSpecialityChange = (
     index: number,
     field: "title" | "description" | "icon",
@@ -73,6 +99,10 @@ export default function SpecialitiesEditor({
     setSpecialities(updatedSpecialities);
   };
 
+  /**
+   * Adds a new speciality to the specialities list
+   * by adding an empty speciality object.
+   */
   const addSpeciality = () => {
     setSpecialities([
       ...specialities,
@@ -80,6 +110,12 @@ export default function SpecialitiesEditor({
     ]);
   };
 
+  /**
+   * Removes a speciality from the specialities list
+   * by filtering out the speciality at the given index.
+   * @param {number} index - The index of the speciality to remove.
+   * @returns {void} The success status of the removal.
+   */
   const removeSpeciality = (index: number) => {
     setSpecialities(specialities.filter((_, i) => i !== index));
   };
@@ -126,38 +162,50 @@ export default function SpecialitiesEditor({
         >
           <ThemeSelector theme={theme} setTheme={setTheme} />
 
-          <input
-            type="number"
-            id="order"
-            name="order"
-            value={order}
-            onChange={(e) => setOrder(Number(e.target.value))}
-            className="text-input btn-text edit-shadow-border"
-            min={1}
-            max={999}
-            required
-          />
+          <div className="input-wrapper">
+            <label htmlFor="order">
+              {"Change This Sections Order/Position"}
+            </label>
+            <input
+              type="number"
+              id="order"
+              name="order"
+              value={order}
+              onChange={(e) => setOrder(Number(e.target.value))}
+              className="text-input btn-text edit-shadow-border"
+              min={1}
+              max={999}
+              required
+            />
+          </div>
 
-          <input
-            className="text-input btn-text edit-shadow-border"
-            type="text"
-            id="title"
-            name="title"
-            aria-label="title"
-            placeholder="Enter title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
+          <div className="input-wrapper">
+            <label htmlFor="order">{"Enter Section Title"}</label>
+            <input
+              className="text-input btn-text edit-shadow-border"
+              type="text"
+              id="title"
+              name="title"
+              aria-label="title"
+              placeholder="Enter Title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </div>
 
-          <textarea
-            id="description"
-            name="description"
-            className="text-input btn-text edit-shadow-border"
-            placeholder="Description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            rows={4}
-          />
+          <div className="input-wrapper">
+            <label htmlFor="order">{"Enter Section Description"}</label>
+            <textarea
+              id="description"
+              name="description"
+              className="text-input btn-text edit-shadow-border"
+              placeholder="Enter Description"
+              aria-label="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              rows={4}
+            />
+          </div>
 
           <div className="form-container">
             {specialities.map((speciality, index) => (
@@ -165,28 +213,38 @@ export default function SpecialitiesEditor({
                 key={index}
                 className="socials-form-container edit-shadow-border"
               >
-                <input
-                  type="text"
-                  placeholder="Enter Title"
-                  className="text-input btn-text edit-shadow-border"
-                  value={speciality.title}
-                  onChange={(e) =>
-                    handleSpecialityChange(index, "title", e.target.value)
-                  }
-                  required
-                />
+                <div className="input-wrapper">
+                  <label htmlFor="">{"Enter Speciality Title"}</label>
+                  <input
+                    type="text"
+                    placeholder="Enter Title"
+                    className="text-input btn-text edit-shadow-border"
+                    value={speciality.title}
+                    onChange={(e) =>
+                      handleSpecialityChange(index, "title", e.target.value)
+                    }
+                    required
+                  />
+                </div>
 
-                <textarea
-                  id="description"
-                  name="description"
-                  className="text-input btn-text edit-shadow-border"
-                  placeholder="Description"
-                  value={speciality.description}
-                  onChange={(e) =>
-                    handleSpecialityChange(index, "description", e.target.value)
-                  }
-                  rows={4}
-                />
+                <div className="input-wrapper">
+                  <label htmlFor="">{"Enter Speciality Description"}</label>
+                  <textarea
+                    id="description"
+                    name="description"
+                    className="text-input btn-text edit-shadow-border"
+                    placeholder="Description"
+                    value={speciality.description}
+                    onChange={(e) =>
+                      handleSpecialityChange(
+                        index,
+                        "description",
+                        e.target.value
+                      )
+                    }
+                    rows={4}
+                  />
+                </div>
 
                 <IconSelector
                   icon={speciality.icon}

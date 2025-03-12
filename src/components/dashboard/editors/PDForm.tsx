@@ -1,7 +1,7 @@
 /**
  * @file Personal Details Form
  * @description This file defines the personal details form component for the user dashboard settings page.
-*/
+ */
 
 "use client";
 
@@ -14,6 +14,7 @@ import {
   faArrowsRotate,
 } from "@fortawesome/free-solid-svg-icons";
 import { updatePersonalDetails } from "../../../services/db/db";
+import RevalidatePage from "@/services/portfolioUpdates/revalidatePage";
 
 type PDFormProps = {
   nameProp: string;
@@ -34,12 +35,11 @@ export default function PDForm({
   emailVerifiedProp,
   provider,
 }: PDFormProps) {
-
   /**
-    * @function splitName
-    * @description Splits a full name into title, first names, and last name.
-    * @param {string} fullName - The full name to split.
-    * @returns {Object} An object containing the title, first names, and last name.
+   * @function splitName
+   * @description Splits a full name into title, first names, and last name.
+   * @param {string} fullName - The full name to split.
+   * @returns {Object} An object containing the title, first names, and last name.
    */
   const splitName = (fullName: string) => {
     const titles = ["Dr", "Prof", "Mr", "Ms", "Mrs"];
@@ -84,59 +84,75 @@ export default function PDForm({
         }
         setSuccess(results.success);
         setLoading(false);
+        RevalidatePage("/dashboard");
       }}
     >
       <fieldset className="input-container">
-        <select
-          className="text-input select-input shadow-border blue btn-text white-background"
-          name="title"
-          aria-label="Title"
-          value={nameTitle}
-          onChange={(e) => setNameTitle(e.target.value)}
-          required
-        >
-          <option value="DEFAULT" disabled>
-            Select Title
-          </option>
-          <option value="Dr">Dr</option>
-          <option value="Prof">Prof</option>
-          <option value="Mr">Mr</option>
-          <option value="Ms">Ms</option>
-          <option value="Mrs">Mrs</option>
-        </select>
-        <div className="input-icon-container blue btn-text">
-          <input
-            className="text-input shadow-border blue btn-text"
-            name="last-name"
-            type="text"
-            placeholder="Surname"
-            aria-label="Surname"
+        <div className="input-wrapper">
+          <label className="blue" htmlFor="title">
+            {"Select a Title"}
+          </label>
+          <select
+            className="text-input select-input shadow-border blue btn-text white-background"
+            name="title"
+            aria-label="Title"
+            value={nameTitle}
+            onChange={(e) => setNameTitle(e.target.value)}
             required
-            value={lastNameState}
-            onChange={(e) => setLastName(e.target.value)}
-          />
-          <FontAwesomeIcon
-            icon={faUserTie}
-            className="input-icon"
-            aria-hidden="true"
-          />
+          >
+            <option value="DEFAULT" disabled>
+              Select Title
+            </option>
+            <option value="Dr">Dr</option>
+            <option value="Prof">Prof</option>
+            <option value="Mr">Mr</option>
+            <option value="Ms">Ms</option>
+            <option value="Mrs">Mrs</option>
+          </select>
         </div>
-        <div className="input-icon-container blue btn-text">
-          <input
-            className="text-input shadow-border blue btn-text"
-            name="first-name"
-            type="text"
-            placeholder="Forename(s)"
-            aria-label="Forename"
-            required
-            value={firstNameState}
-            onChange={(e) => setFirstName(e.target.value)}
-          />
-          <FontAwesomeIcon
-            icon={faIdCard}
-            className="input-icon"
-            aria-hidden="true"
-          />
+        <div className="input-wrapper">
+          <label className="blue" htmlFor="last-name">
+            {"Enter Your Last Name"}
+          </label>
+          <div className="input-icon-container blue btn-text">
+            <input
+              className="text-input shadow-border blue btn-text"
+              name="last-name"
+              type="text"
+              placeholder="Surname"
+              aria-label="Surname"
+              required
+              value={lastNameState}
+              onChange={(e) => setLastName(e.target.value)}
+            />
+            <FontAwesomeIcon
+              icon={faUserTie}
+              className="input-icon"
+              aria-hidden="true"
+            />
+          </div>
+        </div>
+        <div className="input-wrapper">
+          <label className="blue" htmlFor="first-name">
+            {"Enter Your ForeName(s)"}
+          </label>
+          <div className="input-icon-container blue btn-text">
+            <input
+              className="text-input shadow-border blue btn-text"
+              name="first-name"
+              type="text"
+              placeholder="Forename(s)"
+              aria-label="Forename"
+              required
+              value={firstNameState}
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+            <FontAwesomeIcon
+              icon={faIdCard}
+              className="input-icon"
+              aria-hidden="true"
+            />
+          </div>
         </div>
       </fieldset>
 

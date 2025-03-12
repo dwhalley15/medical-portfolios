@@ -44,37 +44,47 @@ export default function PasswordReset({ email }: { email: string }) {
         setLoading(false);
       }}
     >
-      <div className="input-icon-container blue btn-text">
-        <input
-          className="text-input shadow-border blue btn-text"
-          name="password"
-          type="password"
-          placeholder="Password"
-          aria-label="Password"
-          autoComplete="current-password"
-          required
-        />
-        <FontAwesomeIcon
-          icon={faLock}
-          className="input-icon"
-          aria-hidden="true"
-        />
+      <div className="input-wrapper">
+        <label className="blue" htmlFor="password">
+          {"Enter Your Password"}
+        </label>
+        <div className="input-icon-container blue btn-text">
+          <input
+            className="text-input shadow-border blue btn-text"
+            name="password"
+            type="password"
+            placeholder="Password"
+            aria-label="Password"
+            autoComplete="current-password"
+            required
+          />
+          <FontAwesomeIcon
+            icon={faLock}
+            className="input-icon"
+            aria-hidden="true"
+          />
+        </div>
       </div>
-      <div className="input-icon-container blue btn-text">
-        <input
-          className="text-input shadow-border blue btn-text"
-          name="password-confirm"
-          type="password"
-          placeholder="Confirm Password"
-          aria-label="Confirm Password"
-          autoComplete="current-password"
-          required
-        />
-        <FontAwesomeIcon
-          icon={faShieldAlt}
-          className="input-icon"
-          aria-hidden="true"
-        />
+      <div className="input-wrapper">
+        <label className="blue" htmlFor="password-confirm">
+          {"Confirm Your Password"}
+        </label>
+        <div className="input-icon-container blue btn-text">
+          <input
+            className="text-input shadow-border blue btn-text"
+            name="password-confirm"
+            type="password"
+            placeholder="Confirm Password"
+            aria-label="Confirm Password"
+            autoComplete="current-password"
+            required
+          />
+          <FontAwesomeIcon
+            icon={faShieldAlt}
+            className="input-icon"
+            aria-hidden="true"
+          />
+        </div>
       </div>
 
       {errors.length > 0 && (

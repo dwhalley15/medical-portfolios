@@ -141,35 +141,41 @@ export default function FooterEditor({
                 key={index}
                 className="socials-form-container edit-shadow-border"
               >
-                <select
-                  value={social.name}
-                  aria-label="socials"
-                  className="text-input select-input edit-shadow-border btn-text white-background"
-                  onChange={(e) =>
-                    handleSocialChange(index, "name", e.target.value)
-                  }
-                  required
-                >
-                  <option value="" disabled>
-                    {"Select platform"}
-                  </option>
-                  {SOCIAL_OPTIONS.map((option) => (
-                    <option key={option} value={option.toLowerCase()}>
-                      {option}
+                <div className="input-wrapper">
+                  <label htmlFor="">{"Select a Social Platform"}</label>
+                  <select
+                    value={social.name}
+                    aria-label="socials"
+                    className="text-input select-input edit-shadow-border btn-text white-background"
+                    onChange={(e) =>
+                      handleSocialChange(index, "name", e.target.value)
+                    }
+                    required
+                  >
+                    <option value="" disabled>
+                      {"Select platform"}
                     </option>
-                  ))}
-                </select>
+                    {SOCIAL_OPTIONS.map((option) => (
+                      <option key={option} value={option.toLowerCase()}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                </div>
 
-                <input
-                  type="url"
-                  placeholder="Enter link"
-                  className="text-input btn-text edit-shadow-border"
-                  value={social.link}
-                  onChange={(e) =>
-                    handleSocialChange(index, "link", e.target.value)
-                  }
-                  required
-                />
+                <div className="input-wrapper">
+                  <label htmlFor="">{"Enter the URL to your profile"}</label>
+                  <input
+                    type="url"
+                    placeholder="Enter link"
+                    className="text-input btn-text edit-shadow-border"
+                    value={social.link}
+                    onChange={(e) =>
+                      handleSocialChange(index, "link", e.target.value)
+                    }
+                    required
+                  />
+                </div>
 
                 <input
                   type="hidden"

@@ -1,7 +1,18 @@
+/**
+ * @file updateSpecialities.tsx
+ * @description This file contains the function that updates the specialities details in the database.
+ */
+
 "use server";
 
 import { updateSpecialities } from "../db/db";
 
+/**
+ * This function updates the specialities details in the database.
+ * @param formData The form data containing the specialities details.
+ * @param userID The ID of the user.
+ * @returns A promise that contains a boolean indicating the success status and an optional array of errors.
+ */
 export async function UpdateSpecialities(
   formData: FormData,
   userID: number

@@ -505,7 +505,12 @@ export async function updateFooter(userId: number, data: string) {
   }
 }
 
-
+/**
+ * Updates the specialities data for a user.
+ * @param {number} userId - The user's ID.
+ * @param {string} data - The specialities data.
+ * @returns {Promise<Object|null>} The updated specialities data, otherwise null.
+ */
 export async function updateSpecialities(userId: number, data: string) {
   try {
     const { rows } = await sql`

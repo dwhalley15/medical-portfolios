@@ -1,3 +1,8 @@
+/**
+ * @file Specialities Component
+ * @description This file defines the specialities component.
+ */
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import IconSelector from "@/services/iconSelector/iconSelector";
 import SpecialitiesEditor from "@/components/dashboard/editors/specialitiesEditor";
@@ -22,6 +27,12 @@ type Speciality = {
   icon: string;
 };
 
+/**
+ * @function Specialities
+ * @description The specialities component.
+ * @param {SpecialitiesProps} props - The props for the component.
+ * @returns {JSX.Element} The rendered component.
+ */
 export default function Specialities({
   data,
   editable,

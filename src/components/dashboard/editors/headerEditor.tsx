@@ -105,6 +105,7 @@ export default function HeaderEditor({
             quality={100}
             className="preview-image"
           />
+
           <input
             type="file"
             id="image"
@@ -114,28 +115,36 @@ export default function HeaderEditor({
             aria-label="Image"
             className="btn-text"
           />
+
           <input type="hidden" name="original-image" value={imageProp} />
 
-          <input
-            className="text-input btn-text edit-shadow-border"
-            type="text"
-            id="name"
-            name="name"
-            aria-label="Name"
-            placeholder="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+          <div className="input-wrapper">
+            <label htmlFor="name">{"Enter Name or Title"}</label>
+            <input
+              className="text-input btn-text edit-shadow-border"
+              type="text"
+              id="name"
+              name="name"
+              aria-label="Name"
+              placeholder="Enter Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
 
-          <textarea
-            id="description"
-            name="description"
-            className="text-input btn-text edit-shadow-border"
-            placeholder="Description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            rows={4}
-          />
+          <div className="input-wrapper">
+            <label htmlFor="name">{"Enter Description"}</label>
+            <textarea
+              id="description"
+              name="description"
+              className="text-input btn-text edit-shadow-border"
+              aria-label="Description"
+              placeholder="Enter Description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              rows={4}
+            />
+          </div>
 
           {errors.map((error) => (
             <p key={error} className="error-text">

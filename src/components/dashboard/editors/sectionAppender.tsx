@@ -95,29 +95,32 @@ export default function SectionAppender({ userIdProp }: SectionAppenderProps) {
             await handleSubmit(formData);
           }}
         >
-          <select
-            name="section"
-            id="section"
-            aria-label="Section"
-            className="text-input select-input edit-shadow-border btn-text white-background"
-            onChange={(e) => handleSectionSelect(e.target.value)}
-            value={selectedSection ?? ""}
-          >
-            <option value="" disabled>
-              {"Select a Section"}
-            </option>
-            {sectionsToAppend.length > 0 ? (
-              sectionsToAppend.map((section) => (
-                <option key={section} value={section}>
-                  {section.charAt(0).toUpperCase() + section.slice(1)}
-                </option>
-              ))
-            ) : (
+          <div className="input-wrapper">
+            <label htmlFor="section">{"Select a Section"}</label>
+            <select
+              name="section"
+              id="section"
+              aria-label="Section"
+              className="text-input select-input edit-shadow-border btn-text white-background"
+              onChange={(e) => handleSectionSelect(e.target.value)}
+              value={selectedSection ?? ""}
+            >
               <option value="" disabled>
-                {"No sections available"}
+                {"Select a Section"}
               </option>
-            )}
-          </select>
+              {sectionsToAppend.length > 0 ? (
+                sectionsToAppend.map((section) => (
+                  <option key={section} value={section}>
+                    {section.charAt(0).toUpperCase() + section.slice(1)}
+                  </option>
+                ))
+              ) : (
+                <option value="" disabled>
+                  {"No sections available"}
+                </option>
+              )}
+            </select>
+          </div>
 
           {errors.map((error) => (
             <p key={error} className="error-text">

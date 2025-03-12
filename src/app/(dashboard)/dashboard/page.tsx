@@ -11,6 +11,7 @@ import {
   createPortfolio,
   checkUserByEmail,
   getProvider,
+  getPortfolioUrl
 } from "../../../services/db/db";
 import EmailVerification from "@/components/dashboard/auth/emailVerification";
 import PDForm from "@/components/dashboard/editors/PDForm";
@@ -31,11 +32,16 @@ export default async function Dashboard() {
   let portfolio = null;
   let userData = null;
   let provider = null;
+  let portfolioUrl = null;
 
   if (session?.user?.email) {
     emailVerified = await emailVerifiedCheck(session.user.email);
     isOAuthUserFlag = await isOAuthUser(session.user.email);
     userData = await checkUserByEmail(session?.user?.email);
+  }
+
+  if (session?.user?.id) {
+    portfolioUrl = await getPortfolioUrl(Number(session?.user?.id));
   }
 
   if (session?.user?.id && session?.user?.name) {
@@ -86,7 +92,7 @@ export default async function Dashboard() {
                 </div>
                 <div className="container">
                   {session?.user?.id && (
-                    <PortfolioBtn id={Number(session.user.id)} />
+                    <PortfolioBtn portfolioUrl={portfolioUrl} />
                   )}
                   <LogoutBtn />
                 </div>

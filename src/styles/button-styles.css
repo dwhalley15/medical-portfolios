@@ -35,7 +35,7 @@
   color: var(--blue);
 }
 
-.edit-button-hover:hover{
+.edit-button-hover:hover {
   background-color: var(--grey);
   color: var(--white);
 }
@@ -183,4 +183,36 @@
   .edi-button::before {
     content: "";
   }
+}
+
+.input-wrapper {
+  position: relative;
+  display: block ruby;
+  width: 100%;
+}
+
+.input-wrapper input,
+.input-wrapper select {
+  appearance: none;
+  outline: none;
+}
+
+.input-wrapper label {
+  position: absolute;
+  top: 0px;
+  left: 12px;
+  padding: 0 5px;
+  font-size: 14px;
+  transition: 0.2s ease-in-out;
+  pointer-events: none;
+  font-weight: 700;
+}
+
+.input-wrapper input:focus + label,
+.input-wrapper select:focus + label,
+.input-wrapper select:not(:placeholder-shown) + label,
+.input-wrapper input:not(:placeholder-shown) + label {
+  top: -10px;
+  left: 12px;
+  font-size: 12px;
 }

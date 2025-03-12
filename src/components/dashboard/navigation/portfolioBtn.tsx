@@ -1,17 +1,13 @@
 /**
-* @file Portfolio Button
-* @description This file defines a button component for navigating to a user's portfolio.
-*/
+ * @file Portfolio Button
+ * @description This file defines a button component for navigating to a user's portfolio.
+ */
 
-"use client";
-
-import { getPortfolioUrl } from "@/services/db/db";
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect } from "react";
 
 type PortfolioBtnProps = {
-  id: number;
+  portfolioUrl: string | null;
 };
 
 /**
@@ -20,16 +16,15 @@ type PortfolioBtnProps = {
  * @param {PortfolioBtnProps} props - The component props.
  * @returns {JSX.Element} The rendered component.
  */
-export default function PortfolioBtn({ id }: PortfolioBtnProps) {
-  const [url, setUrl] = useState<string | null>(null);
+export default function PortfolioBtn({ portfolioUrl }: PortfolioBtnProps) {
 
-  useEffect(() => {
-    getPortfolioUrl(id).then((url) => setUrl(url));
-  }, [id]);
+  if(!portfolioUrl) {
+    return null;
+  }
 
   return (
     <Link
-      href={`/portfolios/${url}`}
+      href={`/portfolios/${portfolioUrl}`}
       aria-label="Go to Portfolio page"
       role="button"
     >

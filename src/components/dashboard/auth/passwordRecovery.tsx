@@ -57,25 +57,29 @@ export default function PasswordRecovery() {
 
   return (
     <form className="form-container" onSubmit={handleSendEmail}>
-      <div className="input-icon-container blue btn-text btn-limit">
-        <input
-          className="text-input shadow-border blue btn-text"
-          name="email"
-          type="email"
-          placeholder="Email"
-          aria-label="Email"
-          autoComplete="email"
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <FontAwesomeIcon
-          icon={faEnvelope}
-          className="input-icon"
-          aria-hidden="true"
-        />
+      <div className="input-wrapper btn-limit">
+        <label className="blue" htmlFor="email">
+          {"Enter Your Email Address"}
+        </label>
+        <div className="input-icon-container blue btn-text">
+          <input
+            className="text-input shadow-border blue btn-text"
+            name="email"
+            type="email"
+            placeholder="Email"
+            aria-label="Email"
+            autoComplete="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <FontAwesomeIcon
+            icon={faEnvelope}
+            className="input-icon"
+            aria-hidden="true"
+          />
+        </div>
       </div>
-
       {errors.length > 0 && (
         <div>
           {errors.map((error, index) => (

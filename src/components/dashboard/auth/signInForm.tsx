@@ -47,39 +47,48 @@ export default function SignInForm() {
         handleSubmit(formData);
       }}
     >
-      <div className="input-icon-container blue btn-text">
-        <input
-          className="text-input shadow-border blue btn-text"
-          name="email"
-          type="email"
-          placeholder="Email"
-          aria-label="Email"
-          autoComplete="email"
-          required
-        />
-        <FontAwesomeIcon
-          icon={faEnvelope}
-          className="input-icon"
-          aria-hidden="true"
-        />
+      <div className="input-wrapper">
+        <label className="blue" htmlFor="email">
+          {"Enter Your Email Address"}
+        </label>
+        <div className="input-icon-container blue btn-text">
+          <input
+            className="text-input shadow-border blue btn-text"
+            name="email"
+            type="email"
+            placeholder="Email"
+            aria-label="Email"
+            autoComplete="email"
+            required
+          />
+          <FontAwesomeIcon
+            icon={faEnvelope}
+            className="input-icon"
+            aria-hidden="true"
+          />
+        </div>
       </div>
-      <div className="input-icon-container blue btn-text">
-        <input
-          className="text-input shadow-border blue btn-text"
-          name="password"
-          type="password"
-          placeholder="Password"
-          aria-label="Password"
-          autoComplete="current-password"
-          required
-        />
-        <FontAwesomeIcon
-          icon={faLock}
-          className="input-icon"
-          aria-hidden="true"
-        />
+      <div className="input-wrapper">
+        <label className="blue" htmlFor="password">
+          {"Enter Your Password"}
+        </label>
+        <div className="input-icon-container blue btn-text">
+          <input
+            className="text-input shadow-border blue btn-text"
+            name="password"
+            type="password"
+            placeholder="Password"
+            aria-label="Password"
+            autoComplete="current-password"
+            required
+          />
+          <FontAwesomeIcon
+            icon={faLock}
+            className="input-icon"
+            aria-hidden="true"
+          />
+        </div>
       </div>
-
       <Link
         href="/password-recovery"
         className="link-text blue"
