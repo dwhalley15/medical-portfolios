@@ -35,10 +35,10 @@ export async function AddSection(
     case "specialities":
       data = JSON.stringify({
         order: 0,
-        title: "Specialties",
-        description: "Add your specialties",
+        title: "Specialities",
+        description: "Add your specialities",
         theme: "default",
-        specialties: [
+        specialities: [
           {
             title: "",
             description: "",
@@ -46,7 +46,7 @@ export async function AddSection(
           },
         ],
       });
-      newNavItem = { name: "Specialties", link: "specialities" };
+      newNavItem = { name: "Specialities", link: "specialities" };
       break;
     case "education":
       data = JSON.stringify({

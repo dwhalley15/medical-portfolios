@@ -113,3 +113,21 @@
   border-color: var(--hover-color);
   box-shadow: 0 0 25px var(--hover-color);
 }
+
+.specialities-container {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
+}
+
+.speciality-container{
+  background-color: var(--hover-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
+  border-color: var(--hover-color);
+}
+
+.speciality-container:hover {
+  background-color: var(--background-color);
+  color: var(--hover-color);
+}

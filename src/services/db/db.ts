@@ -505,6 +505,27 @@ export async function updateFooter(userId: number, data: string) {
   }
 }
 
+
+export async function updateSpecialities(userId: number, data: string) {
+  try {
+    const { rows } = await sql`
+      UPDATE "portfolios"
+      SET specialities = ${data}
+      WHERE "userId" = ${userId}
+      RETURNING *;
+    `;
+
+    if (rows.length === 0) {
+      return null;
+    }
+
+    return rows[0];
+  } catch (error) {
+    console.error("Error updating specialities:", error);
+    return null;
+  }
+}
+
 /**
  * Gets the section data for a user.
  * @param {number} userId - The user's ID.

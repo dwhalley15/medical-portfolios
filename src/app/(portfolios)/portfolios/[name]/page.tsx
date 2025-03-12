@@ -10,6 +10,7 @@ import Navigation from "../../../../components/portfolios/navigation/navigation"
 import Header from "../../../../components/portfolios/header/header";
 import Footer from "../../../../components/portfolios/footer/footer";
 import SectionAppender from "@/components/dashboard/editors/sectionAppender";
+import Specialities from "@/components/portfolios/specialities/specialities";
 
 /**
  * This function returns the portfolio page.
@@ -51,6 +52,13 @@ export default async function PortfolioPage({
           editable={signedIn}
           userId={userId!}
         />
+        {portfolioData.specialities ? (
+          <Specialities
+            data={portfolioData.specialities}
+            editable={signedIn}
+            userId={userId!}
+          />
+        ) : null}
       </main>
       {signedIn ? (
         <div className="section-appender-container">
