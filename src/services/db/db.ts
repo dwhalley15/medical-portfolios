@@ -614,3 +614,29 @@ export async function updateNavigationData(userId: number, data: string) {
     return null;
   }
 }
+
+/**
+ * Updates the education data for a user.
+ * @param {number} userId - The user's ID.
+ * @param {string} data - The education data.
+ * @returns {Promise<Object|null>} The updated education data, otherwise null.
+ */
+export async function updateEducation(userId: number, data: string) {
+  try {
+    const { rows } = await sql`
+      UPDATE "portfolios"
+      SET education = ${data}
+      WHERE "userId" = ${userId}
+      RETURNING *;
+    `;
+
+    if (rows.length === 0) {
+      return null;
+    }
+
+    return rows[0];
+  } catch (error) {
+    console.error("Error updating education:", error);
+    return null;
+  }
+}

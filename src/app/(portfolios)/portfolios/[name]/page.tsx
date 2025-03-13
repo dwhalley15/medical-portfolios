@@ -11,6 +11,7 @@ import Header from "../../../../components/portfolios/header/header";
 import Footer from "../../../../components/portfolios/footer/footer";
 import SectionAppender from "@/components/dashboard/editors/sectionAppender";
 import Specialities from "@/components/portfolios/specialities/specialities";
+import Education from "@/components/portfolios/education/education";
 
 /**
  * This function returns the portfolio page.
@@ -52,13 +53,26 @@ export default async function PortfolioPage({
           editable={signedIn}
           userId={userId!}
         />
-        {portfolioData.specialities ? (
-          <Specialities
-            data={portfolioData.specialities}
-            editable={signedIn}
-            userId={userId!}
-          />
-        ) : null}
+        {[
+          portfolioData.specialities && {
+            component: Specialities,
+            data: portfolioData.specialities,
+          },
+          portfolioData.education && {
+            component: Education,
+            data: portfolioData.education,
+          },
+        ]
+          .filter(Boolean)
+          .sort((a, b) => a!.data.order - b!.data.order)
+          .map(({ component: Component, data }) => (
+            <Component
+              key={data.order}
+              data={data}
+              editable={signedIn}
+              userId={userId!}
+            />
+          ))}
       </main>
       {signedIn ? (
         <div className="section-appender-container">

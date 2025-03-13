@@ -3,6 +3,7 @@
   --background-color: #0074d9;
   --hover-color: #00172b;
   --text-hover-color: #fff;
+  --alternate-background-color: #00172b;
   --font-family: "Poppins", sans-serif;
 }
 
@@ -11,6 +12,7 @@
   --background-color: #fff;
   --hover-color: #0074d9;
   --text-hover-color: #00172b;
+  --alternate-background-color: #0074d9;
   --font-family: "Poppins", sans-serif;
 }
 
@@ -18,7 +20,8 @@
   --text-color: #fff;
   --background-color: #14967f;
   --hover-color: #0b5340;
-  --text-hover-color: #fff;
+  --text-hover-color: #0b5340;
+  --alternate-background-color: #fff;
   --font-family: Arial, sans-serif;
 }
 
@@ -27,6 +30,7 @@
   --background-color: #fff;
   --hover-color: #14967f;
   --text-hover-color: #0b5340;
+  --alternate-background-color: #14967f;
   --font-family: Arial, sans-serif;
 }
 
@@ -35,6 +39,7 @@
   --background-color: #8458b3;
   --hover-color: #342347;
   --text-hover-color: #fff;
+  --alternate-background-color: #342347;
   --font-family: "Roboto", sans-serif;
 }
 
@@ -43,6 +48,7 @@
   --background-color: #fff;
   --hover-color: #8458b3;
   --text-hover-color: #342347;
+  --alternate-background-color: #8458b3;
   --font-family: "Roboto", sans-serif;
 }
 
@@ -51,6 +57,7 @@
   --background-color: #ff9966;
   --hover-color: #ff661a;
   --text-hover-color: #fff;
+  --alternate-background-color: #ff661a;
   --font-family: "Open Sans", sans-serif;
 }
 
@@ -59,6 +66,7 @@
   --background-color: #fff;
   --hover-color: #ff9966;
   --text-hover-color: #ff661a;
+  --alternate-background-color: #ff9966;
   --font-family: "Open Sans", sans-serif;
 }
 
@@ -146,4 +154,31 @@
   background-color: var(--background-color);
   color: var(--hover-color);
   box-shadow: 0 0 25px var(--hover-color);
+}
+
+.education-container{
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
+}
+
+.education-item-container{
+  background-color: var(--hover-color);
+  color: var(--text-hover-color);
+  font-family: var(--font-family);
+  border: 1px solid var(--hover-color);
+}
+
+.education-item-container:hover{
+  background-color: var(--background-color);
+  color: var(--hover-color);
+  box-shadow: 0 0 25px var(--hover-color);
+}
+
+.education-line{
+  background-color: var(--hover-color);
+}
+
+.education-icon{
+  background-color: var(--alternate-background-color);
 }

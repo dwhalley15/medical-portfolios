@@ -59,8 +59,8 @@ export async function AddSection(
             title: "",
             location: "",
             description: "",
-            startDate: "",
-            endDate: "",
+            startDate: null,
+            endDate: null,
           },
         ],
       });
