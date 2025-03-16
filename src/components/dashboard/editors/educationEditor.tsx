@@ -9,12 +9,12 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import RevalidatePage from "@/services/portfolioUpdates/revalidatePage";
 import ModalBtn from "../modal/components/modalBtn";
-import ThemeSelector from "../modal/components/themeSelector";
 import SubmitBtn from "../modal/components/submitBtn";
 import EditModal from "../modal/EditModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { UpdateEducation } from "@/services/portfolioUpdates/updateEducation";
+import SectionItems from "../modal/components/sectionItems";
 
 type EducationEditorProps = {
   userIdProp: number;
@@ -174,52 +174,16 @@ export default function EducationEditor({
             await handleSubmit(formData);
           }}
         >
-          <ThemeSelector theme={theme} setTheme={setTheme} />
-
-          <div className="input-wrapper">
-            <label htmlFor="order">
-              {"Change This Sections Order/Position"}
-            </label>
-            <input
-              type="number"
-              id="order"
-              name="order"
-              value={order}
-              onChange={(e) => setOrder(Number(e.target.value))}
-              className="text-input btn-text edit-shadow-border"
-              min={1}
-              max={999}
-              required
-            />
-          </div>
-
-          <div className="input-wrapper">
-            <label htmlFor="order">{"Enter Section Title"}</label>
-            <input
-              className="text-input btn-text edit-shadow-border"
-              type="text"
-              id="title"
-              name="title"
-              aria-label="title"
-              placeholder="Enter Title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          </div>
-
-          <div className="input-wrapper">
-            <label htmlFor="order">{"Enter Section Description"}</label>
-            <textarea
-              id="description"
-              name="description"
-              className="text-input btn-text edit-shadow-border"
-              placeholder="Enter Description"
-              aria-label="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              rows={4}
-            />
-          </div>
+          <SectionItems
+            theme={theme}
+            setTheme={setTheme}
+            order={order}
+            setOrder={setOrder}
+            title={title}
+            setTitle={setTitle}
+            description={description}
+            setDescription={setDescription}
+          />
 
           <div className="form-container">
             {education.map((education, index) => (
