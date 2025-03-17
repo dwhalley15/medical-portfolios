@@ -6,6 +6,7 @@
 import EducationEditor from "@/components/dashboard/editors/educationEditor";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGraduationCap } from "@fortawesome/free-solid-svg-icons";
+import SectionRemover from "@/components/dashboard/editors/sectionRemover";
 
 type EducationProps = {
   userId: number;
@@ -67,7 +68,11 @@ export default function Education({ userId, data, editable }: EducationProps) {
         {data.education.map((education, index) => (
           <div key={index} className="education-item-container">
             <div className="education-icon-container">
-              <FontAwesomeIcon className="education-icon" icon={faGraduationCap} aria-hidden="true" />
+              <FontAwesomeIcon
+                className="education-icon"
+                icon={faGraduationCap}
+                aria-hidden="true"
+              />
             </div>
             <div className="education-item-text-container">
               <h3>{education.title}</h3>
@@ -87,14 +92,17 @@ export default function Education({ userId, data, editable }: EducationProps) {
         ))}
       </div>
       {editable && (
-        <EducationEditor
-          userIdProp={userId}
-          themeProp={data.theme}
-          orderProp={data.order}
-          titleProp={data.title}
-          descriptionProp={data.description}
-          educationProp={parsedEducation}
-        />
+        <div className="edit-buttons-container">
+          <EducationEditor
+            userIdProp={userId}
+            themeProp={data.theme}
+            orderProp={data.order}
+            titleProp={data.title}
+            descriptionProp={data.description}
+            educationProp={parsedEducation}
+          />
+          <SectionRemover userIdProp={userId} section="education" />
+        </div>
       )}
     </section>
   );

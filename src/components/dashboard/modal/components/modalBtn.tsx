@@ -4,7 +4,7 @@
  */
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPen, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 type ModalBtnProps = {
   setIsOpen: (isOpen: boolean) => void;
@@ -22,7 +22,20 @@ export default function ModalBtn({
   btnText,
   iconProp,
 }: ModalBtnProps) {
-  const icon = iconProp === "pen" ? faPen : faPlus;
+  let icon;
+  switch (iconProp) {
+    case "pen":
+      icon = faPen;
+      break;
+    case "plus":
+      icon = faPlus;
+      break;
+    case "trash":
+      icon = faTrash;
+      break;
+    default:
+      icon = faPen;
+  }
 
   return (
     <button className="edit-button" onClick={() => setIsOpen(true)}>

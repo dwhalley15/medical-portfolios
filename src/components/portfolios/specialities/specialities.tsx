@@ -6,6 +6,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import IconSelector from "@/services/iconSelector/iconSelector";
 import SpecialitiesEditor from "@/components/dashboard/editors/specialitiesEditor";
+import SectionRemover from "@/components/dashboard/editors/sectionRemover";
 
 type SpecialitiesProps = {
   userId: number;
@@ -61,14 +62,17 @@ export default function Specialities({
         ))}
       </div>
       {editable && (
-        <SpecialitiesEditor
-          userIdProp={userId}
-          orderProp={data.order}
-          titleProp={data.title}
-          descriptionProp={data.description}
-          themeProp={data.theme}
-          specialitiesProp={data.specialities}
-        />
+        <div className="edit-buttons-container">
+          <SpecialitiesEditor
+            userIdProp={userId}
+            orderProp={data.order}
+            titleProp={data.title}
+            descriptionProp={data.description}
+            themeProp={data.theme}
+            specialitiesProp={data.specialities}
+          />
+          <SectionRemover userIdProp={userId} section="specialities" />
+        </div>
       )}
     </section>
   );

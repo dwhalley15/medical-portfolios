@@ -640,3 +640,31 @@ export async function updateEducation(userId: number, data: string) {
     return null;
   }
 }
+
+/**
+ * Removes a section for a user.
+ * @param {number} userId - The user's ID.
+ * @param {string} section - The section name.
+ * @returns {Promise<Object|null>} The updated portfolio data, otherwise null.
+ */
+export async function removeSection(userId: number, section: string) {
+  try {
+    const query = `
+      UPDATE "portfolios"
+      SET "${section}" = NULL
+      WHERE "userId" = $1
+      RETURNING *;
+    `;
+
+    const { rows } = await sql.query(query, [userId]);
+
+    if (rows.length === 0) {
+      return { success: false, errors: ["Section not found."] };
+    }
+
+    return { success: true };
+  } catch (error) {
+    console.error("Error removing section:", error);
+    return { success: false, errors: ["Database error."] };
+  }
+}

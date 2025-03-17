@@ -9,7 +9,6 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import RevalidatePage from "@/services/portfolioUpdates/revalidatePage";
 import ModalBtn from "../modal/components/modalBtn";
-import ThemeSelector from "../modal/components/themeSelector";
 import SubmitBtn from "../modal/components/submitBtn";
 import EditModal from "../modal/EditModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
