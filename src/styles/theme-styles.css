@@ -182,3 +182,20 @@
 .education-icon{
   background-color: var(--alternate-background-color);
 }
+
+.location-container{
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
+}
+
+.location-item-container{
+  background-color: var(--hover-color);
+  color: var(--text-hover-color);
+  font-family: var(--font-family);
+  border: 1px solid var(--hover-color);
+}
+
+.location-item-container a{
+  color: var(--text-hover-color);
+}

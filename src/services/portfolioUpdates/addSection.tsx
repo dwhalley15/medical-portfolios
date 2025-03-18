@@ -1,7 +1,7 @@
-/** 
+/**
  * @file Add section service.
  * @description This file defines the service for adding a section to the portfolio.
-*/
+ */
 
 "use server";
 
@@ -65,6 +65,28 @@ export async function AddSection(
         ],
       });
       newNavItem = { name: "Education", link: "education" };
+      break;
+    case "location":
+      data = JSON.stringify({
+        order: 0,
+        title: "Location",
+        description: "Add your location(s)",
+        theme: "default",
+        location: [
+          {
+            title: "",
+            address: "",
+            city: "",
+            state: "",
+            zip: "",
+            country: "",
+            phone: "",
+            email: "",
+            website: "",
+          },
+        ],
+      });
+      newNavItem = { name: "Location", link: "location" };
       break;
     default:
       return { success: false, errors: ["Invalid section."] };

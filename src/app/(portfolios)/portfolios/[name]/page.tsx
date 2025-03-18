@@ -12,6 +12,7 @@ import Footer from "../../../../components/portfolios/footer/footer";
 import SectionAppender from "@/components/dashboard/editors/sectionAppender";
 import Specialities from "@/components/portfolios/specialities/specialities";
 import Education from "@/components/portfolios/education/education";
+import Location from "@/components/portfolios/location/location";
 
 /**
  * This function returns the portfolio page.
@@ -61,6 +62,10 @@ export default async function PortfolioPage({
           portfolioData.education && {
             component: Education,
             data: portfolioData.education,
+          },
+          portfolioData.location && {
+            component: Location,
+            data: portfolioData.location,
           },
         ]
           .filter(Boolean)

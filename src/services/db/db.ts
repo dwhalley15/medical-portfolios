@@ -539,7 +539,7 @@ export async function updateSpecialities(userId: number, data: string) {
 export async function getSections(userId: number) {
   try {
     const { rows } = await sql`
-      SELECT "specialities", "education" FROM "portfolios" WHERE "userId" = ${userId};
+      SELECT "specialities", "education", "location" FROM "portfolios" WHERE "userId" = ${userId};
     `;
 
     if (rows.length === 0) {
@@ -549,6 +549,7 @@ export async function getSections(userId: number) {
     return rows.map((row) => ({
       specialities: row.specialities !== null,
       education: row.education !== null,
+      location: row.location !== null,
     }));
   } catch (error) {
     console.error("Error getting sections:", error);
@@ -666,5 +667,31 @@ export async function removeSection(userId: number, section: string) {
   } catch (error) {
     console.error("Error removing section:", error);
     return { success: false, errors: ["Database error."] };
+  }
+}
+
+/**
+ * Updates the location data for a user.
+ * @param {number} userId - The user's ID.
+ * @param {string} data - The location data.
+ * @returns {Promise<Object|null>} The updated location data, otherwise null.
+ */
+export async function updateLocation(userId: number, data: string) {
+  try {
+    const { rows } = await sql`
+      UPDATE "portfolios"
+      SET location = ${data}
+      WHERE "userId" = ${userId}
+      RETURNING *;
+    `;
+
+    if (rows.length === 0) {
+      return null;
+    }
+
+    return rows[0];
+  } catch (error) {
+    console.error("Error updating location:", error);
+    return null;
   }
 }
