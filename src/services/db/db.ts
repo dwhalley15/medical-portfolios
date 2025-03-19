@@ -539,7 +539,7 @@ export async function updateSpecialities(userId: number, data: string) {
 export async function getSections(userId: number) {
   try {
     const { rows } = await sql`
-      SELECT "specialities", "education", "location" FROM "portfolios" WHERE "userId" = ${userId};
+      SELECT "specialities", "education", "location", "contact" FROM "portfolios" WHERE "userId" = ${userId};
     `;
 
     if (rows.length === 0) {
@@ -550,6 +550,7 @@ export async function getSections(userId: number) {
       specialities: row.specialities !== null,
       education: row.education !== null,
       location: row.location !== null,
+      contact: row.contact !== null,
     }));
   } catch (error) {
     console.error("Error getting sections:", error);
@@ -695,3 +696,50 @@ export async function updateLocation(userId: number, data: string) {
     return null;
   }
 }
+
+/**
+ * Updates the contact data for a user.
+ * @param {number} userId - The user's ID.
+ * @param {string} data - The contact data.
+ * @returns {Promise<Object|null>} The updated contact data, otherwise null.
+ */
+export async function updateContact(userId: number, data: string) {
+  try {
+    const { rows } = await sql`
+      UPDATE "portfolios"
+      SET contact = ${data}
+      WHERE "userId" = ${userId}
+      RETURNING *;
+    `;
+
+    if (rows.length === 0) {
+      return null;
+    }
+
+    return rows[0];
+  } catch (error) {
+    console.error("Error updating contact:", error);
+    return null;
+  }
+}
+
+/**
+ * Gets a user's email address.
+ * @param {number} id - The user's ID.
+ * @returns {Promise<string|null>} The user's email address, otherwise null.
+ */
+export async function getUserEmail(id: number) {
+  try {
+    const { rows } = await sql`
+      SELECT email, name FROM "users" WHERE id = ${id} LIMIT 1;
+    `;
+    if (rows.length === 0) {
+      return null;
+    }
+    return rows[0];
+  } catch (error) {
+    console.error("Error getting user data:", error);
+    return null;
+  }
+}
+

@@ -13,6 +13,7 @@ import SectionAppender from "@/components/dashboard/editors/sectionAppender";
 import Specialities from "@/components/portfolios/specialities/specialities";
 import Education from "@/components/portfolios/education/education";
 import Location from "@/components/portfolios/location/location";
+import Contact from "@/components/portfolios/contact/contact";
 
 /**
  * This function returns the portfolio page.
@@ -66,6 +67,10 @@ export default async function PortfolioPage({
           portfolioData.location && {
             component: Location,
             data: portfolioData.location,
+          },
+          portfolioData.contact && {
+            component: Contact,
+            data: portfolioData.contact,
           },
         ]
           .filter(Boolean)

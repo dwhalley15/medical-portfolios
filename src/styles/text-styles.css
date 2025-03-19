@@ -77,3 +77,10 @@ p {
     display: none;
   }
 }
+
+.contact-form-label{
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.6;
+  padding-right: 2rem;
+}

@@ -88,6 +88,22 @@ export async function AddSection(
       });
       newNavItem = { name: "Location", link: "location" };
       break;
+    case "contact":
+      data = JSON.stringify({
+        order: 0,
+        title: "Contact",
+        description: "Add your contact information",
+        theme: "default",
+        contact: {
+          email: "",
+          phone: "",
+          locationLat: "",
+          locationLong: "",
+          message: "",
+        },
+      });
+      newNavItem = { name: "Contact", link: "contact" };
+      break;
     default:
       return { success: false, errors: ["Invalid section."] };
   }

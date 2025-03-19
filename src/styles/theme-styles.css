@@ -199,3 +199,41 @@
 .location-item-container a{
   color: var(--text-hover-color);
 }
+
+.contact-container{
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
+}
+
+.contact-item{
+  color: var(--text-color);
+  border: 1px solid var(--text-color);
+}
+
+.contact-item:hover{
+  color: var(--hover-color);
+  border: 1px solid var(--hover-color);
+  box-shadow: 0 0 25px var(--hover-color);
+}
+
+.contact-form-input{
+  color: var(--text-color);
+  border: 1px solid var(--text-color);
+}
+
+.contact-form-input:focus-visible{
+  box-shadow: 0 0 25px var(--text-color);
+}
+
+.contact-btn{
+  color: var(--text-color);
+  border: 1px solid var(--text-color);
+}
+
+.contact-btn:hover{
+  color: var(--background-color);
+  background-color: var(--text-color);
+  border: 1px solid var(--text-color);
+  box-shadow: 0 0 25px var(--text-color);
+}
