@@ -72,7 +72,7 @@ export default function Contact({ userId, data, editable }: ContactProps) {
         )}
         {data.contact.locationLat && data.contact.locationLong && (
           <Link
-            href={`https://www.google.co.uk/maps/@${data.contact.locationLat},${data.contact.locationLong}`}
+            href={`https://www.google.co.uk/maps/search/?api=1&query=${data.contact.locationLat},${data.contact.locationLong}`}
             className="contact-item"
             target="_blank"
             rel="noopener noreferrer"
