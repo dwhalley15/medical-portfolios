@@ -15,6 +15,17 @@ import Education from "@/components/portfolios/education/education";
 import Location from "@/components/portfolios/location/location";
 import Contact from "@/components/portfolios/contact/contact";
 import type { Metadata } from "next";
+import { headers } from "next/headers";
+import { generateMetaDescription } from "@/services/metadata/generateMetaDescription";
+
+type FooterData = {
+  socials: Social[];
+};
+
+type Social = {
+  name: string;
+  link: string;
+};
 
 /**
  * This function generates the metadata for the portfolio page.
@@ -35,17 +46,29 @@ export async function generateMetadata({
     };
   }
 
+  const acceptedLanguages = (await headers()).get("accept-language") || "en-UK";
+  const userLocale = acceptedLanguages.split(",")[0].replace("-", "_");
+
+  const metaDescription = await generateMetaDescription({
+    header: portfolioData.header,
+    specialities: portfolioData.specialities,
+    education: portfolioData.education,
+    location: portfolioData.location,
+    contact: portfolioData.contact,
+    footer: portfolioData.footer,
+  });
+
   return {
     title: `${portfolioData.header.name} | Portfolio | Medical Portfolio's`,
-    description: portfolioData.header.description,
+    description: metaDescription,
     alternates: {
       canonical: `https://medical-portfolios.vercel.app/portfolios/${resolvedParams.name}`,
     },
     openGraph: {
       type: "website",
       title: `${portfolioData.header.name} | Portfolio | Medical Portfolio's`,
-      description: portfolioData.header.description,
-      locale: "en_UK",
+      description: metaDescription,
+      locale: userLocale || "en_UK",
       url: `https://medical-portfolios.vercel.app/portfolios/${resolvedParams.name}`,
       siteName: "Medical Portfolio's",
       images: [
@@ -60,7 +83,7 @@ export async function generateMetadata({
     twitter: {
       card: "summary_large_image",
       title: `${portfolioData.header.name} | Portfolio | Medical Portfolio's`,
-      description: portfolioData.header.description,
+      description: metaDescription,
       images: [portfolioData.header.image],
     },
   };
@@ -92,6 +115,23 @@ export default async function PortfolioPage({
   if (!portfolioData) {
     return <NotFound />;
   }
+
+  const socials: Social[] = portfolioData.footer?.socials || [];
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: portfolioData.header.name,
+    description: portfolioData.header.description,
+    url: `https://medical-portfolios.vercel.app/portfolios/${resolvedParams.name}`,
+    sameAs: socials.map((social) => social.link),
+    image: {
+      "@type": "ImageObject",
+      url: portfolioData.header.image,
+      width: 800,
+      height: 600,
+    },
+  };
 
   return (
     <body>
@@ -144,6 +184,10 @@ export default async function PortfolioPage({
         userId={userId!}
         data={portfolioData.footer}
         editable={signedIn}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
     </body>
   );
