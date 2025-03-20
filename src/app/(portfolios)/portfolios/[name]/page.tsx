@@ -24,7 +24,7 @@ import type { Metadata } from "next";
 export async function generateMetadata({
   params,
 }: {
-  params: { name: string };
+  params: Promise<{ name: string }>;
 }): Promise<Metadata> {
   const resolvedParams = await params;
   const portfolioData = await getPortfolioData(resolvedParams.name);
