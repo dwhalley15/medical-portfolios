@@ -14,6 +14,57 @@ import Specialities from "@/components/portfolios/specialities/specialities";
 import Education from "@/components/portfolios/education/education";
 import Location from "@/components/portfolios/location/location";
 import Contact from "@/components/portfolios/contact/contact";
+import type { Metadata } from "next";
+
+/**
+ * This function generates the metadata for the portfolio page.
+ * @param {string} params.name - The name of the portfolio.
+ * @returns {Metadata} The metadata for the portfolio page.
+ */
+export async function generateMetadata({
+  params,
+}: {
+  params: { name: string };
+}): Promise<Metadata> {
+  const resolvedParams = await params;
+  const portfolioData = await getPortfolioData(resolvedParams.name);
+  if (!portfolioData) {
+    return {
+      title: "Not Found | Medical Portfolio's",
+      description: "This portfolio does not exist.",
+    };
+  }
+
+  return {
+    title: `${portfolioData.header.name} | Portfolio | Medical Portfolio's`,
+    description: portfolioData.header.description,
+    alternates: {
+      canonical: `https://medical-portfolios.vercel.app/portfolios/${resolvedParams.name}`,
+    },
+    openGraph: {
+      type: "website",
+      title: `${portfolioData.header.name} | Portfolio | Medical Portfolio's`,
+      description: portfolioData.header.description,
+      locale: "en_UK",
+      url: `https://medical-portfolios.vercel.app/portfolios/${resolvedParams.name}`,
+      siteName: "Medical Portfolio's",
+      images: [
+        {
+          url: portfolioData.header.image,
+          width: 800,
+          height: 600,
+          alt: `${portfolioData.header.name} | Portfolio | Medical Portfolio's`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${portfolioData.header.name} | Portfolio | Medical Portfolio's`,
+      description: portfolioData.header.description,
+      images: [portfolioData.header.image],
+    },
+  };
+}
 
 /**
  * This function returns the portfolio page.
