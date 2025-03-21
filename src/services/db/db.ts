@@ -743,3 +743,18 @@ export async function getUserEmail(id: number) {
   }
 }
 
+/**
+ * Get all URLs for portfolios.
+ * @returns {Promise<string[]|null>} An array of URLs, otherwise null.
+ */
+export async function getAllURLS() {
+  try {
+    const { rows } = await sql`
+      SELECT url FROM "portfolios";
+    `;
+    return rows;
+  } catch (error) {
+    console.error("Error getting all urls:", error);
+    return null;
+  }
+}
