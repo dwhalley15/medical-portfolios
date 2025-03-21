@@ -158,14 +158,14 @@ export async function generateMetaDescription({
         {
           role: "system",
           content:
-            "You are an expert in SEO. Generate a concise and engaging meta description from the given portfolio data. Keep it under 160 characters.",
+            "You are an expert in SEO. Generate a concise and engaging meta description from the given portfolio data. It must be **exactly 160 characters or fewer**. Do NOT exceed this limit. If necessary, truncate or rephrase the text to fit within 160 characters.",
         },
         {
           role: "user",
           content: `Here is the data:\n${metaData}`,
         },
       ],
-      max_tokens: 200,
+      max_tokens: 60,
       temperature: 0.7,
     });
 
@@ -173,7 +173,9 @@ export async function generateMetaDescription({
       response.data?.choices?.[0]?.message?.content?.trim() ??
       header.description;
 
-    return generatedDescription;
+    return generatedDescription.length > 160
+      ? generatedDescription.slice(0, 157) + "..."
+      : generatedDescription;
   } catch (error) {
     console.error("Error generating meta description:", error);
     return header.description;
