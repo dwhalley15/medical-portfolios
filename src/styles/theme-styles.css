@@ -220,6 +220,7 @@
 .contact-form-input{
   color: var(--text-color);
   border: 1px solid var(--text-color);
+  font-family: var(--font-family);
 }
 
 .contact-form-input:focus-visible{
