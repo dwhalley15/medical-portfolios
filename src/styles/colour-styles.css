@@ -54,6 +54,10 @@
   color: var(--white);
 }
 
+.facebook-icon-color{
+  color: #1877f2 !important;
+}
+
 .facebook-color:hover {
   background-color: transparent;
   color: #1877f2;
