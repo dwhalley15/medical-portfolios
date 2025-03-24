@@ -80,7 +80,8 @@ export default function PortfolioBtn({ portfolioUrl }: PortfolioBtnProps) {
           <FacebookShareButton
             url={`${url}/portfolios/${portfolioUrl}`}
             htmlTitle="Check out my portfolio!"
-            hashtag={`Check out my portfolio! #medicalportfolios ${url}/portfolios/${portfolioUrl}`}
+            title="Check out my portfolio!"
+            hashtag="#medicalportfolios"
             className="share-btn facebook-icon-color"
           >
             <FontAwesomeIcon icon={faFacebook} aria-hidden="true" />
@@ -88,7 +89,8 @@ export default function PortfolioBtn({ portfolioUrl }: PortfolioBtnProps) {
 
           <TwitterShareButton
             url={`${url}/portfolios/${portfolioUrl}`}
-            htmlTitle="Check out my portfolio! #medicalportfolios"
+            htmlTitle="Check out my portfolio!"
+            title="Check out my portfolio!"
             className="share-btn"
           >
             <FontAwesomeIcon icon={faXTwitter} aria-hidden="true" />
@@ -97,6 +99,7 @@ export default function PortfolioBtn({ portfolioUrl }: PortfolioBtnProps) {
           <LinkedinShareButton
             url={`${url}/portfolios/${portfolioUrl}`}
             htmlTitle="Check out my portfolio!"
+            title="Check out my portfolio!"
             summary="Check out my portfolio!"
             source={`${url}/portfolios/${portfolioUrl}`}
             className="share-btn facebook-icon-color"
