@@ -84,3 +84,8 @@ p {
   line-height: 1.6;
   padding-right: 2rem;
 }
+
+.portfolio-card-text {
+
+  text-decoration: none !important;
+}

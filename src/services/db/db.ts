@@ -758,3 +758,19 @@ export async function getAllURLS() {
     return null;
   }
 }
+
+/**
+ * Get all portfolios.
+ * @returns {Promise<Object[]|null>} An array of portfolios, otherwise null.
+ */
+export async function getAllPortfolios() {
+  try {
+    const { rows } = await sql`
+      SELECT * FROM "portfolios";
+    `;
+    return rows;
+  } catch (error) {
+    console.error("Error getting all portfolios:", error);
+    return null;
+  }
+}

@@ -33,3 +33,10 @@
   object-fit: cover;
   aspect-ratio: 1/1;
 }
+
+.portfolio-card-image{
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  cursor: pointer;
+  object-fit: cover;
+}
