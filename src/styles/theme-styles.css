@@ -19,9 +19,9 @@
 .theme-green {
   --text-color: #fff;
   --background-color: #14967f;
-  --hover-color: #0b5340;
+  --hover-color: #0b5346;
   --text-hover-color: #fff;
-  --alternate-background-color: #0b5340;
+  --alternate-background-color: #0b5346;
   --font-family: Arial, sans-serif;
 }
 
@@ -29,7 +29,7 @@
   --text-color: #14967f;
   --background-color: #fff;
   --hover-color: #14967f;
-  --text-hover-color: #0b5340;
+  --text-hover-color: #0b5346;
   --alternate-background-color: #14967f;
   --font-family: Arial, sans-serif;
 }
@@ -55,9 +55,9 @@
 .theme-peach {
   --text-color: #fff;
   --background-color: #ff9966;
-  --hover-color: #ff661a;
+  --hover-color: #995b3d;
   --text-hover-color: #fff;
-  --alternate-background-color: #ff661a;
+  --alternate-background-color: #995b3d;
   --font-family: "Open Sans", sans-serif;
 }
 
@@ -65,7 +65,7 @@
   --text-color: #ff9966;
   --background-color: #fff;
   --hover-color: #ff9966;
-  --text-hover-color: #ff661a;
+  --text-hover-color: #995b3d;
   --alternate-background-color: #ff9966;
   --font-family: "Open Sans", sans-serif;
 }

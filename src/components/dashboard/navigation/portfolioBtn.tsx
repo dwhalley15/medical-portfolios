@@ -60,7 +60,7 @@ export default function PortfolioBtn({ portfolioUrl }: PortfolioBtnProps) {
         target="_blank"
         rel="noopener noreferrer"
       >
-        {`Click here to visit your portfolio page`}
+        {`Click here to visit and edit your portfolio page`}
       </Link>
       <div className="container btn-width">
         <button
@@ -74,7 +74,7 @@ export default function PortfolioBtn({ portfolioUrl }: PortfolioBtnProps) {
 
         {copySuccess && <span className="blue normal-text">{copySuccess}</span>}
 
-        <div className="button-container">
+        <div className="dashboard-socials-container">
           <span className="blue normal-text">{"Share on:"}</span>
 
           <FacebookShareButton
