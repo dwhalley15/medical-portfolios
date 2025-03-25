@@ -18,10 +18,6 @@ import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { generateMetaDescription } from "@/services/metadata/generateMetaDescription";
 
-type FooterData = {
-  socials: Social[];
-};
-
 type Social = {
   name: string;
   link: string;

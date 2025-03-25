@@ -11,6 +11,7 @@ import "../../styles/button-styles.css";
 import "../../styles/colour-styles.css";
 import "../../styles/button-styles.css";
 import Footer from "@/components/dashboard/footer/footer";
+import Navbar from "@/components/dashboard/navigation/navbar";
 
 const funnel = Funnel_Display({
   weight: "400",
@@ -34,6 +35,7 @@ export default function NotFoundLayout({
   return (
     <html lang="en">
       <body className={`${funnel.className}`}>
+        <Navbar />
         {children}
         <Footer />
       </body>

@@ -28,7 +28,7 @@ export default async function PrivacyPage() {
     <main className="text-page-container">
       <section>
         <h1 className="blue bottom-border">{`Privacy Policy`}</h1>
-        <p className="blue">{"Last updated: 19//02/2025"}</p>
+        <p className="blue">{"Last updated: 19/02/2025"}</p>
         <h2 className="blue">{"Introduction"}</h2>
         <p className="blue">
           {
