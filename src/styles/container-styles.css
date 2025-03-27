@@ -819,3 +819,13 @@
   gap: 2rem;
   padding: 2rem;
 }
+
+.pagination-container{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+}

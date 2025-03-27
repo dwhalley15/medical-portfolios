@@ -289,3 +289,17 @@
 .share-btn:hover{
   transform: scale(1.05);
 }
+
+.pagination-button{
+  padding: 1rem;
+  border-radius: 1.5rem;
+  transition: 0.3s ease;
+  display: flex;
+  background: transparent;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.6;
+}

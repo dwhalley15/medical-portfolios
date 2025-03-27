@@ -3,13 +3,19 @@
  * @description The search results component is responsible for rendering the search results for the search page.
  */
 
+"use client";
+
+import { useState, useEffect } from "react";
 import PortfolioSearch from "@/services/search/portfolioSearch";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 type SearchResultsProps = {
   text: string;
-  speciality: string;
+  page: number;
 };
 
 /**
@@ -17,14 +23,59 @@ type SearchResultsProps = {
  * @param {Object} searchParams - The search parameters.
  * @returns {JSX.Element} The search results component.
  */
-export default async function SearchResults({
+export default function SearchResults({
   text,
-  speciality,
+  page,
 }: SearchResultsProps) {
-  const searchResults = await PortfolioSearch(text, speciality);
-  if (!searchResults || searchResults.length === 0) {
+  const [results, setResults] = useState<any[]>([]);
+  const [totalResults, setTotalResults] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();
+  const pageSize = 5; 
+
+  /**
+   * This function fetches the search results based on the search text and page number.
+   * @returns {void}
+   */
+  useEffect(() => {
+    const fetchResults = async () => {
+      setLoading(true);
+      const response = await PortfolioSearch(text, page, pageSize);
+      if (response && Array.isArray(response)) {
+        setResults(response);
+        setTotalResults(response.length);
+      } else if (response && response.results && response.totalResults) {
+        setResults(response.results);
+        setTotalResults(response.totalResults);
+      } else {
+        setResults([]);
+        setTotalResults(0);
+      }
+      setLoading(false);
+    };
+    fetchResults();
+  }, [text, page]);
+
+  if (loading) {
+    return <p className="blue">{"Loading..."}</p>;
+  }
+
+  if (!results || results.length === 0) {
     return <p className="blue">{"No results found"}</p>;
   }
+
+  const totalPages = Math.ceil(totalResults / pageSize);
+
+  /**
+   * This function handles the page change.
+   * @param newPage - The new page number.
+   * @returns {void}
+   */
+  const handlePageChange = (newPage: number) => {
+    if (newPage > 0 && newPage <= totalPages) {
+      router.push(`?text=${text}&page=${newPage}`);
+    }
+  };
 
   /**
    * This function truncates the description of a portfolio.
@@ -50,11 +101,13 @@ export default async function SearchResults({
         {"Search Results"}
       </h2>
       <div className="portfolio-card-list-container">
-        {searchResults.map((portfolio, index) => (
+        {results.map((portfolio, index) => (
           <Link
             href={`portfolios/${portfolio.url}`}
             key={index}
             className="portfolio-card-container shadow-border portfolio-card-text"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <Image
               src={portfolio.image}
@@ -74,6 +127,37 @@ export default async function SearchResults({
           </Link>
         ))}
       </div>
+
+      {totalPages > 1 && (
+        <div className="pagination-container">
+
+          {page > 1 && (
+            <button
+              className="pagination-button blue"
+              onClick={() => handlePageChange(page - 1)}
+              role="button"
+              aria-label="Previous page"
+            >
+              <FontAwesomeIcon icon={faArrowLeft} aria-hidden="true" />
+            </button>
+          )}
+
+          <span className="normal-text blue">
+            {`Page ${page} of ${totalPages}`}
+          </span>
+
+          {page < totalPages && (
+            <button
+              className="pagination-button blue"
+              onClick={() => handlePageChange(page + 1)}
+              role="button"
+              aria-label="Next page"
+            >
+              <FontAwesomeIcon icon={faArrowRight} aria-hidden="true" />
+            </button>
+          )}
+        </div>
+      )}
     </>
   );
 }

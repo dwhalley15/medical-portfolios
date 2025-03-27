@@ -27,22 +27,24 @@ export default function SearchForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
+    setErrors([]);
+
     const formData = new FormData(e.target as HTMLFormElement);
-    const searchText = formData.get("search-text") as string;
-    const searchSpeciality = formData.get("search-speciality") as string;
+    const searchQuery = formData.get("search-text") as string;
 
-    const queryParams: any = {};
-    if (searchText?.trim()) {
-      queryParams.text = searchText.trim().toLowerCase();
-    }
-    if (searchSpeciality?.trim() && searchSpeciality !== "DEFAULT") {
-      queryParams.speciality = searchSpeciality.trim().toLowerCase();
+    if (!searchQuery?.trim()) {
+      setErrors(["Please enter a name, symptom, or query to search."]);
+      setLoading(false);
+      return;
     }
 
-    if (Object.keys(queryParams).length > 0) {
-      const searchParams = new URLSearchParams(queryParams).toString();
-      router.push(`/search?${searchParams}`);
-    }
+    const queryParams = {
+      text: searchQuery.trim().toLowerCase(),
+    };
+
+    const searchParams = new URLSearchParams(queryParams).toString();
+    router.push(`/search?${searchParams}`);
+
     setLoading(false);
   };
 
@@ -50,7 +52,7 @@ export default function SearchForm() {
     <form className="form-container" onSubmit={handleSubmit}>
       <div className="input-wrapper">
         <label className="blue" htmlFor="search-text">
-          {"Search by name"}
+          {"Search by Name or Ailment"}
         </label>
         <input
           type="text"
@@ -59,44 +61,6 @@ export default function SearchForm() {
           className="text-input btn-text shadow-border"
           aria-label="Search"
         />
-      </div>
-
-      <div className="input-wrapper">
-        <label className="blue" htmlFor="search-speciality">
-          {"Search by speciality"}
-        </label>
-        <select
-          name="search-speciality"
-          className="text-input btn-text shadow-border white-background"
-          defaultValue={"DEFAULT"}
-          aria-label="Speciality"
-        >
-          <option value="DEFAULT" disabled>
-            Select Speciality
-          </option>
-          <option value="cardiology">Cardiology</option>
-          <option value="dermatology">Dermatology</option>
-          <option value="endocrinology">Endocrinology</option>
-          <option value="gastroenterology">Gastroenterology</option>
-          <option value="hematology">Hematology</option>
-          <option value="infectious-disease">Infectious Disease</option>
-          <option value="neurology">Neurology</option>
-          <option value="nephrology">Nephrology</option>
-          <option value="obstetrics-gynecology">
-            Obstetrics and Gynecology
-          </option>
-          <option value="oncology">Oncology</option>
-          <option value="ophthalmology">Ophthalmology</option>
-          <option value="orthopedics">Orthopedics</option>
-          <option value="otolaryngology">Otolaryngology (ENT)</option>
-          <option value="pediatrics">Pediatrics</option>
-          <option value="psychiatry">Psychiatry</option>
-          <option value="pulmonology">Pulmonology</option>
-          <option value="radiology">Radiology</option>
-          <option value="rheumatology">Rheumatology</option>
-          <option value="surgery-general">General Surgery</option>
-          <option value="urology">Urology</option>
-        </select>
       </div>
 
       {errors.length > 0 && (
