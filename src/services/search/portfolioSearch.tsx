@@ -71,12 +71,22 @@ export default async function PortfolioSearch(
   });
 
   if (exactMatches.length > 0) {
-    return exactMatches.map((portfolio) => ({
+    const exactResults = exactMatches.map((portfolio) => ({
       name: portfolio.header.name,
       url: portfolio.url,
       image: portfolio.header.image,
       description: portfolio.header.description,
     }));
+
+    const totalResults = exactResults.length;
+    const startIndex = (page - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    const paginatedResults = exactResults.slice(startIndex, endIndex);
+
+    return {
+      results: paginatedResults,
+      totalResults,
+    };
   }
 
   // Step 2: Exact synonym matches (search term matches synonyms)
@@ -97,12 +107,22 @@ export default async function PortfolioSearch(
   });
 
   if (exactSynonymMatches.length > 0) {
-    return exactSynonymMatches.map((portfolio) => ({
+    const exactSynonymResults = exactSynonymMatches.map((portfolio) => ({
       name: portfolio.header.name,
       url: portfolio.url,
       image: portfolio.header.image,
       description: portfolio.header.description,
     }));
+
+    const totalResults = exactSynonymResults.length;
+    const startIndex = (page - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    const paginatedResults = exactSynonymResults.slice(startIndex, endIndex);
+
+    return {
+      results: paginatedResults,
+      totalResults,
+    };
   }
 
   // Step 3: Fuzzy matching (only for relevant specialties)

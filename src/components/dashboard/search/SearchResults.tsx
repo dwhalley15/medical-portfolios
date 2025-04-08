@@ -23,15 +23,12 @@ type SearchResultsProps = {
  * @param {Object} searchParams - The search parameters.
  * @returns {JSX.Element} The search results component.
  */
-export default function SearchResults({
-  text,
-  page,
-}: SearchResultsProps) {
+export default function SearchResults({ text, page }: SearchResultsProps) {
   const [results, setResults] = useState<any[]>([]);
   const [totalResults, setTotalResults] = useState(0);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
-  const pageSize = 5; 
+  const pageSize = 5;
 
   /**
    * This function fetches the search results based on the search text and page number.
@@ -41,10 +38,7 @@ export default function SearchResults({
     const fetchResults = async () => {
       setLoading(true);
       const response = await PortfolioSearch(text, page, pageSize);
-      if (response && Array.isArray(response)) {
-        setResults(response);
-        setTotalResults(response.length);
-      } else if (response && response.results && response.totalResults) {
+      if (response && response.results && response.totalResults) {
         setResults(response.results);
         setTotalResults(response.totalResults);
       } else {
@@ -130,7 +124,6 @@ export default function SearchResults({
 
       {totalPages > 1 && (
         <div className="pagination-container">
-
           {page > 1 && (
             <button
               className="pagination-button blue"
