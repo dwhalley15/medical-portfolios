@@ -777,6 +777,7 @@
   padding: 2rem;
   border-radius: 15px;
   max-width: 80vw;
+  min-width: 100%;
 }
 
 
@@ -798,6 +799,7 @@
   border-radius: 15px;
   transition: 0.3s ease;
   cursor: pointer;
+  min-width: 100%;
 }
 
 .portfolio-card-container:hover{
