@@ -16,7 +16,13 @@ const synonymMap: { [key: string]: string[] } = {
   pediatrics: ["child care", "children", "infants", "adolescent medicine"],
   geriatrics: ["elderly care", "senior care", "aging"],
   cardiology: ["heart", "cardiac", "cardiovascular disease"],
-  orthopedics: ["bone", "joint", "musculoskeletal", "knee replacement"],
+  orthopedics: [
+    "bone",
+    "joint",
+    "musculoskeletal",
+    "knee replacement",
+    "hip replacement",
+  ],
   psychiatry: ["mental health", "counseling", "psychological care"],
   dermatology: ["skin care", "skin disease", "rashes"],
   oncology: ["cancer care", "tumor", "malignancy"],
@@ -64,7 +70,8 @@ export default async function PortfolioSearch(
 
     const isExactSpecialityMatch = portfolioSpecialities.some(
       (specialityItem: any) =>
-        specialityItem.title.toLowerCase().includes(searchTerm)
+        specialityItem.title.toLowerCase().includes(searchTerm) ||
+        specialityItem.description?.toLowerCase().includes(searchTerm)
     );
 
     return isExactNameMatch || isExactSpecialityMatch;
@@ -96,8 +103,14 @@ export default async function PortfolioSearch(
     const isExactSynonymMatch = portfolioSpecialities.some(
       (specialityItem: any) =>
         Object.keys(synonymMap).some((speciality) => {
+          const titleMatch = specialityItem.title
+            .toLowerCase()
+            .includes(speciality);
+          const descMatch = specialityItem.description
+            ?.toLowerCase()
+            .includes(speciality);
           return (
-            specialityItem.title.toLowerCase().includes(speciality) &&
+            (titleMatch || descMatch) &&
             synonymMap[speciality].includes(searchTerm)
           );
         })
@@ -131,28 +144,45 @@ export default async function PortfolioSearch(
       const portfolioSpecialities = portfolio.specialities?.specialities || [];
 
       const allWords = portfolioSpecialities.flatMap(
-        (specialityItem: Speciality) =>
-          specialityItem.title
+        (specialityItem: Speciality) => {
+          const titleWords = specialityItem.title
             .toLowerCase()
             .trim()
             .replace(/\s+/g, " ")
-            .split(" ")
+            .split(" ");
+          const descWords =
+            specialityItem.description
+              ?.toLowerCase()
+              .trim()
+              .replace(/\s+/g, " ")
+              .split(" ") || [];
+          return [...titleWords, ...descWords];
+        }
       );
 
       const synonymMatchScore = portfolioSpecialities.some(
-        (specialityItem: any) =>
-          Object.keys(synonymMap).some((speciality) => {
-            if (specialityItem.title.toLowerCase().includes(speciality)) {
-              return synonymMap[speciality].some(
+        (specialityItem: Speciality) => {
+          const containsSynonym = Object.keys(synonymMap).some((speciality) => {
+            const titleMatch = specialityItem.title
+              .toLowerCase()
+              .includes(speciality);
+            const descMatch = specialityItem.description
+              ?.toLowerCase()
+              .includes(speciality);
+            return (
+              (titleMatch || descMatch) &&
+              synonymMap[speciality].some(
                 (synonym) =>
                   stringSimilarity.compareTwoStrings(
                     specialityItem.title.toLowerCase(),
                     synonym
                   ) > 0.9 || synonym.includes(searchTerm)
-              );
-            }
-            return false;
-          })
+              )
+            );
+          });
+
+          return containsSynonym;
+        }
       )
         ? 1.0
         : 0.0;
