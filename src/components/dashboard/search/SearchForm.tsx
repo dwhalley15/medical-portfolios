@@ -57,7 +57,7 @@ export default function SearchForm() {
         <input
           type="text"
           name="search-text"
-          placeholder="Search for a medical professional by name"
+          placeholder="Search for a medical professional by name or ailment"
           className="text-input btn-text shadow-border"
           aria-label="Search"
         />
