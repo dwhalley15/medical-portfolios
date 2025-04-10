@@ -55,7 +55,7 @@ export default async function Dashboard() {
 
   return (
     <>
-      <main className="page-container">
+      <main className="dashboard-container">
         {!isOAuthUserFlag && !emailVerified && (
           <section className="container">
             <h1 className="blue">{"Email Verification Required"}</h1>

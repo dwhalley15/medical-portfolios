@@ -7,7 +7,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCopy } from "@fortawesome/free-solid-svg-icons";
+import { faCopy, faAddressBook } from "@fortawesome/free-solid-svg-icons";
 import {
   faFacebook,
   faXTwitter,
@@ -52,15 +52,19 @@ export default function PortfolioBtn({ portfolioUrl }: PortfolioBtnProps) {
 
   return (
     <div className="container">
+      <h2 className="blue bottom-border">Portfolio</h2>
+      <p className="blue">{`Click below to visit and edit your portfolio page`}</p>
       <Link
         href={`/portfolios/${portfolioUrl}`}
         aria-label="Go to Portfolio page"
         role="button"
-        className="link-text blue"
+        className="btn shadow-border blue-background btn-text white btn-width"
         target="_blank"
         rel="noopener noreferrer"
       >
-        {`Click here to visit and edit your portfolio page`}
+        {`View Porfolio`}
+        <FontAwesomeIcon icon={faAddressBook} aria-hidden="true" />
+
       </Link>
       <div className="container btn-width">
         <button
