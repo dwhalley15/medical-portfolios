@@ -62,7 +62,7 @@ export default function PortfolioBtn({ portfolioUrl }: PortfolioBtnProps) {
         target="_blank"
         rel="noopener noreferrer"
       >
-        {`View Porfolio`}
+        {`View/Edit Portfolio`}
         <FontAwesomeIcon icon={faAddressBook} aria-hidden="true" />
 
       </Link>
