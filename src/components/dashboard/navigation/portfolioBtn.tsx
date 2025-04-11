@@ -53,7 +53,6 @@ export default function PortfolioBtn({ portfolioUrl }: PortfolioBtnProps) {
   return (
     <div className="container">
       <h2 className="blue bottom-border">Portfolio</h2>
-      <p className="blue">{`Click below to visit and edit your portfolio page`}</p>
       <Link
         href={`/portfolios/${portfolioUrl}`}
         aria-label="Go to Portfolio page"
