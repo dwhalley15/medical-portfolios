@@ -85,7 +85,7 @@ export default function ContactEditor({
 
   return (
     <>
-      <ModalBtn setIsOpen={setIsOpen} btnText="Edit Contact" iconProp="pen" />
+      <ModalBtn setIsOpen={setIsOpen} btnText="Edit Portfolio Contact Section" iconProp="pen" />
       <EditModal
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}

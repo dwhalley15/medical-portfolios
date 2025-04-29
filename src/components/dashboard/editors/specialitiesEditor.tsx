@@ -124,7 +124,7 @@ export default function SpecialitiesEditor({
     <>
       <ModalBtn
         setIsOpen={setIsOpen}
-        btnText="Edit Specialities"
+        btnText="Edit Portfolio Specialities Section"
         iconProp="pen"
       />
       <EditModal

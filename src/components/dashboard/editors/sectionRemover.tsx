@@ -56,7 +56,7 @@ export default function SectionRemover({
     <>
       <ModalBtn
         setIsOpen={setIsOpen}
-        btnText={`Remove ${section.charAt(0).toUpperCase() + section.slice(1)}`}
+        btnText={`Remove ${section.charAt(0).toUpperCase() + section.slice(1)} Section From Portfolio`}
         iconProp="trash"
       />
       <EditModal

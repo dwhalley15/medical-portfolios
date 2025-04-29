@@ -109,7 +109,7 @@ export default function FooterEditor({
 
   return (
     <>
-      <ModalBtn setIsOpen={setIsOpen} btnText="Edit Footer" iconProp="pen" />
+      <ModalBtn setIsOpen={setIsOpen} btnText="Edit Portfolio Footer" iconProp="pen" />
       <EditModal
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}

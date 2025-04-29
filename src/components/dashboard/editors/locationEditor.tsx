@@ -146,7 +146,7 @@ export default function LocationEditor({
 
   return (
     <>
-      <ModalBtn setIsOpen={setIsOpen} btnText="Edit Location" iconProp="pen" />
+      <ModalBtn setIsOpen={setIsOpen} btnText="Edit Portfolio Location Section" iconProp="pen" />
       <EditModal
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}

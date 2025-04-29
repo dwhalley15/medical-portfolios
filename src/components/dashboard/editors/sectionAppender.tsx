@@ -81,7 +81,7 @@ export default function SectionAppender({ userIdProp }: SectionAppenderProps) {
 
   return (
     <>
-      <ModalBtn setIsOpen={setIsOpen} btnText="Add Section" iconProp="plus" />
+      <ModalBtn setIsOpen={setIsOpen} btnText="Add New Section To Portfolio" iconProp="plus" />
       <EditModal
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}

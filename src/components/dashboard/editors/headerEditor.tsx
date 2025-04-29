@@ -80,7 +80,7 @@ export default function HeaderEditor({
 
   return (
     <>
-      <ModalBtn setIsOpen={setIsOpen} btnText="Edit Header" iconProp="pen" />
+      <ModalBtn setIsOpen={setIsOpen} btnText="Edit Portfolio Header" iconProp="pen" />
       <EditModal
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}

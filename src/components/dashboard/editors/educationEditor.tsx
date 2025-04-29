@@ -125,7 +125,7 @@ export default function EducationEditor({
 
   return (
     <>
-      <ModalBtn setIsOpen={setIsOpen} btnText="Edit Education" iconProp="pen" />
+      <ModalBtn setIsOpen={setIsOpen} btnText="Edit Portfolio Education Section" iconProp="pen" />
       <EditModal
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
