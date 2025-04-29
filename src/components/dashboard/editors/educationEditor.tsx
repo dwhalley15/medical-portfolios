@@ -157,16 +157,14 @@ export default function EducationEditor({
               if (
                 title &&
                 description &&
-                location &&
-                startDateString &&
-                endDateString
+                location
               ) {
                 extractedEducation.push({
                   title,
                   description,
                   location,
-                  startDate: new Date(startDateString),
-                  endDate: new Date(endDateString),
+                  startDate: startDateString ? new Date(startDateString) : null,
+                  endDate: endDateString ? new Date(endDateString) : null,
                 });
               }
             });
@@ -257,7 +255,6 @@ export default function EducationEditor({
                     onChange={(e) =>
                       handleEducationChange(index, "startDate", e.target.value)
                     }
-                    required
                   />
                 </div>
 
@@ -278,7 +275,6 @@ export default function EducationEditor({
                     onChange={(e) =>
                       handleEducationChange(index, "endDate", e.target.value)
                     }
-                    required
                   />
                 </div>
 

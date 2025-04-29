@@ -63,26 +63,32 @@ export default function Location({ userId, data, editable }: LocationProps) {
               <FontAwesomeIcon icon={faHospital} aria-hidden="true" />{" "}
               {location.title}
             </h3>
-            <Link
-              className="link-text"
-              href={`tel:${location.phone.replace(/[^0-9+]/g, "")}`}
-            >
-              <FontAwesomeIcon icon={faPhone} aria-hidden="true" />{" "}
-              {location.phone}
-            </Link>
-            <Link className="link-text" href={`mailto:${location.email}`}>
-              <FontAwesomeIcon icon={faEnvelope} aria-hidden="true" />{" "}
-              {location.email}
-            </Link>
-            <Link
-              className="link-text"
-              target="_blank"
-              rel="noopener noreferrer"
-              href={location.website}
-            >
-              <FontAwesomeIcon icon={faGlobe} aria-hidden="true" />{" "}
-              {location.website}
-            </Link>
+            {location.phone && location.phone.length > 0 && (
+              <Link
+                className="link-text"
+                href={`tel:${location.phone.replace(/[^0-9+]/g, "")}`}
+              >
+                <FontAwesomeIcon icon={faPhone} aria-hidden="true" />{" "}
+                {location.phone}
+              </Link>
+            )}
+            {location.email && location.email.length > 0 && (
+              <Link className="link-text" href={`mailto:${location.email}`}>
+                <FontAwesomeIcon icon={faEnvelope} aria-hidden="true" />{" "}
+                {location.email}
+              </Link>
+            )}
+            {location.website && location.website.length > 0 && (
+              <Link
+                className="link-text"
+                target="_blank"
+                rel="noopener noreferrer"
+                href={location.website}
+              >
+                <FontAwesomeIcon icon={faGlobe} aria-hidden="true" />{" "}
+                {location.website}
+              </Link>
+            )}
             <p>
               <FontAwesomeIcon icon={faMapMarkerAlt} aria-hidden="true" />{" "}
               {location.address} {location.city}

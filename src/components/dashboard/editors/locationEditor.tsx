@@ -303,7 +303,6 @@ export default function LocationEditor({
                     onChange={(e) =>
                       handleLocationChange(index, "phone", e.target.value)
                     }
-                    required
                   />
                 </div>
 
@@ -317,7 +316,6 @@ export default function LocationEditor({
                     onChange={(e) =>
                       handleLocationChange(index, "email", e.target.value)
                     }
-                    required
                   />
                 </div>
 
@@ -331,7 +329,6 @@ export default function LocationEditor({
                     onChange={(e) =>
                       handleLocationChange(index, "website", e.target.value)
                     }
-                    required
                   />
                 </div>
 
