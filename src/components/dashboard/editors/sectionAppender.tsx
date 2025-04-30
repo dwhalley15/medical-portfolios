@@ -11,8 +11,8 @@ import RevalidatePage from "@/services/portfolioUpdates/revalidatePage";
 import ModalBtn from "../modal/components/modalBtn";
 import SubmitBtn from "../modal/components/submitBtn";
 import EditModal from "../modal/EditModal";
-import { getSections } from "../../../services/db/db";
 import { AddSection } from "../../../services/portfolioUpdates/addSection";
+import { useSectionUpdate } from "../../dashboard/editors/sectionUpdateContext";
 
 type SectionAppenderProps = {
   userIdProp: number;
@@ -29,26 +29,43 @@ export default function SectionAppender({ userIdProp }: SectionAppenderProps) {
   const [loading, setLoading] = useState(false);
   const [sectionsToAppend, setSectionsToAppend] = useState<string[]>([]);
   const [selectedSection, setSelectedSection] = useState<string | null>(null);
-  const [updateTrigger, setUpdateTrigger] = useState(0);
 
   const pathname = usePathname();
+  const triggerUpdate = useSectionUpdate();
+  const [internalTrigger, setInternalTrigger] = useState(0);
 
   /**
    * This function fetches the sections available to append.
    */
   useEffect(() => {
     const fetchSections = async () => {
-      const sections: { [key: string]: boolean }[] = await getSections(
-        userIdProp
-      );
-      const sectionsAvailable = Object.keys(sections[0] || {}).filter(
-        (section) => sections[0][section] === false
-      );
-      setSectionsToAppend(sectionsAvailable);
+      try {
+        const res = await fetch(`/api/sections?userId=${userIdProp}`);
+        if (!res.ok) throw new Error("Failed to fetch sections");
+
+        const data = await res.json();
+        const sectionsAvailable = Object.keys(data.sections[0] || {}).filter(
+          (section) => data.sections[0][section] === false
+        );
+        setSectionsToAppend(sectionsAvailable);
+      } catch (err) {
+        console.error("Error fetching sections:", err);
+      }
     };
 
     fetchSections();
-  }, [userIdProp, updateTrigger]);
+  }, [userIdProp, internalTrigger]);
+
+  /**
+   * This function handles the trigger update.
+   * It updates the internal trigger state to re-render the component when the trigger changes.
+   */
+  useEffect(() => {
+    const unsubscribe = () => setInternalTrigger((t) => t + 1);
+    unsubscribe();
+    return () => {
+    };
+  }, [triggerUpdate]);
 
   /**
    * This function handles the form submission.
@@ -60,7 +77,7 @@ export default function SectionAppender({ userIdProp }: SectionAppenderProps) {
     setLoading(true);
     const results = await AddSection(formData, userIdProp);
     if (results.success) {
-      setUpdateTrigger((prev) => prev + 1);
+      setInternalTrigger((prev) => prev + 1);
       await RevalidatePage(pathname);
       setLoading(false);
       setIsOpen(false);
@@ -81,7 +98,11 @@ export default function SectionAppender({ userIdProp }: SectionAppenderProps) {
 
   return (
     <>
-      <ModalBtn setIsOpen={setIsOpen} btnText="Add New Section To Portfolio" iconProp="plus" />
+      <ModalBtn
+        setIsOpen={setIsOpen}
+        btnText="Add New Section To Portfolio"
+        iconProp="plus"
+      />
       <EditModal
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}

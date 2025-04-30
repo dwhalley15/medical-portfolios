@@ -12,6 +12,8 @@ import ModalBtn from "../modal/components/modalBtn";
 import SubmitBtn from "../modal/components/submitBtn";
 import EditModal from "../modal/EditModal";
 import { RemoveSection } from "@/services/portfolioUpdates/removeSection";
+import { useRouter } from "next/navigation";
+import { useSectionUpdate } from "../../dashboard/editors/sectionUpdateContext";
 
 type SectionRemoverProps = {
   userIdProp: number;
@@ -32,6 +34,8 @@ export default function SectionRemover({
   const [loading, setLoading] = useState(false);
 
   const pathname = usePathname();
+  const router = useRouter(); 
+  const triggerUpdate = useSectionUpdate(); 
 
   /**
    * This function handles the form submission.
@@ -44,6 +48,8 @@ export default function SectionRemover({
     const results = await RemoveSection(formData, userIdProp);
     if (results.success) {
       await RevalidatePage(pathname);
+      triggerUpdate();
+      router.refresh();
       setLoading(false);
       setIsOpen(false);
     } else {

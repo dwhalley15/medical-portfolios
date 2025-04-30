@@ -17,6 +17,7 @@ import Contact from "@/components/portfolios/contact/contact";
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { generateMetaDescription } from "@/services/metadata/generateMetaDescription";
+import { SectionUpdateProvider } from "../../../../components/dashboard/editors/sectionUpdateContext";
 
 type Social = {
   name: string;
@@ -142,40 +143,42 @@ export default async function PortfolioPage({
           editable={signedIn}
           userId={userId!}
         />
-        {[
-          portfolioData.specialities && {
-            component: Specialities,
-            data: portfolioData.specialities,
-          },
-          portfolioData.education && {
-            component: Education,
-            data: portfolioData.education,
-          },
-          portfolioData.location && {
-            component: Location,
-            data: portfolioData.location,
-          },
-          portfolioData.contact && {
-            component: Contact,
-            data: portfolioData.contact,
-          },
-        ]
-          .filter(Boolean)
-          .sort((a, b) => a!.data.order - b!.data.order)
-          .map(({ component: Component, data }) => (
-            <Component
-              key={data.order}
-              data={data}
-              editable={signedIn}
-              userId={userId!}
-            />
-          ))}
+        <SectionUpdateProvider>
+          {[
+            portfolioData.specialities && {
+              component: Specialities,
+              data: portfolioData.specialities,
+            },
+            portfolioData.education && {
+              component: Education,
+              data: portfolioData.education,
+            },
+            portfolioData.location && {
+              component: Location,
+              data: portfolioData.location,
+            },
+            portfolioData.contact && {
+              component: Contact,
+              data: portfolioData.contact,
+            },
+          ]
+            .filter(Boolean)
+            .sort((a, b) => a!.data.order - b!.data.order)
+            .map(({ component: Component, data }) => (
+              <Component
+                key={`${data.order}-${data.title}`}
+                data={data}
+                editable={signedIn}
+                userId={userId!}
+              />
+            ))}
+          {signedIn ? (
+            <div className="section-appender-container">
+              <SectionAppender userIdProp={userId!} />
+            </div>
+          ) : null}
+        </SectionUpdateProvider>
       </main>
-      {signedIn ? (
-        <div className="section-appender-container">
-          <SectionAppender userIdProp={userId!} />
-        </div>
-      ) : null}
       <Footer
         userId={userId!}
         data={portfolioData.footer}
