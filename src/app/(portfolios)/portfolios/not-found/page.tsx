@@ -13,24 +13,20 @@ import { faHome } from "@fortawesome/free-solid-svg-icons";
  */
 export default async function NotFound() {
   return (
-      <body>
-        <main className="page-container">
-          <section className="container">
-            <h1 className="blue bottom-border">{"404 - Page Not Found"}</h1>
-            <p className="blue">
-              {"The page you are looking for does not exist."}
-            </p>
-            <Link
-              className="btn shadow-border blue-background btn-text white"
-              href="/"
-              aria-label="Go to Home page"
-              role="button"
-            >
-              {"Back to Home Page"}
-              <FontAwesomeIcon icon={faHome} aria-hidden="true" />
-            </Link>
-          </section>
-        </main>
-      </body>
+    <main className="page-container">
+      <section className="container">
+        <h1 className="blue bottom-border">{"404 - Page Not Found"}</h1>
+        <p className="blue">{"The page you are looking for does not exist."}</p>
+        <Link
+          className="btn shadow-border blue-background btn-text white"
+          href="/"
+          aria-label="Go to Home page"
+          role="button"
+        >
+          {"Back to Home Page"}
+          <FontAwesomeIcon icon={faHome} aria-hidden="true" />
+        </Link>
+      </section>
+    </main>
   );
 }

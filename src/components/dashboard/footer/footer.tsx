@@ -3,8 +3,6 @@
  * @description A client-side footer component that provides navigation links,
  *              contact details, and branding for the Medical Portfolio platform.
  */
-"use client";
-
 import Link from "next/link";
 import { faPhone, faEnvelope, faHome } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
