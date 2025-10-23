@@ -24,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function AboutPage() {
   return (
     <main className="text-page-container">
-      <section>
+      <section className="half-width-container">
         <h1 className="blue bottom-border">{`About`}</h1>
         <h2 className="blue">{`Empowering Medical Professionals`}</h2>
         <p className="blue">

@@ -5,6 +5,7 @@
 
 import SearchForm from "@/components/dashboard/search/SearchForm";
 import SearchResults from "@/components/dashboard/search/SearchResults";
+import SearchSuggestions from "@/components/dashboard/search/SearchSuggestions";
 import { Metadata } from "next";
 
 /**
@@ -41,11 +42,12 @@ export default async function Search({
       <section className="search-container">
         <h1 className="blue bottom-border">{"Search"}</h1>
         <h2 className="blue">{"Our medical professional portfolios"}</h2>
-        <p className="blue">
-          {"Search for a medical professional by name or ailment."}
-        </p>
         <SearchForm />
-        {searchText && <SearchResults text={searchText} page={page}/>}
+         {searchText ? (
+          <SearchResults text={searchText} page={page} />
+        ) : (
+          <SearchSuggestions />
+        )}
       </section>
     </main>
   );

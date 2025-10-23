@@ -1,6 +1,5 @@
 export default async function Portfolios() {
   return (
-    <body>
       <main className="page-container">
         <section className="container">
           <h1 className="blue">{`Portfolio's`}</h1>
@@ -9,6 +8,5 @@ export default async function Portfolios() {
           </p>
         </section>
       </main>
-    </body>
   );
 }

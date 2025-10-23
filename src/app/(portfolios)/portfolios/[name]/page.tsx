@@ -131,7 +131,7 @@ export default async function PortfolioPage({
   };
 
   return (
-    <body>
+    <>
       <Navigation
         userId={userId!}
         data={portfolioData.navigation}
@@ -188,6 +188,6 @@ export default async function PortfolioPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-    </body>
+    </>
   );
 }

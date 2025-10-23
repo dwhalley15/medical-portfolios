@@ -37,7 +37,7 @@ export default async function SignupManually() {
   return (
     <>
       <main className="page-container">
-        <section className="text-page-container">
+        <section className="container">
           <h1 className="blue bottom-border align-center">{"Sign Up"}</h1>
           <SignUpForm />
         </section>

@@ -49,7 +49,7 @@ export default function SearchForm() {
   };
 
   return (
-    <form className="form-container" onSubmit={handleSubmit}>
+    <form className="form-container search-form" onSubmit={handleSubmit}>
       <div className="input-wrapper">
         <label className="blue" htmlFor="search-text">
           {"Search by Name or Ailment"}

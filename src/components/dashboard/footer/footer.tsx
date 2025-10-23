@@ -3,6 +3,7 @@
  * @description A client-side footer component that provides navigation links,
  *              contact details, and branding for the Medical Portfolio platform.
  */
+"use client";
 
 import Link from "next/link";
 import { faPhone, faEnvelope, faHome } from "@fortawesome/free-solid-svg-icons";
@@ -126,7 +127,7 @@ export default function Footer() {
       <div className="footer-bottom-container">
         <hr className="footer-divider" />
         <p className="white">
-          © {new Date().getFullYear()} Medical Portfolios. All rights reserved.
+          {"© 2025 Medical Portfolios. All rights reserved."}
         </p>
       </div>
     </footer>

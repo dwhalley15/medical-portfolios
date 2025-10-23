@@ -31,7 +31,7 @@ type Social = {
  */
 export default function Footer({ userId, data, editable }: FooterProps) {
   return (
-    <footer className={`footer-container theme-${data.theme}`}>
+    <footer className={`portfolio-footer-container footer-container theme-${data.theme}`}>
       {data.socials.length > 0 && (
         <ul className="socials-container">
           {data.socials.map((social, index) => (
@@ -52,7 +52,7 @@ export default function Footer({ userId, data, editable }: FooterProps) {
         </ul>
       )}
       <p>
-        {`© ${new Date().getFullYear()} | Powered by Medical Portfolio's | All rights reserved.`}
+        {`© 2025 | Powered by Medical Portfolio's | All rights reserved.`}
       </p>
       {editable && (
         <FooterEditor

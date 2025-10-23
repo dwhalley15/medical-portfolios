@@ -4,26 +4,8 @@
  */
 
 import type { Metadata } from "next";
-import { Funnel_Display } from "next/font/google";
-import { config } from "@fortawesome/fontawesome-svg-core";
-import "@fortawesome/fontawesome-svg-core/styles.css";
-import "../../styles/global-styles.css";
-import "../../styles/container-styles.css";
-import "../../styles/image-styles.css";
-import "../../styles/border-styles.css";
-import "../../styles/text-styles.css";
-import "../../styles/button-styles.css";
-import "../../styles/colour-styles.css";
-import "../../styles/button-styles.css";
 import Footer from "@/components/dashboard/footer/footer";
 import Navbar from "@/components/dashboard/navigation/navbar";
-
-const funnel = Funnel_Display({
-  weight: "400",
-  subsets: ["latin"],
-});
-
-config.autoAddCss = false;
 
 /**
  * This function generates the metadata for the dashboard layout.
@@ -93,16 +75,14 @@ export default function DashboardLayout({
   };
 
   return (
-    <html lang="en">
-      <body className={`${funnel.className}`}>
-        <Navbar />
-        {children}
-        <Footer />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-      </body>
-    </html>
+    <>
+      <Navbar />
+      {children}
+      <Footer />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+    </>
   );
 }

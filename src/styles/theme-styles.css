@@ -120,7 +120,7 @@
   box-shadow: 0 0 5rem var(--hover-color);
 }
 
-.footer-container {
+.portfolio-footer-container {
   background-color: var(--background-color);
   color: var(--text-color);
   font-family: var(--font-family);
