@@ -54,6 +54,15 @@ export default function Footer() {
             <li>
               <Link
                 className="white link-text"
+                aria-label="Go to features page"
+                href={"/features"}
+              >
+                {"Features"}
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="white link-text"
                 aria-label="Go to privacy policy page"
                 href={"/privacy-policy"}
               >
@@ -76,6 +85,15 @@ export default function Footer() {
                 href={"/help"}
               >
                 {"Help"}
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="white link-text"
+                aria-label="Go to FAQ page"
+                href={"/faq"}
+              >
+                {"FAQ"}
               </Link>
             </li>
           </ul>

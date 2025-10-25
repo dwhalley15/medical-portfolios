@@ -4,6 +4,7 @@
  */
 
 import type { Metadata } from "next";
+import Link from "next/link";
 
 /**
  * Generates metadata for the help page.
@@ -43,7 +44,7 @@ export default async function HelpPage() {
 
         <h2 className="blue">{`Need More Assistance?`}</h2>
         <p className="blue">
-          {`If you encounter any issues or have questions, visit our FAQ section or contact our support team for further assistance.`}
+          {`If you encounter any issues or have questions, visit our`} <Link href="/faq" className="blue in-text-link"><strong>FAQ section</strong></Link> {`or contact our support team for further assistance.`}
         </p>
         </section>
       </main>

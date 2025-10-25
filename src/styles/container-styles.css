@@ -916,3 +916,12 @@
   align-items: flex-start;
   gap: 2rem;
 }
+
+.accordion-item{
+  width: 100%;
+  margin-bottom: 4rem;
+}
+
+.accordion-content {
+  overflow: hidden;
+}
